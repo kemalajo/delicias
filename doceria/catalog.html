@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Catálogo — Kelojo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Baloo+2:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <img src="img/logo.png" alt="Kelojo logo" />
+      </div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="catalog.html">Catálogo</a>
+        <a href="login.html">Login (Empreendedora)</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="catalog-page">
+    <section class="catalog-header">
+      <h1>Catálogo de Produtos</h1>
+      <p>Selecione os produtos que deseja e clique em "Finalizar pelo WhatsApp".</p>
+    </section>
+
+    <section class="products-grid" id="products-grid">
+      <!-- Os produtos serão inseridos via JS a partir do localStorage / dados iniciais -->
+    </section>
+
+    <aside class="cart-panel">
+      <h3>Seu pedido</h3>
+      <div id="cart-items">Nenhum produto selecionado.</div>
+      <div class="cart-summary">
+        <div>Subtotal: <span id="cart-subtotal">R$ 0,00</span></div>
+      </div>
+
+      <div class="cart-actions">
+        <button id="clear-cart" class="btn btn-outline">Limpar</button>
+        <button id="checkout-btn" class="btn btn-primary">Finalizar pelo WhatsApp</button>
+      </div>
+    </aside>
+
+    <section class="map-small">
+      <h2>Localização</h2>
+      <iframe
+        title="Localização Kelojo"
+        src="https://www.google.com/maps?q=R.+Duque+de+Caxias+494+Sorocaba+SP&output=embed"
+        loading="lazy">
+      </iframe>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p>&copy; <span id="ano2"></span> Kelojo — Doceria Artesanal.</p>
+    </div>
+  </footer>
+
+  <script src="js/checkout.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
