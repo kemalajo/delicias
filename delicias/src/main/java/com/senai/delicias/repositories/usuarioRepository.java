@@ -1,5 +1,5 @@
 package com.senai.delicias.repositories;
 
-public class adminRepository {
+public class usuarioRepository {
 
 }

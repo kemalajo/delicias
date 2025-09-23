@@ -1,5 +1,5 @@
 package com.senai.delicias.entities;
 
-public class admin {
+public class usuario {
 
 }
