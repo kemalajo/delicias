@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tbOrnamento")
-public class ornamento {
+public class Ornamento {
 
 	// Atributos
 	@Id
@@ -23,15 +23,15 @@ public class ornamento {
 	private String nome;
 
 	@OneToMany(mappedBy = "ornamentoProduto")
-	private List<produto> produtos;
+	private List<Produto> produtos;
 
-	public ornamento() {
+	public Ornamento() {
 
 	}
 
 	// Construtores
 
-	public ornamento(Long idOrnamento, String nome, String tipo, List<produto> produtos) {
+	public Ornamento(Long idOrnamento, String nome, String tipo, List<Produto> produtos) {
 		super();
 		this.idOrnamento = idOrnamento;
 		this.nome = nome;
@@ -56,11 +56,11 @@ public class ornamento {
 		this.nome = nome;
 	}
 
-	public List<produto> getProdutos() {
+	public List<Produto> getProdutos() {
 		return produtos;
 	}
 
-	public void setProdutos(List<produto> produtos) {
+	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
 	}
 

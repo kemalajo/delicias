@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tbTipoUsuario")
-public class tipoUsuario {
+public class TipoUsuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,11 +22,11 @@ public class tipoUsuario {
 	@Column(name = "nomeTipoUsuario", nullable = false)
 	private String nomeTipoUsuario;
 
-	public tipoUsuario() {
+	public TipoUsuario() {
 
 	}
 
-	public tipoUsuario(Long idTipoUsuario, String nomeTipoUsuario, List<cliente> cleinte) {
+	public TipoUsuario(Long idTipoUsuario, String nomeTipoUsuario, List<Usuario> cleinte) {
 		this.idTipoUsuario = idTipoUsuario;
 		this.nomeTipoUsuario = nomeTipoUsuario;
 	}

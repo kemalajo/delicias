@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tbCliente")
-public class cliente {
+public class Usuario {
 	
 	// Atributos
 	@Id
@@ -31,14 +31,14 @@ public class cliente {
 
 	@ManyToOne
 	@JoinColumn(name = "tipoCliente", nullable = false)
-	private tipoUsuario tipoUsuario;
+	private TipoUsuario tipoUsuario;
 
 	// Construtores
-	public cliente() {
+	public Usuario() {
 
 	}
 
-	public cliente(Long idCliente, String nomeCliente, String email, String telefone, String senha, tipoUsuario tipoUsuario) {
+	public Usuario(Long idCliente, String nomeCliente, String email, String telefone, String senha, TipoUsuario tipoUsuario) {
 		this.idCliente = idCliente ;
 		this.nomeCliente  = nomeCliente ;
 		this.email = email;

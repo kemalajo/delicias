@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_produtos")
-public class produto {
+public class Produto {
 
 	// Atributos
 	@Id
@@ -32,31 +32,31 @@ public class produto {
 
 	@ManyToOne
 	@JoinColumn(name = "categoriaProduto", nullable = false)
-	private categoriaProduto categoriaProduto;
+	private CategoriaProduto categoriaProduto;
 
 	@ManyToOne
 	@JoinColumn(name = "tipoProdutoId", nullable = false)
-	private tipoEncomenda tipoEncomenda;
+	private TipoProduto tipoProduto;
 
 	@ManyToOne
 	@JoinColumn(name = "ornamentoId", nullable = true)
-	private ornamento ornamentoProduto;
+	private Ornamento ornamentoProduto;
 
-	public produto() {
+	public Produto() {
 
 	}
 
 	// Construtores
 
-	public produto(Long idProduto, String nomeProduto, Double precoProduto, String descricaoProduto, String imgUrl,
-			categoriaProduto categoriaProduto, tipoEncomenda tipoEncomenda, ornamento ornamentoProduto) {
+	public Produto(Long idProduto, String nomeProduto, Double precoProduto, String descricaoProduto, String imgUrl,
+			CategoriaProduto categoriaProduto, TipoProduto tipoProduto, Ornamento ornamentoProduto) {
 		this.idProduto = idProduto;
 		this.nomeProduto = nomeProduto;
 		this.precoProduto = precoProduto;
 		this.descricaoProduto = descricaoProduto;
 		this.imgUrl = imgUrl;
 		this.categoriaProduto = categoriaProduto;
-		this.tipoEncomenda = tipoEncomenda;
+		this.tipoProduto = tipoProduto;
 		this.ornamentoProduto = ornamentoProduto;
 	}
 
@@ -102,27 +102,27 @@ public class produto {
 		this.imgUrl = imgUrl;
 	}
 
-	public categoriaProduto getCategoriaProduto() {
+	public CategoriaProduto getCategoriaProduto() {
 		return categoriaProduto;
 	}
 
-	public void setCategoriaProduto(categoriaProduto categoriaProduto) {
+	public void setCategoriaProduto(CategoriaProduto categoriaProduto) {
 		this.categoriaProduto = categoriaProduto;
 	}
 
-	public tipoEncomenda getTipoEncomenda() {
-		return tipoEncomenda;
+	public TipoProduto getTipoEncomenda() {
+		return tipoProduto;
 	}
 
-	public void setTipoEncomenda(tipoEncomenda tipoEncomenda) {
-		this.tipoEncomenda = tipoEncomenda;
+	public void setTipoEncomenda(TipoProduto tipoProduto) {
+		this.tipoProduto = tipoProduto;
 	}
 
-	public ornamento getOrnamentoProduto() {
+	public Ornamento getOrnamentoProduto() {
 		return ornamentoProduto;
 	}
 
-	public void setOrnamentoProduto(ornamento ornamentoProduto) {
+	public void setOrnamentoProduto(Ornamento ornamentoProduto) {
 		this.ornamentoProduto = ornamentoProduto;
 	}
 

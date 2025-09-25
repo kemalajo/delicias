@@ -11,7 +11,7 @@ package com.senai.delicias.entities;
 
 	@Entity
 	@Table(name = "tbEndereco")
-	public class endereco {
+	public class Endereco {
 
 		// Atributos
 		@Id
@@ -42,14 +42,14 @@ package com.senai.delicias.entities;
 		
 		@ManyToOne
 		@JoinColumn(name = "Cliente", nullable = true)
-		private cliente cliente;
+		private Usuario cliente;
 
-		public endereco() {
+		public Endereco() {
 
 		}
 
-		public endereco(Long idEndereco, String bairro, String rua, String cidade, String numero, String cep,
-				String complemento, String uf, cliente cliente) {
+		public Endereco(Long idEndereco, String bairro, String rua, String cidade, String numero, String cep,
+				String complemento, String uf, Usuario cliente) {
 			this.idEndereco = idEndereco;
 			this.bairro = bairro;
 			this.rua = rua;
@@ -125,11 +125,11 @@ package com.senai.delicias.entities;
 			this.uf = uf;
 		}
 
-		public cliente getUsuarios() {
+		public Usuario getUsuarios() {
 			return cliente;
 		}
 
-		public void setUsuarios(cliente usuarios) {
+		public void setUsuarios(Usuario usuarios) {
 			this.cliente = usuarios;
 		}
 		

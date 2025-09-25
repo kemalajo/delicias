@@ -9,7 +9,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_categoriaProduto")
-public class categoriaProduto {
+public class CategoriaProduto {
 	// Atributos
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,11 +22,11 @@ public class categoriaProduto {
 	private String descricaoCategoria;
 
 	// Construtores
-	public categoriaProduto() {
+	public CategoriaProduto() {
 
 	}
 
-	public categoriaProduto(Long idCategoria, String nome, String descricao) {
+	public CategoriaProduto(Long idCategoria, String nome, String descricao) {
 		this.idCategoria = idCategoria;
 		this.nomeCategoria = nome;
 		this.descricaoCategoria = descricao;
