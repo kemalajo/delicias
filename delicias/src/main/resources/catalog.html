@@ -3,64 +3,59 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Catálogo — Kelojo</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Baloo+2:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css" />
+  <title>Cardápio — Kelajo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js" defer></script>
 </head>
 <body>
-  <header class="site-header">
+  <header class="site-header small">
     <div class="header-inner">
-      <div class="logo">
-        <img src="img/logo.png" alt="Kelojo logo" />
-      </div>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="catalog.html">Catálogo</a>
-        <a href="login.html">Login (Empreendedora)</a>
+      <a class="brand-link" href="index.html">
+        <div class="logo-circle">K</div>
+        <div class="brand-name">Kelajo</div>
+      </a>
+
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="catalog.html" class="active">Doces</a></li>
+          <li><a href="index.html#lancamento">Lançamento</a></li>
+          <li><a href="index.html#historia">História</a></li>
+        </ul>
       </nav>
+
+      <div class="header-actions">
+        <a href="login.html" class="btn small">Login Confeiteira</a>
+      </div>
     </div>
   </header>
 
-  <main class="catalog-page">
-    <section class="catalog-header">
-      <h1>Catálogo de Produtos</h1>
-      <p>Selecione os produtos que deseja e clique em "Finalizar pelo WhatsApp".</p>
+  <main class="container">
+    <section class="catalog-hero">
+      <h2 class="section-title">Cardápio</h2>
+      <p class="section-sub">Explore nossa seleção completa de doces e salgados artesanais</p>
     </section>
 
-    <section class="products-grid" id="products-grid">
-      <!-- Os produtos serão inseridos via JS a partir do localStorage / dados iniciais -->
-    </section>
-
-    <aside class="cart-panel">
-      <h3>Seu pedido</h3>
-      <div id="cart-items">Nenhum produto selecionado.</div>
-      <div class="cart-summary">
-        <div>Subtotal: <span id="cart-subtotal">R$ 0,00</span></div>
-      </div>
-
-      <div class="cart-actions">
-        <button id="clear-cart" class="btn btn-outline">Limpar</button>
-        <button id="checkout-btn" class="btn btn-primary">Finalizar pelo WhatsApp</button>
-      </div>
-    </aside>
-
-    <section class="map-small">
-      <h2>Localização</h2>
-      <iframe
-        title="Localização Kelojo"
-        src="https://www.google.com/maps?q=R.+Duque+de+Caxias+494+Sorocaba+SP&output=embed"
-        loading="lazy">
-      </iframe>
+    <section id="catalog-grid" class="grid-cardapio">
+      <!-- JS insere os cards aqui -->
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="footer-inner">
-      <p>&copy; <span id="ano2"></span> Kelojo — Doceria Artesanal.</p>
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <div class="logo-circle">K</div>
+        <div>
+          <strong>Kelajo</strong>
+          <small>Doces artesanais feitos com amor</small>
+        </div>
+      </div>
+      <div class="footer-right">
+        <p>contato@kelajo.com.br | (15) 99999-9999</p>
+        <p>© 2025 Kelajo Confeitaria</p>
+      </div>
     </div>
   </footer>
-
-  <script src="js/checkout.js"></script>
-  <script src="js/main.js"></script>
 </body>
 </html>
