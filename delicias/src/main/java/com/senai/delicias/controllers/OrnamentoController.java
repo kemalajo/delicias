@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/categorias")
+@RequestMapping("/ornamento")
 public class OrnamentoController {
 
     private final OrnamentoService ornamentoService;
@@ -30,16 +30,16 @@ public class OrnamentoController {
     }
 
     @PostMapping
-    public ResponseEntity<Ornamento> create(@RequestBody Ornamento categoria) {
-        return ResponseEntity.ok(ornamentoService.save(categoria));
+    public ResponseEntity<Ornamento> create(@RequestBody Ornamento ornamento) {
+        return ResponseEntity.ok(ornamentoService.save(ornamento));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Ornamento> update(@PathVariable Long id, @RequestBody Ornamento categoria) {
+    public ResponseEntity<Ornamento> update(@PathVariable Long id, @RequestBody Ornamento ornamento) {
         return ornamentoService.findById(id)
                 .map(existing -> {
-                    categoria.setIdOrnamento(id);
-                    return ResponseEntity.ok(ornamentoService.save(categoria));
+                	ornamento.setIdOrnamento(id);
+                    return ResponseEntity.ok(ornamentoService.save(ornamento));
                 })
                 .orElse(ResponseEntity.notFound().build());
     }
