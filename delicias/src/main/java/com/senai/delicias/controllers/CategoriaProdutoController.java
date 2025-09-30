@@ -18,34 +18,34 @@ public class CategoriaProdutoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CategoriaProduto>> getAll() {
+    public ResponseEntity<List<CategoriaProduto>> getAllCategorias() {
         return ResponseEntity.ok(categoriaProdutoService.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CategoriaProduto> getById(@PathVariable Long id) {
+    public ResponseEntity<CategoriaProduto> getCategoriaById(@PathVariable Long id) {
         return categoriaProdutoService.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<CategoriaProduto> create(@RequestBody CategoriaProduto categoria) {
+    public ResponseEntity<CategoriaProduto> createCategoria(@RequestBody CategoriaProduto categoria) {
         return ResponseEntity.ok(categoriaProdutoService.save(categoria));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CategoriaProduto> update(@PathVariable Long id, @RequestBody CategoriaProduto categoria) {
+    public ResponseEntity<CategoriaProduto> updateCategoria(@PathVariable Long id, @RequestBody CategoriaProduto categoria) {
         return categoriaProdutoService.findById(id)
                 .map(existing -> {
-                    categoria.setIdCategoria(id);
+                    categoria.setIdCategoria(id); 
                     return ResponseEntity.ok(categoriaProdutoService.save(categoria));
                 })
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteCategoria(@PathVariable Long id) {
         categoriaProdutoService.delete(id);
         return ResponseEntity.noContent().build();
     }

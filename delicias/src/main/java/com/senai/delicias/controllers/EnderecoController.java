@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/categorias")
+@RequestMapping("/enderecos")
 public class EnderecoController {
 
     private final EnderecoService enderecoService;
@@ -18,34 +18,34 @@ public class EnderecoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Endereco>> getAll() {
+    public ResponseEntity<List<Endereco>> getAllEnderecos() {
         return ResponseEntity.ok(enderecoService.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Endereco> getById(@PathVariable Long id) {
+    public ResponseEntity<Endereco> getEnderecoById(@PathVariable Long id) {
         return enderecoService.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<Endereco> create(@RequestBody Endereco categoria) {
-        return ResponseEntity.ok(enderecoService.save(categoria));
+    public ResponseEntity<Endereco> createEndereco(@RequestBody Endereco endereco) {
+        return ResponseEntity.ok(enderecoService.save(endereco));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Endereco> update(@PathVariable Long id, @RequestBody Endereco categoria) {
+    public ResponseEntity<Endereco> updateEndereco(@PathVariable Long id, @RequestBody Endereco endereco) {
         return enderecoService.findById(id)
                 .map(existing -> {
-                    categoria.setIdEndereco(id);
-                    return ResponseEntity.ok(enderecoService.save(categoria));
+                    endereco.setIdEndereco(id); 
+                    return ResponseEntity.ok(enderecoService.save(endereco));
                 })
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteEndereco(@PathVariable Long id) {
         enderecoService.delete(id);
         return ResponseEntity.noContent().build();
     }

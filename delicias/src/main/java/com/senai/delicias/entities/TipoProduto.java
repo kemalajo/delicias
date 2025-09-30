@@ -24,7 +24,7 @@ public class TipoProduto {
     @Column(name = "descricaoTipoProduto")
     private String descricaoTipoProduto;
 
-    @OneToMany(mappedBy = "tipoEncomenda")
+    @OneToMany(mappedBy = "tipoProduto")
     private List<Produto> produtos;
 
     public TipoProduto() {
