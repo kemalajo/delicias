@@ -1,118 +1,176 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Delícias Fer Lopes</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Delícias Fer Lopes — Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/script.js" defer></script>
 </head>
 <body>
 
-  <!-- Cabeçalho -->
-<header class="site-header">
-  <div class="header-inner">
-    <div class="logo">
-      <a href="index.html"><img src="https://i.pinimg.com/736x/07/51/73/07517377f73d9283a6b6593a5faad6a7.jpg
-" alt="Delícias Fer Lopes"></a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand-link" href="index.html">
+        <div class="logo-circle">K</div>
+        <div class="brand-name">Kelajo</div>
+      </a>
+
+      <nav class="main-nav" aria-label="menu principal">
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="catalog.html">Doces</a></li>
+          <li><a href="#lancamento">Lançamento</a></li>
+          <li><a href="#historia">História</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="login.html" class="btn small">Login Confeiteira</a>
+        <button class="menu-toggle" aria-label="abrir menu">☰</button>
+      </div>
     </div>
+  </header>
 
-    <nav class="main-nav" aria-label="menu principal">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="index.html#cardapio">Cardápio</a></li>
-        <li><a href="index.html#lancamento">Lançamento</a></li>
-        <li><a href="index.html#historia">História</a></li>
-      </ul>
-    </nav>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <h1 class="hero-title">Kelajo</h1>
+      <p class="hero-sub">Doces artesanais feitos com amor</p>
 
-    <button class="menu-toggle" aria-label="abrir menu">☰</button>
-  </div>
-</header>
+      <div class="hero-buttons">
+        <a class="btn btn-primary" href="catalog.html">Ver Cardápio</a>
+        <a class="btn btn-ghost" href="#historia">Nossa História</a>
+      </div>
 
-  <!-- Banner -->
-  <section class="banner">
-    <img src="https://i.pinimg.com/736x/17/28/ef/1728efcb9904c64210c33c660fd4f319.jpg" alt="Banner Delícias">
-  </section>
-
-  <!-- Sucesso da casa -->
-  <section class="sucesso">
-    <h2>O sucesso da casa</h2>
-    <div class="produtos-sucesso">
-      <img src="https://i.pinimg.com/736x/da/22/db/da22db2e2a211d51aacaa4b6e4335edd.jpg" alt="Cookie">
-      <img src="https://i.pinimg.com/736x/d7/a4/42/d7a442ab9e3de0dd2419499f2aa27a2b.jpg" alt="Strawberry Tart">
-      <img src="https://i.pinimg.com/736x/59/fa/17/59fa175ad10fd8bdddae042b2a5c6f2f.jpg" alt="Croissant de Chocolate">
-    </div>
-  </section>
-
-  <!-- História -->
-  <section class="historia" id="historia">
-    <div class="historia-img">
-      <img src="img/historia.png" alt="Nossa História">
-    </div>
-    <div class="historia-texto">
-      <h2>Nossa história</h2>
-      <p>
-        A Delícias Fer Lopes nasceu do amor pela confeitaria e do desejo de transformar simples ingredientes em momentos especiais. 
-        Cada bolo, cada doce e cada detalhe são preparados com carinho, trazendo o sabor caseiro que remete a boas lembranças e alegra qualquer ocasião.
-      </p>
-      <p>
-        Mais do que sobremesas, oferecemos experiências que adoçam a vida e tornam cada celebração única.
-      </p>
+      <div class="metrics">
+        <div class="metric">
+          <div class="circle">5+</div>
+          <p>Anos de experiência</p>
+        </div>
+        <div class="metric">
+          <div class="circle">1000+</div>
+          <p>Clientes satisfeitos</p>
+        </div>
+        <div class="metric">
+          <div class="circle">50+</div>
+          <p>Receitas especiais</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Lançamentos -->
-  <section class="lancamento" id="lancamento">
-    <img src="https://i.pinimg.com/736x/26/62/46/26624635ec3629e0bf36d971ff385437.jpg" alt="Lançamentos">
+  <!-- Lançamento (render dinâmico de destaque) -->
+  <section id="lancamento" class="lancamento">
+    <div class="container">
+      <h2 class="section-title">Lançamento</h2>
+      <p class="section-sub">Cookies gourmet para todos os gostos</p>
+      <div id="featured-area" class="featured-area"></div>
+    </div>
   </section>
 
-  <!-- Cardápio -->
-<section id="cardapio" class="cardapio">
-  <div class="container">
-    <h2>Nosso Cardápio</h2>
+  <!-- Nossa história -->
+  <section id="historia" class="historia">
+    <div class="container historia-grid">
+      <div class="historia-text">
+        <h2>Nossa história</h2>
+        <p>
+          A Delícias Fer Lopes nasceu do amor pela confeitaria e do desejo de transformar simples ingredientes em momentos especiais.
+          Cada bolo, cada doce e cada detalhe são preparados com carinho.
+        </p>
 
-    <div class="grid-cardapio">
-      <div class="item">
-        <a href="produto.html?prod=croissant"><img src="https://i.pinimg.com/736x/a1/0a/ef/a10aef0ee4979baeb51c475b32ae8a0f.jpg" alt="Croissant"><h3>Croissant</h3></a>
+        <div class="history-cards">
+          <div class="card"><strong>2020</strong><span>Ano de fundação</span></div>
+          <div class="card"><strong>100%</strong><span>Artesanal</span></div>
+        </div>
       </div>
 
-      <div class="item">
-        <a href="produto.html?prod=sonho"><img src="https://i.pinimg.com/736x/d0/aa/3c/d0aa3c8b8f9c10f01ceb6e5bc36327bb.jpg" alt="Sonho de Morango"><h3>Sonho de Morango</h3></a>
-      </div>
-
-            <div class="item">
-        <a href="produto.html?prod=cookie"><img src="https://i.pinimg.com/736x/a3/26/8c/a3268c37b074b6253e2ce4371c23b971.jpg" alt="Cookie"><h3>Cookie</h3></a>
-      </div>
-
-      <div class="item">
-        <a href="produto.html?prod=brownie"><img src="https://i.pinimg.com/736x/ac/84/e9/ac84e9bb2de1a9d2058c6248edbac5b7.jpg" alt="Brownie"><h3>Brownie</h3></a>
-      </div>
-
-      <!-- segunda linha -->
-      <div class="item">
-        <a href="produto.html?prod=bolo"><img src="https://i.pinimg.com/736x/80/54/ec/8054ec94d30206a86cb0cecb595bd0f6.jpg" alt="Bolo"><h3>Bolo</h3></a>
-      </div>
-
-      <div class="item">
-        <a href="produto.html?prod=pudim"><img src="https://i.pinimg.com/736x/57/de/cc/57deccb8ad0d35907e804ccab00d41e5.jpg" alt="Pudim"><h3>Pudim</h3></a>
-      </div>
-
-      <div class="item">
-        <a href="produto.html?prod=brigadeiro"><img src="https://i.pinimg.com/736x/c7/75/49/c77549b998098d6ab4b0e107d1b437e8.jpg" alt="Brigadeiro"><h3>Brigadeiro</h3></a>
-      </div>
-
-      <div class="item">
-        <a href="produto.html?prod=trufa"><img src="https://i.pinimg.com/736x/07/81/a3/0781a3836d7c88793da3b08f61af3d70.jpg" alt="Trufa"><h3>Trufa</h3></a>
+      <div class="historia-img">
+        <img src="https://i.pinimg.com/736x/07/81/a3/0781a3836d7c88793da3b08f61af3d70.jpg" alt="Torta de Morango">
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-  <!-- Rodapé -->
-  <footer>
-    <img src="https://i.pinimg.com/736x/d6/db/e3/d6dbe3861733ce124732af3868a991e6.jpg" alt="Rodapé Decorativo">
-    <p>&copy; 2025 Delícias Fer Lopes - Todos os direitos reservados</p>
+  <!-- Cardápio (mostra 8 itens com links; catálogo completo em catalog.html) -->
+  <section id="cardapio" class="cardapio">
+    <div class="container">
+      <h2>Nosso Cardápio</h2>
+      <div class="grid-cardapio">
+        <!-- Esses links usam IDs dos produtos padrão. -->
+        <div class="item">
+          <a href="produto.html?prod=croissant"><img src="https://i.pinimg.com/736x/a1/0a/ef/a10aef0ee4979baeb51c475b32ae8a0f.jpg" alt=""><h3>Croissant</h3></a>
+        </div>
+        <div class="item">
+          <a href="produto.html?prod=sonho"><img src="https://i.pinimg.com/736x/d0/aa/3c/d0aa3c8b8f9c10f01ceb6e5bc36327bb.jpg" alt=""><h3>Sonho de Morango</h3></a>
+        </div>
+        <div class="item">
+          <a href="produto.html?prod=cookie"><img src="https://i.pinimg.com/736x/a3/26/8c/a3268c37b074b6253e2ce4371c23b971.jpg" alt=""><h3>Cookie</h3></a>
+        </div>
+        <div class="item">
+          <a href="produto.html?prod=brownie"><img src="https://i.pinimg.com/736x/ac/84/e9/ac84e9bb2de1a9d2058c6248edbac5b7.jpg" alt=""><h3>Brownie</h3></a>
+        </div>
+        <div class="item">
+          <a href="produto.html?prod=bolo"><img src="https://i.pinimg.com/736x/80/54/ec/8054ec94d30206a86cb0cecb595bd0f6.jpg" alt=""><h3>Bolo</h3></a>
+        </div>
+        <div class="item">
+          <a href="produto.html?prod=pudim"><img src="https://i.pinimg.com/736x/57/de/cc/57deccb8ad0d35907e804ccab00d41e5.jpg" alt=""><h3>Pudim</h3></a>
+        </div>
+        <div class="item">
+          <a href="produto.html?prod=brigadeiro"><img src="https://i.pinimg.com/736x/c7/75/49/c77549b998098d6ab4b0e107d1b437e8.jpg" alt=""><h3>Brigadeiro</h3></a>
+        </div>
+        <div class="item">
+          <a href="produto.html?prod=trufa"><img src="https://i.pinimg.com/736x/07/81/a3/0781a3836d7c88793da3b08f61af3d70.jpg" alt=""><h3>Trufa</h3></a>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:18px">
+        <a class="btn" href="catalog.html">Ver cardápio completo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contato / Delivery / WhatsApp -->
+  <section class="contato">
+    <div class="container contato-grid">
+      <div>
+        <h3>Visite nossa loja</h3>
+        <p><strong>Endereço:</strong> R. Duque de Caxias, 494 – Mangal, Sorocaba - SP</p>
+        <p><strong>Horário:</strong> Seg-Sáb: 8h-18h | Dom: 9h-16h</p>
+        <p><strong>Telefone:</strong> (15) 99999-9999</p>
+      </div>
+      <div class="delivery-whatsapp">
+        <div class="delivery">
+          <h4>Peça pelo delivery</h4>
+          <div class="delivery-buttons">
+            <a class="delivery-btn">iFood</a>
+            <a class="delivery-btn">Uber Eats</a>
+            <a class="delivery-btn">Rappi</a>
+          </div>
+        </div>
+        <div class="whatsapp">
+          <h4>Faça sua encomenda pelo nosso WhatsApp</h4>
+          <a id="whatsapp-main" class="btn btn-whatsapp" href="#" target="_blank" rel="noopener">WhatsApp</a>
+          <div class="qrcode"><img src="https://i.pinimg.com/originals/aa/3b/83/aa3b835c6e3a2e6c0c2e4f6b7f626d59.png" alt="QR Code"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <div class="logo-circle">K</div>
+        <div>
+          <strong>Kelajo</strong>
+          <small>Doces artesanais feitos com amor</small>
+        </div>
+      </div>
+      <div class="footer-right">
+        <p>contato@kelajo.com.br | (15) 99999-9999</p>
+        <p>© 2025 Kelajo Confeitaria</p>
+      </div>
+    </div>
   </footer>
+
 </body>
 </html>

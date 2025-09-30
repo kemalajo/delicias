@@ -1,55 +1,49 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Produto - Delícias Fer Lopes</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Produto — Kelajo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/script.js" defer></script>
 </head>
 <body>
-  <!-- Cabeçalho -->
-  <header>
-    <div class="logo">🍪 Delícias Fer Lopes</div>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="index.html#cardapio">Cardápio</a></li>
-        <li><a href="index.html#lancamento">Lançamento</a></li>
-        <li><a href="index.html#historia">História</a></li>
-      </ul>
-    </nav>
+  <header class="site-header small">
+    <div class="header-inner">
+      <a class="brand-link" href="index.html">
+        <div class="logo-circle">K</div>
+        <div class="brand-name">Kelajo</div>
+      </a>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="catalog.html">Doces</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <!-- Produto -->
-  <section class="produto-detalhe">
-    <div class="produto-img">
-      <img src="img/croissant.png" alt="Croissant">
+  <main class="container product-page">
+    <div id="product-wrap" class="product-wrap">
+      <!-- JS vai renderizar o produto aqui -->
     </div>
-    <div class="produto-info">
-      <h1>Croissant</h1>
-      <p>Delicadamente folhados, dourados por fora e macios por dentro...</p>
-      
-      <div class="sabores">
-        <span class="sabor">Avelã</span>
-        <span class="sabor">Pistache</span>
-        <span class="sabor">Frutas Vermelhas</span>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <div class="logo-circle">K</div>
+        <div>
+          <strong>Kelajo</strong>
+          <small>Doces artesanais feitos com amor</small>
+        </div>
       </div>
-
-      <h3>R$ 25,00</h3>
-
-      <p class="whats">Faça sua encomenda pelo nosso WhatsApp:</p>
-      <a href="https://wa.me/5599999999999" target="_blank" class="btn-whats">📲 Encomendar</a>
+      <div class="footer-right">
+        <p>contato@kelajo.com.br | (15) 99999-9999</p>
+        <p>© 2025 Kelajo Confeitaria</p>
+      </div>
     </div>
-  </section>
-
-  <!-- Rodapé -->
-  <footer>
-    <div class="mapa">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!..." width="100%" height="250" style="border:0;" allowfullscreen></iframe>
-    </div>
-    <p>R. Duque de Caxias, 494 - Mangal, Sorocaba - SP</p>
-    <p>&copy; 2025 Delícias Fer Lopes</p>
   </footer>
 </body>
 </html>

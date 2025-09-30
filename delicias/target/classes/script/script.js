@@ -1,304 +1,345 @@
-/* ========== CONFIG ========== */
-const EMP_PHONE = '55XXXXXXXXXXX'; // <<-- substitua por ex: 5511999998888
-const ADMIN_PASSWORD = '12345';     // senha padrão (troque se quiser)
+/* script.js — gerencia produtos, login admin, renderizações e ações
+   IMPORTANT: Atualize o número do WhatsApp abaixo:
+   const PHONE_NUMBER = '5515999999999'; // formato: 55 + DDD + número
+*/
+const PHONE_NUMBER = '5515999999999'; // <-- troque para seu número real
 
-/* ========== UTILIDADES ========== */
-const $ = (sel) => document.querySelector(sel);
-const $$ = (sel) => document.querySelectorAll(sel);
+document.addEventListener('DOMContentLoaded', () => {
+  setupMenuToggle();
+  ensureDefaultProducts();
+  initPages();
+  setupWhatsAppMainLink();
+});
 
-document.getElementById('year').textContent = new Date().getFullYear();
-
-/* ========== PRODUTOS INICIAIS (exemplos baseados nas imagens que você enviou) ========== */
-const SAMPLE_PRODUCTS = [
-  {
-    id: generateId(),
-    name: 'Cookie Tradicional',
-    description: 'Cookie artesanal com gotas de chocolate.',
-    price: 12.00,
-    image: 'images/cookie1.jpg'
-  },
-  {
-    id: generateId(),
-    name: 'Torta de Morango (Fatia)',
-    description: 'Massa crocante com recheio cremoso e cobertura de morango.',
-    price: 18.00,
-    image: 'images/strawberry-tart.jpg'
-  },
-  {
-    id: generateId(),
-    name: 'Cheesecake de Morango',
-    description: 'Cheesecake cremoso com base de biscoito e morangos frescos.',
-    price: 28.00,
-    image: 'images/cheesecake.jpg'
-  },
-  {
-    id: generateId(),
-    name: 'Croissant Chocolate',
-    description: 'Folhado amanteigado com recheio de chocolate.',
-    price: 25.00,
-    image: 'images/croissant.jpg'
+/* ---------- Dados iniciais ---------- */
+function ensureDefaultProducts() {
+  if (!localStorage.getItem('kelajo_products')) {
+    const defaultProducts = [
+      { id: 'torta-morango', name: 'Torta de Morango', price: '45.00',
+        image: 'https://i.pinimg.com/736x/07/81/a3/0781a3836d7c88793da3b08f61af3d70.jpg',
+        description: 'Torta fresca com morangos selecionados', tags: ['morango','fresco','creme'], featured: true},
+      { id: 'cookie', name: 'Cookies Gourmet', price: '15.00',
+        image: 'https://i.pinimg.com/736x/a3/26/8c/a3268c37b074b6253e2ce4371c23b971.jpg',
+        description: 'Cookies artesanais para todos os gostos', tags: ['gourmet','artesanal'], featured: true},
+      { id: 'croissant', name: 'Croissant de Chocolate', price: '25.00',
+        image: 'https://i.pinimg.com/736x/59/fa/17/59fa175ad10fd8bdddae042b2a5c6f2f.jpg',
+        description: 'Delicadamente folhados e dourados por fora', tags: ['chocolate','massa folhada'], featured: true},
+      { id: 'bolo', name: 'Bolo de Aniversário', price: '80.00',
+        image: 'https://i.pinimg.com/736x/80/54/ec/8054ec94d30206a86cb0cecb595bd0f6.jpg',
+        description: 'Bolos personalizados para ocasiões especiais', tags: ['aniversário','personalizado'], featured: false},
+      { id: 'sonho', name: 'Sonho de Morango', price: '18.00',
+        image: 'https://i.pinimg.com/736x/d0/aa/3c/d0aa3c8b8f9c10f01ceb6e5bc36327bb.jpg',
+        description: 'Sonho recheado com creme e morango', tags: ['morango','creme'], featured: false},
+      { id: 'brownie', name: 'Brownie', price: '20.00',
+        image: 'https://i.pinimg.com/736x/ac/84/e9/ac84e9bb2de1a9d2058c6248edbac5b7.jpg',
+        description: 'Brownie fudgy com castanhas', tags: ['chocolate','fudge'], featured: false},
+      { id: 'pudim', name: 'Pudim', price: '12.00',
+        image: 'https://i.pinimg.com/736x/57/de/cc/57deccb8ad0d35907e804ccab00d41e5.jpg',
+        description: 'Pudim cremoso tradicional', tags: ['tradicional','cremoso'], featured: false},
+      { id: 'brigadeiro', name: 'Brigadeiro Gourmet', price: '8.00',
+        image: 'https://i.pinimg.com/736x/c7/75/49/c77549b998098d6ab4b0e107d1b437e8.jpg',
+        description: 'Brigadeiros artesanais com sabores especiais', tags: ['brigadeiro','gourmet'], featured: false},
+      { id: 'trufa', name: 'Trufa', price: '6.00',
+        image: 'https://i.pinimg.com/736x/07/81/a3/0781a3836d7c88793da3b08f61af3d70.jpg',
+        description: 'Trufa rica de chocolate', tags: ['trufa','chocolate'], featured: false}
+    ];
+    localStorage.setItem('kelajo_products', JSON.stringify(defaultProducts));
   }
-];
-
-/* ========== LOCAL STORAGE HELPERS ========== */
-const STORAGE_PRODUCTS_KEY = 'kelajo_products_v1';
-const STORAGE_CART_KEY = 'kelajo_cart_v1';
-
-function loadProducts(){
-  const raw = localStorage.getItem(STORAGE_PRODUCTS_KEY);
-  if(raw) return JSON.parse(raw);
-  localStorage.setItem(STORAGE_PRODUCTS_KEY, JSON.stringify(SAMPLE_PRODUCTS));
-  return SAMPLE_PRODUCTS;
-}
-function saveProducts(list){
-  localStorage.setItem(STORAGE_PRODUCTS_KEY, JSON.stringify(list));
-}
-function loadCart(){
-  const raw = localStorage.getItem(STORAGE_CART_KEY);
-  if(!raw) return [];
-  return JSON.parse(raw);
-}
-function saveCart(cart){
-  localStorage.setItem(STORAGE_CART_KEY, JSON.stringify(cart));
 }
 
-/* ========== RENDERIZAÇÃO ========== */
-let products = loadProducts();
-let cart = loadCart();
+/* ---------- util produtos ---------- */
+function getProducts() {
+  try { return JSON.parse(localStorage.getItem('kelajo_products')) || []; } catch(e){ return []; }
+}
+function saveProducts(arr) { localStorage.setItem('kelajo_products', JSON.stringify(arr)); }
+function findProductById(id) { return getProducts().find(p => p.id === id); }
 
-const productGrid = document.getElementById('product-grid');
-const cartCount = document.getElementById('cart-count');
-const cartList = document.getElementById('cart-list');
-const cartTotalEl = document.getElementById('cart-total');
+/* ---------- init por página ---------- */
+function initPages() {
+  if (document.getElementById('featured-area')) renderFeaturedSection();
+  if (document.getElementById('catalog-grid')) renderCatalogGrid();
+  if (document.getElementById('product-wrap')) renderProductPage();
+  if (document.getElementById('login-form')) initLogin();
+  if (document.getElementById('add-product-form')) initAdmin();
+}
 
-function renderProducts(){
-  productGrid.innerHTML = '';
-  products.forEach(p => {
+/* ---------- menu mobile ---------- */
+function setupMenuToggle() {
+  const btn = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('.main-nav');
+  if (!btn || !nav) return;
+  btn.addEventListener('click', () => {
+    nav.style.display = nav.style.display === 'flex' ? '' : 'flex';
+    nav.style.flexDirection = 'column';
+    nav.style.position = 'absolute';
+    nav.style.right = '18px';
+    nav.style.top = '68px';
+    nav.style.background = '#fff';
+    nav.style.padding = '12px';
+    nav.style.borderRadius = '12px';
+    nav.style.boxShadow = '0 12px 30px rgba(0,0,0,0.08)';
+  });
+}
+
+/* ---------- WhatsApp principal ---------- */
+function setupWhatsAppMainLink() {
+  const btn = document.getElementById('whatsapp-main');
+  if (!btn) return;
+  btn.href = `https://wa.me/${PHONE_NUMBER}`;
+}
+
+/* ---------- RENDER: Featured (index) ---------- */
+function renderFeaturedSection() {
+  const area = document.getElementById('featured-area');
+  if (!area) return;
+  const products = getProducts();
+  const featured = products.filter(p => p.featured);
+  const main = featured[0] || products[0];
+
+  const left = document.createElement('div');
+  left.className = 'featured-img';
+  left.innerHTML = `<img src="${main.image}" alt="${main.name}">`;
+
+  const right = document.createElement('div');
+  right.className = 'featured-list';
+
+  const showList = (featured.length ? featured : products.slice(0,3));
+  showList.slice(0,3).forEach(p => {
     const div = document.createElement('div');
-    div.className = 'product-card';
+    div.className = 'featured-item';
     div.innerHTML = `
-      <img src="${p.image}" alt="${escapeHtml(p.name)}" onerror="this.src='images/no-image.jpg'"/>
-      <h4>${escapeHtml(p.name)}</h4>
-      <p>${escapeHtml(p.description || '')}</p>
-      <div class="product-footer">
-        <div class="price-tag">R$ ${formatPrice(p.price)}</div>
-        <div>
-          <button class="btn" onclick="selectProduct('${p.id}')">Selecionar</button>
-          <button class="btn ghost" onclick="viewDetails('${p.id}')">Ver</button>
+      <img src="${p.image}" alt="${p.name}">
+      <div>
+        <h3>${p.name}</h3>
+        <p>${p.description}</p>
+      </div>
+      <div class="price">R$ ${Number(p.price).toFixed(2)}</div>
+    `;
+    div.addEventListener('click', () => location.href = `produto.html?prod=${encodeURIComponent(p.id)}`);
+    right.appendChild(div);
+  });
+
+  area.innerHTML = '';
+  area.appendChild(left);
+  area.appendChild(right);
+}
+
+/* ---------- RENDER: Catalog (catalog.html) ---------- */
+function renderCatalogGrid() {
+  const grid = document.getElementById('catalog-grid');
+  if (!grid) return;
+  const products = getProducts();
+  grid.innerHTML = '';
+  products.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'item-card';
+    card.innerHTML = `
+      <img src="${p.image}" alt="${p.name}">
+      <div class="card-body">
+        <h3>${p.name}</h3>
+        <p>${p.description}</p>
+        <div>${(p.tags||[]).map(t => `<span class="tag">${t}</span>`).join('')}</div>
+        <div class="price-row">
+          <strong>R$ ${Number(p.price).toFixed(2)}</strong>
+          <div>
+            <a class="btn small" href="produto.html?prod=${encodeURIComponent(p.id)}">Ver Detalhes</a>
+            <button class="btn btn-primary small" onclick="orderProduct('${p.id}')">Encomendar</button>
+          </div>
         </div>
       </div>
     `;
-    productGrid.appendChild(div);
+    grid.appendChild(card);
   });
 }
-function renderCart(){
-  cartList.innerHTML = '';
-  let total = 0;
-  cart.forEach(item => {
-    total += item.price * item.qty;
-    const el = document.createElement('div');
-    el.className = 'cart-item';
-    el.innerHTML = `
-      <img src="${item.image}" onerror="this.src='images/no-image.jpg'"/>
-      <div style="flex:1">
-        <div style="font-weight:700">${escapeHtml(item.name)}</div>
-        <div style="font-size:13px;color:#666">R$ ${formatPrice(item.price)} x ${item.qty}</div>
+
+/* ---------- RENDER: Produto (produto.html) ---------- */
+function renderProductPage() {
+  const wrap = document.getElementById('product-wrap');
+  if (!wrap) return;
+  const params = new URLSearchParams(location.search);
+  const id = params.get('prod');
+  const product = findProductById(id);
+  if (!product) {
+    wrap.innerHTML = `<p>Produto não encontrado. <a href="catalog.html">Voltar ao cardápio</a></p>`;
+    return;
+  }
+  wrap.innerHTML = `
+    <div class="product-img"><img src="${product.image}" alt="${product.name}"></div>
+    <div class="product-info">
+      <h2>${product.name}</h2>
+      <p class="muted">${product.description}</p>
+      <div style="margin:12px 0">${(product.tags||[]).map(t=>`<span class="tag">${t}</span>`).join(' ')}</div>
+      <h3 style="color:#8b2f00">R$ ${Number(product.price).toFixed(2)}</h3>
+      <div style="margin-top:18px;display:flex;gap:12px">
+        <button class="btn btn-primary" onclick="orderProduct('${product.id}')">Encomendar</button>
+        <a class="btn" href="catalog.html">Voltar</a>
       </div>
-      <div style="display:flex;flex-direction:column;gap:6px">
-        <button class="btn small" onclick="changeQty('${item.id}',1)">+</button>
-        <button class="btn small ghost" onclick="changeQty('${item.id}',-1)">-</button>
+    </div>
+  `;
+}
+
+/* ---------- AÇÃO: Encomendar (WhatsApp) ---------- */
+window.orderProduct = function (id) {
+  const product = findProductById(id);
+  if (!product) return alert('Produto não encontrado');
+  const text = encodeURIComponent(`Olá! Gostaria de encomendar:\n- Produto: ${product.name}\n- Valor: R$ ${Number(product.price).toFixed(2)}\nQuantidade: 1\nEndereço: \nObservações:`);
+  const url = `https://wa.me/${PHONE_NUMBER}?text=${text}`;
+  window.open(url, '_blank');
+};
+
+/* ---------- LOGIN (login.html) ---------- */
+function initLogin() {
+  const form = document.getElementById('login-form');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const user = document.getElementById('user').value.trim();
+    const pass = document.getElementById('pass').value.trim();
+    // credenciais padrão
+    if (user === 'confeiteira' && pass === 'kelajo123') {
+      localStorage.setItem('kelajo_admin', '1');
+      location.href = 'admin.html';
+    } else {
+      alert('Usuário ou senha incorretos.');
+    }
+  });
+}
+
+/* ---------- ADMIN (admin.html) ---------- */
+function initAdmin() {
+  // exige login
+  if (!localStorage.getItem('kelajo_admin')) {
+    location.href = 'login.html';
+    return;
+  }
+
+  const btnLogout = document.getElementById('btn-logout');
+  if (btnLogout) btnLogout.addEventListener('click', () => { localStorage.removeItem('kelajo_admin'); location.href='login.html'; });
+
+  renderAdminProducts();
+
+  const form = document.getElementById('add-product-form');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const name = document.getElementById('p-name').value.trim();
+    const price = document.getElementById('p-price').value.trim();
+    const image = document.getElementById('p-image').value.trim() || 'https://i.pinimg.com/736x/a3/26/8c/a3268c37b074b6253e2ce4371c23b971.jpg';
+    const desc = document.getElementById('p-desc').value.trim();
+    const tags = document.getElementById('p-tags').value.split(',').map(t=>t.trim()).filter(Boolean);
+    const featured = document.getElementById('p-featured').checked;
+
+    if (!name || !price) return alert('Preencha nome e preço');
+
+    const id = slugify(name) + '-' + Date.now().toString().slice(-4);
+    const products = getProducts();
+    products.unshift({ id, name, price: Number(price).toFixed(2), image, description: desc, tags, featured });
+    saveProducts(products);
+
+    form.reset();
+    renderAdminProducts();
+    alert('Produto adicionado!');
+  });
+}
+
+/* ---------- ADMIN: render list ---------- */
+function renderAdminProducts() {
+  const list = document.getElementById('admin-products-list');
+  if (!list) return;
+  const products = getProducts();
+  list.innerHTML = '';
+  products.forEach(p => {
+    const div = document.createElement('div');
+    div.className = 'admin-product';
+    div.innerHTML = `
+      <img src="${p.image}" alt="${p.name}">
+      <div style="flex:1">
+        <strong>${p.name}</strong>
+        <div style="color:var(--muted);font-size:13px">${p.description || ''}</div>
+        <div style="margin-top:6px"><span style="font-weight:700">R$ ${Number(p.price).toFixed(2)}</span> ${p.featured ? '<span class="tag">Destaque</span>' : ''}</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <button class="btn" onclick="openEditModal('${p.id}')">Editar</button>
+        <button class="btn" onclick="deleteProduct('${p.id}')">Excluir</button>
       </div>
     `;
-    cartList.appendChild(el);
-  });
-  cartTotalEl.textContent = formatPrice(total);
-  cartCount.textContent = cart.reduce((s,i)=>s+i.qty,0);
-  saveCart(cart);
-}
-
-/* ========== INTERAÇÕES ========== */
-function selectProduct(id){
-  const p = products.find(x=>x.id===id);
-  if(!p) return;
-  const existing = cart.find(c=>c.id===id);
-  if(existing) existing.qty += 1;
-  else cart.push({...p, qty:1});
-  renderCart();
-  openCart();
-}
-function addSampleToCart(){
-  // botão de lançamento
-  const sample = products[0];
-  selectProduct(sample.id);
-}
-function changeQty(id, delta){
-  const idx = cart.findIndex(c=>c.id===id);
-  if(idx===-1) return;
-  cart[idx].qty += delta;
-  if(cart[idx].qty <= 0) cart.splice(idx,1);
-  renderCart();
-}
-function clearCart(){
-  cart = [];
-  renderCart();
-}
-
-/* View details (simples alert) */
-function viewDetails(id){
-  const p = products.find(x=>x.id===id);
-  if(!p) return;
-  alert(`${p.name}\n\n${p.description}\n\nPreço: R$ ${formatPrice(p.price)}`);
-}
-
-/* ========== CART / WHATSAPP CHECKOUT ========== */
-const whatsappBtn = document.getElementById('whatsapp-checkout');
-const footerWhatsapp = document.getElementById('footer-whatsapp');
-
-whatsappBtn.addEventListener('click', checkoutWhatsApp);
-footerWhatsapp.addEventListener('click', checkoutWhatsApp);
-
-function checkoutWhatsApp(){
-  if(cart.length === 0){
-    alert('Seu carrinho está vazio. Selecione produtos antes de finalizar.');
-    return;
-  }
-  // montar mensagem
-  let msg = `Olá! Gostaria de fazer um pedido:%0A`;
-  cart.forEach(item => {
-    msg += `- ${encodeURIComponent(item.name)} x${item.qty} (R$ ${formatPrice(item.price)})%0A`;
-  });
-  msg += `%0ATotal: R$ ${formatPrice(cart.reduce((s,i)=>s+i.price*i.qty,0))}%0A%0A`;
-  msg += `Nome: %0ATelefone: %0AEndereço (opcional):`;
-
-  // abrir whatsapp
-  if(!EMP_PHONE || EMP_PHONE.includes('X')){
-    alert('Número da empreendedora não configurado. Abra script.js e defina EMP_PHONE no formato 55XXXXXXXXXXX');
-    return;
-  }
-  const waUrl = `https://wa.me/${EMP_PHONE}?text=${msg}`;
-  window.open(waUrl, '_blank');
-}
-
-/* ========== LOGIN / ADMIN ========== */
-const loginModal = document.getElementById('login-modal');
-const loginForm = document.getElementById('login-form');
-const adminPanel = document.getElementById('admin-panel');
-const openLoginBtn = document.getElementById('open-login');
-const productForm = document.getElementById('product-form');
-const adminProductsList = document.getElementById('admin-products');
-
-openLoginBtn.addEventListener('click', openLogin);
-loginForm.addEventListener('submit', handleLogin);
-productForm.addEventListener('submit', handleProductForm);
-
-function openLogin(){
-  loginModal.classList.remove('hidden');
-}
-function closeLogin(){
-  loginModal.classList.add('hidden');
-}
-function handleLogin(e){
-  e.preventDefault();
-  const pw = document.getElementById('password').value;
-  if(pw === ADMIN_PASSWORD){
-    adminPanel.classList.remove('hidden');
-    showAdminProducts();
-    loginForm.style.display = 'none';
-  } else {
-    alert('Senha incorreta');
-  }
-}
-function showAdminProducts(){
-  adminProductsList.innerHTML = '';
-  products.forEach(p=>{
-    const li = document.createElement('li');
-    li.innerHTML = `<div><strong>${escapeHtml(p.name)}</strong><div style="font-size:13px;color:#666">R$ ${formatPrice(p.price)}</div></div>
-      <div style="display:flex;gap:6px">
-        <button onclick="removeProduct('${p.id}')" class="btn small ghost">Remover</button>
-      </div>`;
-    adminProductsList.appendChild(li);
+    list.appendChild(div);
   });
 }
-function handleProductForm(e){
-  e.preventDefault();
-  const name = document.getElementById('p-name').value.trim();
-  const desc = document.getElementById('p-desc').value.trim();
-  const price = parseFloat(document.getElementById('p-price').value) || 0;
-  const image = document.getElementById('p-image').value.trim() || 'images/no-image.jpg';
-  const newP = {id: generateId(), name, description: desc, price, image};
-  products.unshift(newP);
+
+/* ---------- excluir ---------- */
+window.deleteProduct = function (id) {
+  if (!confirm('Deseja realmente excluir este produto?')) return;
+  const products = getProducts().filter(p => p.id !== id);
   saveProducts(products);
-  renderProducts();
-  showAdminProducts();
-  productForm.reset();
-  alert('Produto salvo!');
-}
-function removeProduct(id){
-  if(!confirm('Remover este produto?')) return;
-  products = products.filter(p=>p.id!==id);
-  saveProducts(products);
-  renderProducts();
-  showAdminProducts();
-}
-function logoutAdmin(){
-  adminPanel.classList.add('hidden');
-  loginForm.style.display = 'block';
-  document.getElementById('password').value = '';
-  closeLogin();
-}
+  renderAdminProducts();
+  alert('Produto excluído.');
+};
 
-/* ========== CART SIDEBAR TOGGLE ========== */
-const cartSidebar = document.getElementById('cart-sidebar');
-const openCartBtn = document.getElementById('open-cart');
+/* ---------- editar via modal ---------- */
+window.openEditModal = function (id) {
+  const p = findProductById(id);
+  if (!p) return alert('Produto não encontrado');
 
-openCartBtn.addEventListener('click', toggleCart);
-function toggleCart(){
-  cartSidebar.classList.toggle('hidden');
-}
-function openCart(){
-  cartSidebar.classList.remove('hidden');
-}
+  // criar overlay/modal
+  const overlay = document.createElement('div');
+  overlay.className = 'modal-overlay';
+  overlay.innerHTML = `
+    <div class="modal" role="dialog" aria-modal="true">
+      <h3>Editar produto</h3>
+      <form id="edit-form">
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <div style="flex:1;min-width:200px">
+            <label>Nome</label><input id="edit-name" value="${escapeHtml(p.name)}">
+          </div>
+          <div style="width:140px">
+            <label>Preço</label><input id="edit-price" value="${p.price}">
+          </div>
+          <div style="flex-basis:100%;"></div>
+          <div style="flex:1">
+            <label>Imagem (URL)</label><input id="edit-image" value="${escapeHtml(p.image)}">
+          </div>
+          <div style="flex:1">
+            <label>Tags (vírgula)</label><input id="edit-tags" value="${(p.tags||[]).join(', ')}">
+          </div>
+          <div style="flex-basis:100%">
+            <label>Descrição</label><textarea id="edit-desc" rows="3">${escapeHtml(p.description || '')}</textarea>
+          </div>
+          <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:10px">
+            <label style="align-self:center"><input id="edit-featured" type="checkbox"> Destaque</label>
+            <button type="button" id="close-modal" class="btn">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+  document.getElementById('edit-featured').checked = !!p.featured;
 
-/* ========== HELPERS ========== */
-function generateId(){ return 'p_' + Math.random().toString(36).slice(2,9); }
-function formatPrice(v){ return Number(v).toFixed(2).replace('.',','); }
-function escapeHtml(str){ if(!str) return ''; return String(str).replace(/[&<>"']/g, function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m];}); }
+  document.getElementById('close-modal').addEventListener('click', () => overlay.remove());
+  overlay.addEventListener('click', (ev) => { if (ev.target === overlay) overlay.remove(); });
 
-/* ========== INICIALIZAÇÃO ========== */
-renderProducts();
-renderCart();
+  document.getElementById('edit-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const name = document.getElementById('edit-name').value.trim();
+    const price = document.getElementById('edit-price').value.trim();
+    const image = document.getElementById('edit-image').value.trim();
+    const desc = document.getElementById('edit-desc').value.trim();
+    const tags = document.getElementById('edit-tags').value.split(',').map(t=>t.trim()).filter(Boolean);
+    const featured = document.getElementById('edit-featured').checked;
 
-/* ========== EVENTS: fechar modal quando clicar fora ========== */
-loginModal.addEventListener('click', (e)=>{
-  if(e.target === loginModal) closeLogin();
-});
-
-// js/script.js
-document.addEventListener('DOMContentLoaded', () => {
-  // pega o botão ☰ e a lista de links do menu
-  const btn = document.querySelector('.menu-toggle');
-  const navList = document.querySelector('.main-nav ul');
-
-  if (btn && navList) {
-    // quando clicar no botão ☰
-    btn.addEventListener('click', () => {
-      // se já está visível, esconde
-      if (getComputedStyle(navList).display === 'flex' || navList.style.display === 'flex') {
-        navList.style.display = 'none';
-      } else {
-        // senão, mostra em coluna (um link embaixo do outro)
-        navList.style.display = 'flex';
-        navList.style.flexDirection = 'column';
-        navList.style.gap = '12px';
+    const updated = getProducts().map(prod => {
+      if (prod.id === id) {
+        return { ...prod, name, price: Number(price).toFixed(2), image, description: desc, tags, featured };
       }
+      return prod;
     });
+    saveProducts(updated);
+    renderAdminProducts();
+    overlay.remove();
+    alert('Produto atualizado.');
+  });
+};
 
-    // se a pessoa voltar pro desktop (tela maior), reseta
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 800) {
-        navList.style.display = '';
-        navList.style.flexDirection = '';
-      }
-    });
-  }
-});
+/* ---------- helpers ---------- */
+function slugify(text){ return text.toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,''); }
+function escapeHtml(str){ return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
