@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin — Kelajo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+  <header class="site-header small">
+    <div class="header-inner">
+      <a class="brand-link" href="index.html">
+        <div class="logo-circle">K</div>
+        <div class="brand-name">Kelajo</div>
+      </a>
+
+      <div class="header-actions">
+        <button id="btn-logout" class="btn small">Sair</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container admin-page">
+    <section class="admin-panel">
+      <h2>Painel da Confeiteira</h2>
+      <p>Adicione, edite ou exclua produtos.</p>
+
+      <form id="add-product-form" class="admin-form">
+        <div class="form-row">
+          <label>Nome</label>
+          <input id="p-name" required>
+        </div>
+        <div class="form-row">
+          <label>Preço (ex: 15.00)</label>
+          <input id="p-price" required>
+        </div>
+        <div class="form-row">
+          <label>Imagem (URL)</label>
+          <input id="p-image" placeholder="Cole URL da imagem">
+        </div>
+        <div class="form-row">
+          <label>Descrição</label>
+          <textarea id="p-desc" rows="3"></textarea>
+        </div>
+        <div class="form-row">
+          <label>Tags (separadas por vírgula)</label>
+          <input id="p-tags">
+        </div>
+        <div class="form-row">
+          <label><input type="checkbox" id="p-featured"> Destacar (aparece em Lançamento)</label>
+        </div>
+
+        <div class="admin-actions">
+          <button class="btn btn-primary" type="submit">Adicionar produto</button>
+        </div>
+      </form>
+
+      <hr>
+
+      <h3>Produtos cadastrados</h3>
+      <div id="admin-products-list" class="admin-products-list"></div>
+    </section>
+  </main>
+
+  <!-- modal edit (criado via JS) -->
+
+  <footer class="site-footer small">
+    <div class="container footer-inner">
+      <div>© 2025 Kelajo</div>
+    </div>
+  </footer>
+</body>
+</html>
