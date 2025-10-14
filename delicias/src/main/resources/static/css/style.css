@@ -194,4 +194,4 @@ a{color:inherit}
 .login-page{display:flex;justify-content:center;padding:40px 0}
 .login-card{background:#fff;padding:28px;border-radius:12px;box-shadow:var(--shadow);max-width:480px;width:100%}
 .admin-page .admin-panel{background:#fff;padding:20px;border-radius:12px;box-shadow:var(--shadow)}
-.admin-form .form-row{margin-bottom:12px;display:flex
+.admin-form .form-row{margin-bottom:12px;display:flex}
