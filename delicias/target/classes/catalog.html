@@ -1,61 +1,49 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Cardápio — Kelajo</title>
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <script src="js/script.js" defer></script>
-</head>
-<body>
-  <header class="site-header small">
-    <div class="header-inner">
-      <a class="brand-link" href="index.html">
-        <div class="logo-circle">K</div>
-        <div class="brand-name">Kelajo</div>
-      </a>
-
-      <nav class="main-nav">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="catalog.html" class="active">Doces</a></li>
-          <li><a href="index.html#lancamento">Lançamento</a></li>
-          <li><a href="index.html#historia">História</a></li>
-        </ul>
-      </nav>
-
-      <div class="header-actions">
-        <a href="login.html" class="btn small">Login Confeiteira</a>
+<section id="catalog-grid" class="grid-cardapio">
+  <!-- Exemplo de card de produto -->
+  <div class="item-card">
+    <a href="produto.html?prod=cafe-especial" class="card-link">
+      <div class="img-wrapper">
+        <img src="img/cafe.jpg" alt="Café Especial">
       </div>
-    </div>
-  </header>
-
-  <main class="container">
-    <section class="catalog-hero">
-      <h2 class="section-title">Cardápio</h2>
-      <p class="section-sub">Explore nossa seleção completa de doces e salgados artesanais</p>
-    </section>
-
-    <section id="catalog-grid" class="grid-cardapio">
-      <!-- JS insere os cards aqui -->
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div class="footer-left">
-        <div class="logo-circle">K</div>
-        <div>
-          <strong>Kelajo</strong>
-          <small>Doces artesanais feitos com amor</small>
+      <div class="card-body">
+        <!-- opcional destaque -->
+        <div class="badge-destaque">Destaque</div>
+        <h3>Café Especial</h3>
+        <p>Café premium selecionado</p>
+        <div class="price-row">
+          <span class="price">R$ 8,00</span>
+          <div class="tags">
+            <span class="tag">café</span>
+            <span class="tag">premium</span>
+            <span class="tag">torrado na hora</span>
+          </div>
         </div>
+        <button class="btn-ver-produto">Ver Produto</button>
       </div>
-      <div class="footer-right">
-        <p>contato@kelajo.com.br | (15) 99999-9999</p>
-        <p>© 2025 Kelajo Confeitaria</p>
+    </a>
+  </div>
+
+  <!-- Repita para outros produtos -->
+  <div class="item-card">
+    <a href="produto.html?prod=pao-de-acucar" class="card-link">
+      <div class="img-wrapper">
+        <img src="img/pao-de-acucar.jpg" alt="Pão de Açúcar">
       </div>
-    </div>
-  </footer>
-</body>
-</html>
+      <div class="card-body">
+        <h3>Pão de Açúcar</h3>
+        <p>Pão doce tradicional da casa</p>
+        <div class="price-row">
+          <span class="price">R$ 12,00</span>
+          <div class="tags">
+            <span class="tag">tradicional</span>
+            <span class="tag">família</span>
+            <span class="tag">doce</span>
+          </div>
+        </div>
+        <button class="btn-ver-produto">Ver Produto</button>
+      </div>
+    </a>
+  </div>
+
+  <!-- Continue para os outros produtos... -->
+</section>
