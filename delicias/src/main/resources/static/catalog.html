@@ -4,19 +4,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="css/style.css"> <!-- Certifique-se de que o link para o CSS esteja no head -->
 </head>
 <body>
-<section id="catalog-grid" class="grid-cardapio">
-  <!-- Exemplo de card de produto -->
-  <div class="item-card">
-    <a href="produto.html?prod=cafe-especial" class="card-link">
-      <div class="img-wrapper">
-        <img src="img/cafe.jpg" alt="Café Especial">
-      </div>
-        <link rel="stylesheet" href="css/style.css">
-      <div class="card-body">
-        <!-- opcional destaque -->
-        <div class="badge-destaque">Destaque</div>
+
+  <!-- Catalog Grid Section -->
+  <section id="catalog-grid" class="grid-cardapio">
+    <!-- Exemplo de card de produto -->
+    <div class="item-card">
+      <a href="produto.html?prod=cafe-especial" class="card-link">
+        <div class="img-wrapper">
+          <img src="img/cafe.jpg" alt="Café Especial">
+        </div>
+        <div class="card-body">
+          <!-- opcional destaque -->
+          <div class="badge-destaque">Destaque</div>
+          <h3>Café Especial</h3>
+          <p>Café premium selecionado</p>
+          <div class="price-row">
+            <span class="price">R$ 8,00</span>
+            <div class="tags">
+              <span class="tag">café</span>
+              <span class="tag">premium</span>
+              <span class="tag">torrado na hora</span>
+            </div>
+          </div>
+          <!-- Botão "Ver Produto" -->
+          <a href="produto.html?prod=cafe-especial" class="btn-ver-produto">Ver Produto</a>
+        </div>
+      </a>
+    </div>
+
+    <!-- Card de Produto 2 -->
+    <div class="item-card">
+      <a href="produto.html?prod=cafe-especial">
+        <img src="img/cafe-especial.jpg" alt="Café Especial">
         <h3>Café Especial</h3>
         <p>Café premium selecionado</p>
         <div class="price-row">
@@ -27,77 +49,100 @@
             <span class="tag">torrado na hora</span>
           </div>
         </div>
-        <button class="btn-ver-produto">Ver Produto</button>
-      </div>
-    </a>
-  </div>
+      </a>
+      <!-- Botão "Ver Produto" -->
+      <a href="produto.html?prod=cafe-especial" class="btn-ver-produto">Ver Produto</a>
+    </div>
 
-  <!-- Repita para outros produtos -->
-<div class="item-card">
-          <a href="produto.html?prod=croissant">
-            <img src="img/1.jpg" alt="">
-            <h3>Bolo</h3>
-            <p>Um bolo fofinho e delicioso, perfeito para qualquer ocasião.</p>
-    <span class="price">R$ 85,00</span>
-  </a>
-        </div>
-        <div class="item-card">
-          <a href="produto.html?prod=sonho">
-            <img src="img/2.jpg" alt="">
-            <h3>Torta</h3>
-            <p>Torta macia com recheio cremoso que derrete na boca.</p>
-    <span class="price">R$ 20,00</span>
-  </a>
-        </div>
-        <div class="item-card">
-          <a href="produto.html?prod=cookie">
-            <img src="img/3.jpg" alt="">
-            <h3>Croissant</h3>
-            <p>Croissant crocante por fora e macio por dentro, irresistível.</p>
-    <span class="price">R$ 8,00</span>
-  </a>
-        </div>
-        <div class="item-card">
-          <a href="produto.html?prod=brownie">
-            <img src="img/4.jpg" alt="">
-            <h3>Cokkie</h3>
-            <p>Cookie quentinho com pedaços de chocolate que derretem na boca.</p>
-    <span class="price">R$ 6,50</span>
-  </a>
-        </div>
-        <div class="item-card">
-          <a href="produto.html?prod=bolo">
-            <img src="img/5.jpg" alt="">
-            <h3>Torta de morango</h3>
-            <p>Torta fresca com morangos suculentos e creme aveludado.</p>
-    <span class="price">R$ 32,00</span>
-  </a>
-        </div>
-        <div class="item-card">
-          <a href="produto.html?prod=pudim">
-            <img src="img/6.jpg" alt="">
-            <h3>Brigadeiro</h3>
-            <p>Brigadeiro tradicional, doce e cremoso, perfeito para adoçar o dia.</p>
-    <span class="price">R$ 3,50</span>
-  </a>
-        </div>
-        <div class="item-card">
-          <a href="produto.html?prod=brigadeiro">
-            <img src="img/7.jpg" alt="">
-            <h3>Brownie</h3>
-          <p>Brownie intenso de chocolate, macio e irresistível.</p>
-    <span class="price">R$ 12,00</span>
-  </a>
-        </div>
-        <div class="item-card">
-          <a href="produto.html?prod=trufa">
-            <img src="img/8.jpg" alt="">
-            <h3>Croissant</h3>
-            <p>Croissant recheado, perfeito para um lanche sofisticado.</p>
-    <span class="price">R$ 9,50</span>
-  </a>
-        </div>
-  <!-- Continue para os outros produtos... -->
-</section>
+    <!-- Repita para os outros produtos -->
+    <div class="item-card">
+      <a href="produto.html?prod=croissant">
+        <img src="img/1.jpg" alt="Bolo">
+        <h3>Bolo</h3>
+        <p>Um bolo fofinho e delicioso, perfeito para qualquer ocasião.</p>
+        <span class="price">R$ 85,00</span>
+      </a>
+      <!-- Botão "Ver Produto" -->
+      <a href="produto.html?prod=croissant" class="btn-ver-produto">Ver Produto</a>
+    </div>
+
+    <div class="item-card">
+      <a href="produto.html?prod=sonho">
+        <img src="img/2.jpg" alt="Torta">
+        <h3>Torta</h3>
+        <p>Torta macia com recheio cremoso que derrete na boca.</p>
+        <span class="price">R$ 20,00</span>
+      </a>
+      <!-- Botão "Ver Produto" -->
+      <a href="produto.html?prod=sonho" class="btn-ver-produto">Ver Produto</a>
+    </div>
+
+    <div class="item-card">
+      <a href="produto.html?prod=cookie">
+        <img src="img/3.jpg" alt="Croissant">
+        <h3>Croissant</h3>
+        <p>Croissant crocante por fora e macio por dentro, irresistível.</p>
+        <span class="price">R$ 8,00</span>
+      </a>
+      <!-- Botão "Ver Produto" -->
+      <a href="produto.html?prod=cookie" class="btn-ver-produto">Ver Produto</a>
+    </div>
+
+    <div class="item-card">
+      <a href="produto.html?prod=brownie">
+        <img src="img/4.jpg" alt="Cookie">
+        <h3>Cookie</h3>
+        <p>Cookie quentinho com pedaços de chocolate que derretem na boca.</p>
+        <span class="price">R$ 6,50</span>
+      </a>
+      <!-- Botão "Ver Produto" -->
+      <a href="produto.html?prod=brownie" class="btn-ver-produto">Ver Produto</a>
+    </div>
+
+    <div class="item-card">
+      <a href="produto.html?prod=bolo">
+        <img src="img/5.jpg" alt="Torta de Morango">
+        <h3>Torta de Morango</h3>
+        <p>Torta fresca com morangos suculentos e creme aveludado.</p>
+        <span class="price">R$ 32,00</span>
+      </a>
+      <!-- Botão "Ver Produto" -->
+      <a href="produto.html?prod=bolo" class="btn-ver-produto">Ver Produto</a>
+    </div>
+
+    <div class="item-card">
+      <a href="produto.html?prod=pudim">
+        <img src="img/6.jpg" alt="Brigadeiro">
+        <h3>Brigadeiro</h3>
+        <p>Brigadeiro tradicional, doce e cremoso, perfeito para adoçar o dia.</p>
+        <span class="price">R$ 3,50</span>
+      </a>
+      <!-- Botão "Ver Produto" -->
+      <a href="produto.html?prod=pudim" class="btn-ver-produto">Ver Produto</a>
+    </div>
+
+    <div class="item-card">
+      <a href="produto.html?prod=brigadeiro">
+        <img src="img/7.jpg" alt="Brownie">
+        <h3>Brownie</h3>
+        <p>Brownie intenso de chocolate, macio e irresistível.</p>
+        <span class="price">R$ 12,00</span>
+      </a>
+      <!-- Botão "Ver Produto" -->
+      <a href="produto.html?prod=brigadeiro" class="btn-ver-produto">Ver Produto</a>
+    </div>
+
+    <div class="item-card">
+      <a href="produto.html?prod=trufa">
+        <img src="img/8.jpg" alt="Croissant Recheado">
+        <h3>Croissant Recheado</h3>
+        <p>Croissant recheado, perfeito para um lanche sofisticado.</p>
+        <span class="price">R$ 9,50</span>
+      </a>
+      <!-- Botão "Ver Produto" -->
+      <a href="produto.html?prod=trufa" class="btn-ver-produto">Ver Produto</a>
+    </div>
+  </section>
+
 </body>
 </html>

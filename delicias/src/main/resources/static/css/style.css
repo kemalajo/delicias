@@ -33,15 +33,13 @@ a{color:inherit}
 .btn-ghost{background:transparent;border:1px solid rgba(0,0,0,0.06)}
 .btn-whatsapp{background:#fff;border-radius:12px;padding:10px 16px;border:2px dashed rgba(81,110,41,0.08);color:var(--green)}
 
-
-
 /* === Banner da Página Inicial === */
 .hero-banner {
   width: 100%;
   overflow: hidden;
 }
 
-.hero-banner-img {
+.hero-banner img {
   width: 100%;
   max-height: 400px;   /* <-- AQUI você pode ajustar a altura do banner */
   object-fit: cover;
