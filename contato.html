@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Doce Sabor — Contato</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <img src="img/delicias da fer.png" alt="Delicias da Fer Lopes" class="logo">
+        <div class="brand-text">
+          <h1>Delicias</h1>
+          <small>Fer Lopes</small>
+        </div>
+      </div>
+      <nav class="main-nav">
+        <a class="nav-link" href="index.html">Início</a>
+        <a class="nav-link" href="produtos.html">Produtos</a>
+        <a class="nav-link" href="sobre.html">Sobre</a>
+        <a class="nav-link active" href="contato.html">Contato</a>
+      </nav>
+      <div class="header-actions">
+        <a class="phone" href="tel:+5511999999999">📞 (11) 99999-9999</a>
+        <a class="cart-link" href="carrinho.html">🛒 <span id="cart-count-badge">0</span></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero contato -->
+  <section class="section contact-hero">
+    <div class="container">
+      <h1 class="hero-big">Entre em Contato</h1>
+      <p class="hero-sub">Estamos prontos para adoçar seu dia! Entre em contato para encomendas personalizadas, dúvidas ou sugestões.</p>
+    </div>
+  </section>
+
+  <!-- Conteúdo: informações + formulário -->
+  <main class="container section">
+    <div class="grid two contact-grid">
+      <div>
+        <h3>Informações de Contato</h3>
+        <ul class="info-list">
+          <li><strong>Telefone</strong><br />(11) 99999-9999</li>
+          <li><strong>E-mail</strong><br />contato@docesabor.com</li>
+          <li><strong>Endereço</strong><br />Rua das Flores, 123 - Sorocaba, SP</li>
+          <li><strong>Horário</strong><br />Seg-Sex: 8h-18h | Sáb: 8h-16h</li>
+        </ul>
+
+        <div class="map-placeholder">
+          <!-- trocar por embed do Google Maps se quiser -->
+          <div class="map-box">Mapa da localização</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="contact-card">
+          <h3>Envie sua Mensagem</h3>
+          <form id="formContato" style="display:flex;flex-direction:column;gap:14px;">
+            <div style="display:flex;gap:12px;">
+              <input type="text" id="nome" placeholder="Seu nome completo" style="flex:1" required>
+              <input type="email" id="email" placeholder="seu@email.com" style="flex:1" required>
+            </div>
+
+            <div style="display:flex;gap:12px;">
+              <input type="text" id="telefone" placeholder="(11) 99999-9999" style="flex:1">
+              <select id="assunto" style="flex:1">
+                <option value="">Selecione um assunto</option>
+                <option>Encomenda</option>
+                <option>Dúvida</option>
+                <option>Parceria</option>
+              </select>
+            </div>
+
+            <textarea id="mensagem" rows="6" placeholder="Conte-nos como podemos ajudar..." required></textarea>
+            <button class="btn primary" type="submit">✈️ Enviar Mensagem</button>
+          </form>
+
+          <div style="margin-top:18px;">
+            <strong>Outras formas de contato:</strong>
+            <div style="margin-top:8px;display:flex;gap:8px;">
+              <a class="btn outline" href="https://wa.me/5511999999999" target="_blank">WhatsApp</a>
+              <a class="btn outline" href="#" target="_blank">Instagram</a>
+              <a class="btn outline" href="#" target="_blank">Facebook</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> Delicias Fer Lopes — Todos os direitos reservados.</div>
+      <div>📞 (11) 99999-9999 • Sorocaba</div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script>
+    document.getElementById("formContato").addEventListener("submit", e=>{
+      e.preventDefault();
+      alert("Mensagem enviada com sucesso! Entraremos em contato em breve 💚");
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>

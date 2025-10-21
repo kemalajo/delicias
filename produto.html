@@ -1,92 +1,115 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Delicias da Fer</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Doce Sabor — Produtos</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- ===== HEADER ===== -->
-  <header class="header">
-    <div class="logo">
-      <img src="img/logo.png" alt="Logo Doce Sabor">
-      <h2>Delicias da Fer</h2>
-      <p>Doceria Artesanal</p>
-    </div>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="index.html">Início</a></li>
-        <li><a href="produtos.html" class="active">Produtos</a></li>
-        <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#contato">Contato</a></li>
-      </ul>
-    </nav>
-    <div class="cart-icon">
-      <a href="carrinho.html">🛒</a>
+
+  <!-- Header (mesma estrutura do index) -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <img src="img/delicias da fer.png" alt="Delicias da Fer Lopes" class="logo">
+        <div class="brand-text">
+          <h1>Delicias</h1>
+          <small>Fer Lopes</small>
+        </div>
+      </div>
+      <nav class="main-nav">
+        <a class="nav-link" href="index.html">Início</a>
+        <a class="nav-link active" href="produtos.html">Produtos</a>
+        <a class="nav-link" href="sobre.html">Sobre</a>
+        <a class="nav-link" href="contato.html">Contato</a>
+      </nav>
+      <div class="header-actions">
+        <a class="phone" href="tel:+5511999999999">📞 (11) 99999-9999</a>
+        <a class="cart-link" href="carrinho.html">🛒 <span id="cart-count-badge">0</span></a>
+      </div>
     </div>
   </header>
 
-  <!-- ===== HERO ===== -->
-  <section class="hero produtos-hero">
-    <div class="hero-text">
-      <h1>Nossos Produtos 🍓</h1>
-      <p>Escolha entre uma variedade deliciosa de doces artesanais feitos com amor.</p>
+  <!-- Hero simples -->
+  <section class="section hero small-hero">
+    <div class="container">
+      <h2 class="section-title">Produtos</h2>
+      <p class="section-desc">Navegue pelo nosso catálogo de doces artesanais — clique em "Selecionar" para adicionar ao carrinho.</p>
     </div>
   </section>
 
-  <!-- ===== BARRA DE PESQUISA E FILTRO ===== -->
-  <section class="container">
+  <!-- Filtros e grid de produtos -->
+  <main class="container produtos-page">
     <div class="filtros">
-      <input type="text" id="busca-produto" placeholder="Pesquisar produtos...">
-      <select id="filtro-categoria">
-        <option value="todas">Todas as categorias</option>
+      <input type="text" id="searchInput" placeholder="Buscar produto..." />
+      <select id="filterCategory">
+        <option value="">Todas as categorias</option>
         <option value="bolos">Bolos</option>
+        <option value="doces">Doces</option>
         <option value="tortas">Tortas</option>
-        <option value="cupcakes">Cupcakes</option>
       </select>
     </div>
-  </section>
 
-  <!-- ===== LISTA DE PRODUTOS ===== -->
-  <section class="catalogo produtos-page container">
-    <div class="grid-cardapio" id="lista-produtos">
-      <!-- Produtos serão carregados via script.js -->
+    <div id="produtosGrid" class="grid-cardapio">
+      <!-- cards serão injetados via JS -->
     </div>
-  </section>
+  </main>
 
-  <!-- ===== FOOTER ===== -->
-  <footer class="footer">
-    <p>📞 (11) 99999-9999 | 📍 Sorocaba - SP</p>
-    <p>© 2025 Delicias fer lopes - Doceria Artesanal</p>
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> Delicias Fer Lopes — Todos os direitos reservados.</div>
+      <div>📞 (11) 99999-9999 • Sorocaba</div>
+    </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="js/script.js"></script>
   <script>
-    // ===== FILTRO E PESQUISA =====
-    const buscaInput = document.getElementById("busca-produto");
-    const filtroSelect = document.getElementById("filtro-categoria");
-    const produtosGrid = document.getElementById("lista-produtos");
+    // Lista de exemplo — troque pelos seus produtos/imagens reais
+    const produtosData = [
+      { id:1, nome: "Bolo de Chocolate", preco: "R$ 45,00", categoria: "bolos", img: "img/bolo-chocolate.jpg" },
+      { id:2, nome: "Brigadeiro Gourmet", preco: "R$ 4,00", categoria: "doces", img: "img/brigadeiro.jpg" },
+      { id:3, nome: "Torta de Limão", preco: "R$ 32,00", categoria: "tortas", img: "img/torta-limao.jpg" },
+      { id:4, nome: "Cupcake Red Velvet", preco: "R$ 7,00", categoria: "doces", img: "img/cupcake.jpg" }
+    ];
 
-    function filtrarProdutos() {
-      const busca = buscaInput.value.toLowerCase();
-      const categoria = filtroSelect.value;
+    const grid = document.getElementById("produtosGrid");
+    const searchInput = document.getElementById("searchInput");
+    const filterCategory = document.getElementById("filterCategory");
 
-      const cards = document.querySelectorAll(".card-produto");
-      cards.forEach(card => {
-        const nome = card.querySelector("h3").textContent.toLowerCase();
-        const cat = card.dataset.categoria.toLowerCase();
+    function renderProdutos() {
+      grid.innerHTML = "";
+      const q = searchInput.value.trim().toLowerCase();
+      produtosData
+        .filter(p => (p.nome.toLowerCase().includes(q)) && (filterCategory.value === "" || p.categoria === filterCategory.value))
+        .forEach(p => {
+          const card = document.createElement("div");
+          card.className = "card-produto";
+          card.innerHTML = `
+            <img src="${p.img}" alt="${p.nome}">
+            <h3>${p.nome}</h3>
+            <p>${p.preco}</p>
+            <button data-id="${p.id}" class="selecionar-btn">Selecionar</button>
+          `;
+          grid.appendChild(card);
+        });
 
-        if ((nome.includes(busca)) && (categoria === "todas" || cat === categoria)) {
-          card.style.display = "flex";
-        } else {
-          card.style.display = "none";
-        }
+      // ligar botões
+      document.querySelectorAll(".selecionar-btn").forEach(btn=>{
+        btn.addEventListener("click", ()=> {
+          const produtoId = btn.getAttribute("data-id");
+          // simples feedback — substitua por lógica de carrinho se quiser
+          alert("Produto adicionado ao carrinho!");
+          incrementCart();
+        });
       });
     }
 
-    buscaInput.addEventListener("input", filtrarProdutos);
-    filtroSelect.addEventListener("change", filtrarProdutos);
+    searchInput.addEventListener("input", renderProdutos);
+    filterCategory.addEventListener("change", renderProdutos);
+    renderProdutos();
   </script>
 </body>
 </html>

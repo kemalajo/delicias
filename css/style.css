@@ -219,3 +219,63 @@ body{background:#fff;color:var(--dark);-webkit-font-smoothing:antialiased}
   .hero-title{font-size:28px}
   .filtros{flex-direction:column;gap:10px}
 }
+
+
+/* =====  páginas novas 
+
+/* hero variations */
+.hero.small-hero { padding: 36px 0; background: linear-gradient(180deg, rgba(113,137,54,0.04), rgba(255,255,255,0)); text-align:center; }
+.hero.about-hero { padding:70px 0; background: linear-gradient(180deg, rgba(247,225,227,0.5), rgba(255,255,255,0)); text-align:left; }
+.hero.contact-hero { padding:70px 0; background: linear-gradient(180deg, rgba(247,225,227,0.8), rgba(255,255,255,0)); text-align:center; }
+.hero-big{font-size:48px;margin:0 0 8px;font-weight:700;color:var(--dark)}
+.hero-sub{color:var(--muted);max-width:900px;margin:0 auto 12px;font-size:18px}
+
+/* stats banner */
+.stats-banner{background:linear-gradient(90deg,var(--primary), #96a85a);color:#fff;padding:34px 0}
+.stats-grid {display:flex;justify-content:space-between;align-items:center}
+.stat{text-align:center}
+.stat-num{font-size:40px;font-weight:800}
+.stat-label{opacity:0.95}
+
+/* four / three helper (make sure grid display) */
+.grid.four.stat-grid{grid-template-columns:repeat(4,1fr)}
+.grid.three.team-grid{grid-template-columns:repeat(3,1fr)}
+
+/* contact layout */
+.contact-grid {gap:36px;align-items:flex-start}
+.info-list{list-style:none;padding:0;color:var(--muted);line-height:1.6}
+.map-placeholder .map-box{height:180px;border-radius:12px;background:#eceff1;display:flex;align-items:center;justify-content:center;color:var(--muted);box-shadow:var(--shadow);margin-top:18px}
+
+/* contact card */
+.contact-card{background:#fff;border-radius:12px;padding:22px;box-shadow:var(--shadow)}
+
+/* form inputs padrão */
+input[type="text"], input[type="email"], select, textarea{
+  border:1px solid rgba(0,0,0,0.06);
+  padding:12px 14px;
+  border-radius:10px;
+  outline:none;
+  font-size:15px;
+  transition:0.15s;
+}
+input:focus, textarea:focus, select:focus { box-shadow:0 8px 20px rgba(113,137,54,0.06); border-color:var(--primary); }
+
+/* cards equipe / categorias */
+.cat-card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.cat-card img{width:100%;height:240px;object-fit:cover}
+.cat-body{padding:18px}
+.cat-body h4{margin:0 0 6px}
+.cat-body small.accent{color:var(--primary);font-weight:700}
+.cat-body p.muted{color:var(--muted);margin-top:10px}
+
+/* valores e icons */
+.values-grid .value{padding:18px;text-align:center}
+.value-icon{width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;background:linear-gradient(135deg, rgba(113,137,54,0.08), rgba(255,255,255,0));font-size:22px;color:var(--primary)}
+
+/* responsividade */
+@media (max-width:1000px){
+  .hero-big{font-size:36px}
+  .grid.three.team-grid{grid-template-columns:repeat(2,1fr)}
+  .grid.four.stats-grid{flex-direction:column;gap:18px}
+}
+@m
