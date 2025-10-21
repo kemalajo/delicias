@@ -6,5 +6,5 @@ import com.senai.delicias.entities.Produto;
 
 @Repository
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
-    // Aqui você pode criar queries personalizadas se precisar
+
 }

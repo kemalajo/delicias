@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/categorias")
+@RequestMapping("/categoriaProduto")
 public class CategoriaProdutoController {
 
     private final CategoriaProdutoService categoriaProdutoService;
@@ -49,4 +49,6 @@ public class CategoriaProdutoController {
         categoriaProdutoService.delete(id);
         return ResponseEntity.noContent().build();
     }
+    
+    
 }

@@ -33,16 +33,15 @@
     </div>
   </header>
 
-
   <!-- BANNER -->
   <section class="hero-banner">
-  <img src="img/Banner.png" alt="Banner de destaque Kelajo" class="hero-banner-img">
-</section>
+    <img src="./img/Banner.png" alt="" >
+  </section>
 
   <!-- HERO -->
   <section class="hero">
     <div class="hero-inner">
-      <h1 class="hero-title">Kelajo</h1>
+      <h1 class="hero-title"></h1>
       <p class="hero-sub">Doces artesanais feitos com amor</p>
 
       <div class="hero-buttons">
@@ -63,6 +62,33 @@
           <div class="circle">50+</div>
           <p>Receitas especiais</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- Cardápio (mostra 8 itens com links; catálogo completo em catalog.html) -->
+  <section id="cardapio" class="cardapio">
+    <div class="container">
+      <div class="grid-cardapio">
+        <!-- Esses links usam IDs dos produtos padrão. -->
+        <div class="item-cardhome">
+          <a href="produto.html?prod=croissant">
+            <img src="img/0.png" alt="">
+          </a>
+        </div>
+        <div class="item-cardhome">
+          <a href="produto.html?prod=croissant">
+            <img src="img/00.png" alt="">
+          </a>
+        </div>
+        <div class="item-cardhome">
+          <a href="produto.html?prod=croissant">
+            <img src="img/000.png" alt="">
+          </a>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:18px">
+        <a class="btn" href="catalog.html">Ver cardápio completo</a>
       </div>
     </div>
   </section>
@@ -89,83 +115,6 @@
     </div>
   </section>
 
-  <!-- Cardápio (mostra 8 itens com links; catálogo completo em catalog.html) -->
-  <section id="cardapio" class="cardapio">
-    <div class="container">
-      <h2>Mais pedidos</h2>
-      <div class="grid-cardapio">
-        <!-- Esses links usam IDs dos produtos padrão. -->
-        <div class="item-card">
-          <a href="produto.html?prod=croissant">
-            <img src="img/1.jpg" alt="">
-            <h3>Bolo</h3>
-            <p>Um bolo fofinho e delicioso, perfeito para qualquer ocasião.</p>
-    <span class="price">R$ 85,00</span>
-  </a>
-        </div>
-        <div class="item-card">
-          <a href="produto.html?prod=sonho">
-            <img src="img/2.jpg" alt="">
-            <h3>Torta</h3>
-            <p>Torta macia com recheio cremoso que derrete na boca.</p>
-    <span class="price">R$ 20,00</span>
-  </a>
-        </div>
-        <div class="item-card">
-          <a href="produto.html?prod=cookie">
-            <img src="img/3.jpg" alt="">
-            <h3>Croissant</h3>
-            <p>Croissant crocante por fora e macio por dentro, irresistível.</p>
-    <span class="price">R$ 8,00</span>
-  </a>
-        </div>
-        <div class="item-card">
-          <a href="produto.html?prod=brownie">
-            <img src="img/4.jpg" alt="">
-            <h3>Cokkie</h3>
-            <p>Cookie quentinho com pedaços de chocolate que derretem na boca.</p>
-    <span class="price">R$ 6,50</span>
-  </a>
-        </div>
-        <div class="item-card">
-          <a href="produto.html?prod=bolo">
-            <img src="img/5.jpg" alt="">
-            <h3>Torta de morango</h3>
-            <p>Torta fresca com morangos suculentos e creme aveludado.</p>
-    <span class="price">R$ 32,00</span>
-  </a>
-        </div>
-        <div class="item-card">
-          <a href="produto.html?prod=pudim">
-            <img src="img/6.jpg" alt="">
-            <h3>Brigadeiro</h3>
-            <p>Brigadeiro tradicional, doce e cremoso, perfeito para adoçar o dia.</p>
-    <span class="price">R$ 3,50</span>
-  </a>
-        </div>
-        <div class="item-card">
-          <a href="produto.html?prod=brigadeiro">
-            <img src="img/7.jpg" alt="">
-            <h3>Brownie</h3>
-          <p>Brownie intenso de chocolate, macio e irresistível.</p>
-    <span class="price">R$ 12,00</span>
-  </a>
-        </div>
-        <div class="item-card">
-          <a href="produto.html?prod=trufa">
-            <img src="img/8.jpg" alt="">
-            <h3>Croissant</h3>
-            <p>Croissant recheado, perfeito para um lanche sofisticado.</p>
-    <span class="price">R$ 9,50</span>
-  </a>
-        </div>
-      </div>
-      <div style="text-align:center;margin-top:18px">
-        <a class="btn" href="catalog.html">Ver cardápio completo</a>
-      </div>
-    </div>
-  </section>
-
   <!-- Contato / Delivery / WhatsApp -->
   <section class="contato">
     <div class="container contato-grid">
@@ -187,7 +136,6 @@
         <div class="whatsapp">
           <h4>Faça sua encomenda pelo nosso WhatsApp</h4>
           <a id="whatsapp-main" class="btn btn-whatsapp" href="#" target="_blank" rel="noopener">WhatsApp</a>
-        
         </div>
       </div>
     </div>

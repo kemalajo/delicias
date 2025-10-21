@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 import java.util.List;
 
 @Entity
-@Table(name = "tbTipoProduto")
+@Table(name = "tb_Tipo_Produto")
 public class TipoProduto {
 
     @Id

@@ -1,5 +1,43 @@
+-- Criando banco de dados
+DROP DATABASE IF EXISTS deliciasdb;
+CREATE DATABASE deliciasdb;
+USE deliciasdb;
+
+-- Tabela de Produtos
+CREATE TABLE tb_produtos (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    preco DECIMAL(10,2) NOT NULL,
+    categoria VARCHAR(50) NOT NULL,
+    descricao VARCHAR(255)
+);
+
+
+-- Tabela de Sabores
+CREATE TABLE tb_sabor (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    produto_id BIGINT NOT NULL,
+    nome VARCHAR(100) NOT NULL,
+            FOREIGN KEY (produto_id) REFERENCES tb_produtos(id) ON DELETE CASCADE
+
+    );
+
+-- Tabela de Tipo de Produto
+CREATE TABLE tb_tipo_Produto (
+    idTipoProduto INT AUTO_INCREMENT PRIMARY KEY,
+    nomeTipoProduto VARCHAR(255),
+    descricaoTipoProduto VARCHAR(255)
+);
+
+-- Tabela de Categorias de Produto
+CREATE TABLE tb_categoria_Produto (
+    idCategoria INT AUTO_INCREMENT PRIMARY KEY,
+    nomeCategoria VARCHAR(255) NOT NULL,
+    descricaoCategoria VARCHAR(255)
+);
+
 -- Inserts de Produtos Doces
-INSERT INTO produto (nome, preco, categoria, descricao) VALUES
+INSERT INTO tb_produtos (nome, preco, categoria, descricao) VALUES
 ('Bolo', 80.00, 'Doce', 'Bolo caseiro macio, ideal para festas.'),
 ('Cupcake', 10.50, 'Doce', 'Mini bolo decorado, ideal para festas ou sobremesas.'),
 ('Brownie', 8.50, 'Doce', 'Quadrado de chocolate úmido e denso.'),
@@ -11,7 +49,7 @@ INSERT INTO produto (nome, preco, categoria, descricao) VALUES
 ('Kit Festa', 180.00, 'Doce', 'Inclui 1 bolo (sabor à escolha), 30 mini salgados (à escolha) e 20 brigadeiros (à escolha).');
 
 -- Inserts de Produtos Salgados
-INSERT INTO produto (nome, preco, categoria, descricao) VALUES
+INSERT INTO tb_produtos (nome, preco, categoria, descricao) VALUES
 ('Torta Salgada', 95.00, 'Salgado', 'Torta recheada com ingredientes variados.'),
 ('Coxinha', 10.00, 'Salgado', 'Salgado frito recheado, tradicional brasileiro.'),
 ('Kibe', 9.50, 'Salgado', 'Salgado tradicional de carne temperada.'),
@@ -22,20 +60,20 @@ INSERT INTO produto (nome, preco, categoria, descricao) VALUES
 -- Inserts de Sabores
 
 -- Cupcake
-INSERT INTO sabor (produto_id, nome) VALUES
+INSERT INTO tb_sabor (produto_id, nome) VALUES
 (2, 'Chocolate'),
 (2, 'Morango'),
 (2, 'Chocolate Branco'),
 (2, 'Chocolate Meio Amargo');
 
 -- Brownie
-INSERT INTO sabor (produto_id, nome) VALUES
+INSERT INTO tb_sabor (produto_id, nome) VALUES
 (3, 'Tradicional'),
 (3, 'Chocolate Meio Amargo'),
 (3, 'Ninho com Nutella');
 
 -- Cookie
-INSERT INTO sabor (produto_id, nome) VALUES
+INSERT INTO tb_sabor (produto_id, nome) VALUES
 (4, 'Tradicional'),
 (4, 'Chocolate Branco'),
 (4, 'Chocolate Meio Amargo'),
@@ -43,13 +81,13 @@ INSERT INTO sabor (produto_id, nome) VALUES
 (4, 'Pistache');
 
 -- Croissant
-INSERT INTO sabor (produto_id, nome) VALUES
+INSERT INTO tb_sabor (produto_id, nome) VALUES
 (5, 'Chocolate ao Leite'),
 (5, 'Morango com Creme de Avelã'),
 (5, 'Pistache');
 
 -- Torta Doce
-INSERT INTO sabor (produto_id, nome) VALUES
+INSERT INTO tb_sabor (produto_id, nome) VALUES
 (6, 'Morango'),
 (6, 'Maçã'),
 (6, 'Banana'),
@@ -57,32 +95,45 @@ INSERT INTO sabor (produto_id, nome) VALUES
 (6, 'Limão');
 
 -- Brigadeiro
-INSERT INTO sabor (produto_id, nome) VALUES
+INSERT INTO tb_sabor (produto_id, nome) VALUES
 (7, 'Tradicional'),
 (7, 'Ninho com Nutella'),
 (7, 'Beijinho');
 
 -- Torta Salgada
-INSERT INTO sabor (produto_id, nome) VALUES
+INSERT INTO tb_sabor (produto_id, nome) VALUES
 (10, 'Frango'),
 (10, 'Palmito');
 
 -- Coxinha
-INSERT INTO sabor (produto_id, nome) VALUES
+INSERT INTO tb_sabor (produto_id, nome) VALUES
 (11, 'Frango'),
 (11, 'Costela');
 
 -- Kibe
-INSERT INTO sabor (produto_id, nome) VALUES
+INSERT INTO tb_sabor (produto_id, nome) VALUES
 (12, 'Tradicional');
 
 -- Empada
-INSERT INTO sabor (produto_id, nome) VALUES
+INSERT INTO tb_sabor (produto_id, nome) VALUES
 (13, 'Frango'),
 (13, 'Palmito');
 
 -- Esfiha
-INSERT INTO sabor (produto_id, nome) VALUES
+INSERT INTO tb_sabor (produto_id, nome) VALUES
 (14, 'Carne'),
 (14, 'Frango'),
 (14, 'Queijo');
+
+INSERT INTO tb_categoria_Produto (nomeCategoria, descricaoCategoria) VALUES
+('Doce', 'Acucar'),
+('Salagdo', 'Sal');
+
+INSERT INTO tb_tipo_Produto (nomeTipoProduto, descricaoTipoProduto) VALUES
+('Encomenda', 'Preparar motboy'),
+('Retirada', 'Cliente irá retirar');
+
+show tables;
+
+
+SELECT * FROM tb_tipo_produto;
