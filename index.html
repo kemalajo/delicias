@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Doce Sabor — Home</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <img src="images/logo.png" alt="Doce Sabor" class="logo">
+        <div class="brand-text">
+          <h1>Doce Sabor</h1>
+          <small>Doceria Artesanal</small>
+        </div>
+      </div>
+      <nav class="main-nav">
+        <a class="nav-link active" href="index.html">Início</a>
+        <a class="nav-link" href="produtos.html">Produtos</a>
+        <a class="nav-link" href="#sobre">Sobre</a>
+        <a class="nav-link" href="#contato">Contato</a>
+      </nav>
+      <div class="header-actions">
+        <a class="phone" href="tel:+5511999999999">📞 (11) 99999-9999</a>
+        <a class="cart-link" href="carrinho.html" title="Ver carrinho">🛒 <span id="cart-count-badge">0</span></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <div class="kpis">
+          <span class="stars">★★★★★</span>
+          <span class="small">Mais de 1000 clientes satisfeitos</span>
+        </div>
+        <h2 class="hero-title">Doces que <span class="accent">despertam</span> sorrisos</h2>
+        <p class="hero-sub">Criamos doces artesanais únicos com ingredientes selecionados e muito carinho. Cada doce é uma experiência especial.</p>
+        <div class="hero-cta">
+          <a href="produtos.html" class="btn primary">Ver Produtos →</a>
+          <a href="#contato" class="btn outline">Encomendar</a>
+        </div>
+
+        <ul class="stats">
+          <li><strong>500+</strong><span>Doces vendidos</span></li>
+          <li><strong>50+</strong><span>Receitas únicas</span></li>
+          <li><strong>5★</strong><span>Avaliação média</span></li>
+        </ul>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-image-wrap">
+          <img src="images/hero-cake.jpg" alt="Bolo artesanal" class="hero-image">
+          <div class="badge top">Ingredientes frescos <small>100% natural</small></div>
+          <div class="badge bottom">Feito com amor <small>Receitas familiares</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Produtos em destaque -->
+  <section class="section container">
+    <h3 class="section-title">Produtos em Destaque</h3>
+    <p class="section-desc">Nossos doces mais populares, feitos com ingredientes selecionados e muito carinho</p>
+
+    <div id="featuredRow" class="cards-row">
+      <!-- Cards injetados pelo script -->
+    </div>
+
+    <div class="center" style="margin-top:20px;">
+      <a href="produtos.html" class="btn primary large">Ver Todos os Produtos →</a>
+    </div>
+  </section>
+
+  <!-- Catálogo -->
+  <section class="section alt-bg">
+    <div class="container">
+      <h3 class="section-title">Nosso Catálogo</h3>
+      <p class="section-desc">Explore nossas categorias</p>
+
+      <div id="catalogGrid" class="grid categories">
+        <!-- categorias injetadas -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Por que escolher -->
+  <section class="section container">
+    <h3 class="section-title">Por que escolher a Doce Sabor?</h3>
+    <div class="grid three">
+      <div class="feature">
+        <div class="icon">❤</div>
+        <h4>Feito com Amor</h4>
+        <p class="muted">Cada doce é preparado com carinho usando receitas familiares tradicionais.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">⏰</div>
+        <h4>Sempre Frescos</h4>
+        <p class="muted">Produzimos nossos doces diariamente para garantir qualidade e sabor.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🛡️</div>
+        <h4>Ingredientes Premium</h4>
+        <p class="muted">Utilizamos apenas ingredientes selecionados e de alta qualidade.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Depoimentos -->
+  <section class="section alt-bg">
+    <div class="container">
+      <h3 class="section-title">O que nossos clientes dizem</h3>
+      <p class="section-desc">Veja os depoimentos de quem já provou nossos doces</p>
+
+      <div class="testimonials" id="testimonials">
+        <!-- injetado pelo script (carousel simples) -->
+      </div>
+      <div class="center" style="margin-top:12px">
+        <a href="#" class="btn outline">Ver mais depoimentos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container cta-inner">
+      <h2>Pronto para adoçar seu dia?</h2>
+      <p>Entre em contato conosco e faça sua encomenda personalizada</p>
+      <div class="cta-btns">
+        <a href="produtos.html" class="btn white">Ver Catálogo</a>
+        <a href="#contato" class="btn outline">Fazer Encomenda</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contato" class="site-footer">
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> Doce Sabor — Todos os direitos reservados.</div>
+      <div>📞 (11) 99999-9999 • Sorocaba</div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
