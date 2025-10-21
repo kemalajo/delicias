@@ -10,7 +10,7 @@ package com.senai.delicias.entities;
 	import jakarta.persistence.Table;
 
 	@Entity
-	@Table(name = "tb_Endereco")
+	@Table(name = "tbEndereco")
 	public class Endereco {
 
 		// Atributos
