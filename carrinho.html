@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Carrinho — Doce Sabor</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <img src="images/logo.png" alt="Doce Sabor" class="logo">
+        <div class="brand-text">
+          <h1>Doce Sabor</h1>
+          <small>Doceria Artesanal</small>
+        </div>
+      </div>
+      <nav class="main-nav">
+        <a class="nav-link" href="index.html">Início</a>
+        <a class="nav-link" href="produtos.html">Produtos</a>
+        <a class="nav-link" href="#sobre">Sobre</a>
+        <a class="nav-link" href="#contato">Contato</a>
+      </nav>
+      <div class="header-actions">
+        <a class="phone" href="tel:+5511999999999">📞 (11) 99999-9999</a>
+        <a class="cart-link" href="carrinho.html">🛒</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container cart-page">
+    <h2 class="page-title">Seu Carrinho</h2>
+    <a href="index.html" class="continue">← Continuar comprando</a>
+
+    <div class="cart-grid">
+      <div class="cart-items card">
+        <div class="cart-header">
+          <h3>Itens (<span id="items-count">0</span>)</h3>
+          <button id="clearCart" class="link-danger">Limpar carrinho</button>
+        </div>
+        <div id="itemsList" class="items-list">
+          <!-- itens injetados pelo script -->
+        </div>
+      </div>
+
+      <aside class="cart-summary card">
+        <h3>Resumo do Pedido</h3>
+        <div class="summary-row"><span>Subtotal</span><strong id="subtotal">R$ 0,00</strong></div>
+        <div class="summary-row"><span>Taxa de entrega</span><strong id="delivery"> Grátis</strong></div>
+        <hr>
+        <div class="summary-row total"><span>Total</span><strong id="total">R$ 0,00</strong></div>
+        <button id="checkoutBtn" class="btn primary full">Finalizar Pedido</button>
+
+        <div class="info" style="margin-top:12px">
+          <p>📞 <strong>Contato:</strong> (11) 99999-9999</p>
+          <p>💳 <strong>Pagamento:</strong> Dinheiro, PIX ou cartão</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>© <span id="year3"></span> Doce Sabor — Todos os direitos reservados.</div>
+      <div>📞 (11) 99999-9999 • Sorocaba</div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

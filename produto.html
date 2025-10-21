@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produtos - Doce Sabor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <div class="logo">
+      <img src="img/logo.png" alt="Logo Doce Sabor">
+      <h2>Doce Sabor</h2>
+      <p>Doceria Artesanal</p>
+    </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="produtos.html" class="active">Produtos</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+    <div class="cart-icon">
+      <a href="carrinho.html">🛒</a>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero produtos-hero">
+    <div class="hero-text">
+      <h1>Nossos Produtos 🍓</h1>
+      <p>Escolha entre uma variedade deliciosa de doces artesanais feitos com amor.</p>
+    </div>
+  </section>
+
+  <!-- ===== BARRA DE PESQUISA E FILTRO ===== -->
+  <section class="container">
+    <div class="filtros">
+      <input type="text" id="busca-produto" placeholder="Pesquisar produtos...">
+      <select id="filtro-categoria">
+        <option value="todas">Todas as categorias</option>
+        <option value="bolos">Bolos</option>
+        <option value="tortas">Tortas</option>
+        <option value="cupcakes">Cupcakes</option>
+      </select>
+    </div>
+  </section>
+
+  <!-- ===== LISTA DE PRODUTOS ===== -->
+  <section class="catalogo produtos-page container">
+    <div class="grid-cardapio" id="lista-produtos">
+      <!-- Produtos serão carregados via script.js -->
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <p>📞 (11) 99999-9999 | 📍 Sorocaba - SP</p>
+    <p>© 2025 Doce Sabor - Doceria Artesanal</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // ===== FILTRO E PESQUISA =====
+    const buscaInput = document.getElementById("busca-produto");
+    const filtroSelect = document.getElementById("filtro-categoria");
+    const produtosGrid = document.getElementById("lista-produtos");
+
+    function filtrarProdutos() {
+      const busca = buscaInput.value.toLowerCase();
+      const categoria = filtroSelect.value;
+
+      const cards = document.querySelectorAll(".card-produto");
+      cards.forEach(card => {
+        const nome = card.querySelector("h3").textContent.toLowerCase();
+        const cat = card.dataset.categoria.toLowerCase();
+
+        if ((nome.includes(busca)) && (categoria === "todas" || cat === categoria)) {
+          card.style.display = "flex";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
+
+    buscaInput.addEventListener("input", filtrarProdutos);
+    filtroSelect.addEventListener("change", filtrarProdutos);
+  </script>
+</body>
+</html>
