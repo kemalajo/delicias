@@ -337,3 +337,41 @@ document.addEventListener('DOMContentLoaded', () => {
   // show cart badge initially
   updateCartBadges(loadCart());
 });
+/* Adicionar avaliação enviada aos depoimentos */
+document.getElementById('submit-review')?.addEventListener('click', () => {
+  const comment = document.getElementById('review-text').value.trim();
+  if (!rating) { 
+    alert('Selecione uma nota antes de enviar!'); 
+    return; 
+  }
+  if (!comment) {
+    alert('Escreva um comentário antes de enviar!');
+    return;
+  }
+
+  // Criar novo depoimento
+  const twrap = document.getElementById('testimonials');
+  const newTesti = document.createElement('div');
+  newTesti.className = 'testi';
+  newTesti.innerHTML = `
+    <svg width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M8 0a5 5 0 0 1 5 5v1a5 5 0 0 1-10 0V5a5 5 0 0 1 5-5zM0 14s1-2 8-2 8 2 8 2v2H0v-2z"/>
+    </svg>
+    <p>"${comment}"</p>
+    <strong style="display:block;margin-top:8px">Você</strong>
+    <div class="rating fixed" data-stars="${rating}">
+      ${'★'.repeat(rating)}${'☆'.repeat(5 - rating)}
+    </div>
+  `;
+
+  // Adiciona abaixo dos depoimentos existentes
+  twrap.appendChild(newTesti);
+
+  // Limpa formulário
+  document.getElementById('review-text').value = '';
+  rating = 0;
+  starsInput.forEach(s => s.classList.remove('selected'));
+  document.getElementById('selected-rating').textContent = `Você selecionou: 0 estrelas`;
+
+  alert('Avaliação enviada com sucesso! 😄');
+});
