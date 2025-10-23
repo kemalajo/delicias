@@ -10,7 +10,7 @@ package com.senai.delicias.entities;
 	import jakarta.persistence.Table;
 
 	@Entity
-	@Table(name = "tbEndereco")
+	@Table(name = "tb_endereco")
 	public class Endereco {
 
 		// Atributos
@@ -41,7 +41,7 @@ package com.senai.delicias.entities;
 		private String uf;
 		
 		@ManyToOne
-		@JoinColumn(name = "Cliente", nullable = true)
+		@JoinColumn(name = "idCliente", nullable = true)
 		private Usuario cliente;
 
 		public Endereco() {
