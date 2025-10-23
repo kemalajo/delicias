@@ -1,6 +1,5 @@
 package com.senai.delicias.entities;
 
-import java.time.LocalDate;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,7 +10,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tbCliente")
+@Table(name = "tb_Cliente")
 public class Usuario {
 	
 	// Atributos
@@ -30,7 +29,7 @@ public class Usuario {
 	private String telefone;
 
 	@ManyToOne
-	@JoinColumn(name = "tipoCliente", nullable = false)
+	@JoinColumn(name = "id_tipo_usuario", nullable = false)
 	private TipoUsuario tipoUsuario;
 
 	// Construtores
@@ -47,5 +46,46 @@ public class Usuario {
 
 	}
 
+	public Long getIdCliente() {
+		return idCliente;
+	}
+
+	public void setIdCliente(Long idCliente) {
+		this.idCliente = idCliente;
+	}
+
+	public String getNomeCliente() {
+		return nomeCliente;
+	}
+
+	public void setNomeCliente(String nomeCliente) {
+		this.nomeCliente = nomeCliente;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public TipoUsuario getTipoUsuario() {
+		return tipoUsuario;
+	}
+
+	public void setTipoUsuario(TipoUsuario tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
+	}
+
+	
 
 }

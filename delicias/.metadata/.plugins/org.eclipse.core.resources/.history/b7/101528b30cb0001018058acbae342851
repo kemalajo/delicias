@@ -1,0 +1,29 @@
+package com.senai.delicias.services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class TipoProdutoService {
+
+	@Autowired
+	private TipoProdutoRepository tipoProdutoRepository;
+
+	public TipoProduto saveTipoProduto tipoProduto) {
+		return tipoProdutoRepository.save(tipoProduto);
+	}
+
+	public List<TipoProduto> getAllTipoProduto() {
+		return tipoProdutoRepository.findAll();
+	}
+
+	public TipoProduto getTipoProdutoById(Long id) {
+		return tipoProdutoRepository.findById(id).orElse(null);
+	}
+
+	public void deleteTipoProduto(Long id) {
+		tipoProdutoRepository.deleteById(id);
+	}
+}
