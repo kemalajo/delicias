@@ -1,73 +1,126 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Carrinho — Doce Sabor</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doce Sabor — Carrinho</title>
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="brand">
-        <img src="images/logo.png" alt="Doce Sabor" class="logo">
-        <div class="brand-text">
-          <h1>Doce Sabor</h1>
-          <small>Doceria Artesanal</small>
-        </div>
-      </div>
-      <nav class="main-nav">
-        <a class="nav-link" href="index.html">Início</a>
-        <a class="nav-link" href="produtos.html">Produtos</a>
-        <a class="nav-link" href="#sobre">Sobre</a>
-        <a class="nav-link" href="#contato">Contato</a>
-      </nav>
-      <div class="header-actions">
-        <a class="phone" href="tel:+5511999999999">📞 (11) 99999-9999</a>
-        <a class="cart-link" href="carrinho.html">🛒</a>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <img src="img/delicias da fer.png" alt="Delicias da Fer Lopes" class="logo">
+      <div class="brand-text">
+        <h1>Delicias</h1>
+        <small>Fer Lopes</small>
       </div>
     </div>
-  </header>
-
-  <main class="container cart-page">
-    <h2 class="page-title">Seu Carrinho</h2>
-    <a href="index.html" class="continue">← Continuar comprando</a>
-
-    <div class="cart-grid">
-      <div class="cart-items card">
-        <div class="cart-header">
-          <h3>Itens (<span id="items-count">0</span>)</h3>
-          <button id="clearCart" class="link-danger">Limpar carrinho</button>
-        </div>
-        <div id="itemsList" class="items-list">
-          <!-- itens injetados pelo script -->
-        </div>
-      </div>
-
-      <aside class="cart-summary card">
-        <h3>Resumo do Pedido</h3>
-        <div class="summary-row"><span>Subtotal</span><strong id="subtotal">R$ 0,00</strong></div>
-        <div class="summary-row"><span>Taxa de entrega</span><strong id="delivery"> Grátis</strong></div>
-        <hr>
-        <div class="summary-row total"><span>Total</span><strong id="total">R$ 0,00</strong></div>
-        <button id="checkoutBtn" class="btn primary full">Finalizar Pedido</button>
-
-        <div class="info" style="margin-top:12px">
-          <p>📞 <strong>Contato:</strong> (11) 99999-9999</p>
-          <p>💳 <strong>Pagamento:</strong> Dinheiro, PIX ou cartão</p>
-        </div>
-      </aside>
+    <nav class="main-nav">
+      <a class="nav-link" href="index.html">Início</a>
+      <a class="nav-link" href="produtos.html">Produtos</a>
+      <a class="nav-link" href="sobre.html">Sobre</a>
+      <a class="nav-link" href="contato.html">Contato</a>
+      <a class="nav-link active" href="carrinho.html">Carrinho</a>
+    </nav>
+    <div class="header-actions">
+      <a class="phone" href="tel:+5511999999999">📞 (11) 99999-9999</a>
+      <a class="cart-link" href="carrinho.html">🛒 <span id="cart-count-badge">0</span></a>
     </div>
-  </main>
+  </div>
+</header>
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div>© <span id="year3"></span> Doce Sabor — Todos os direitos reservados.</div>
-      <div>📞 (11) 99999-9999 • Sorocaba</div>
-    </div>
-  </footer>
+<section class="section hero small-hero">
+  <div class="container">
+    <h2 class="section-title">Carrinho</h2>
+    <p class="section-desc">Confira seus produtos selecionados, remova itens ou finalize a compra pelo WhatsApp.</p>
+  </div>
+</section>
 
-  <script src="js/script.js"></script>
+<main class="container produtos-page">
+  <div id="carrinhoGrid" class="grid-cardapio"></div>
+
+  <div class="carrinho-footer">
+    <h3>Total: R$ <span id="totalValue">0.00</span></h3>
+<a class="btn primary" href="https://wa.me/5511999999999" target="_blank">Finalizar Compra</a>
+    </main>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>© <span id="year"></span> Delicias Fer Lopes — Todos os direitos reservados.</div>
+    <div>📞 (11) 99999-9999 • Sorocaba</div>
+  </div>
+</footer>
+
+<script>
+const carrinhoGrid = document.getElementById("carrinhoGrid");
+const cartCountBadge = document.getElementById("cart-count-badge");
+const totalValue = document.getElementById("totalValue");
+const finalizarCompraBtn = document.getElementById("finalizarCompraBtn");
+
+function getCart() {
+  return JSON.parse(localStorage.getItem("carrinho")) || [];
+}
+
+function setCart(cart) {
+  localStorage.setItem("carrinho", JSON.stringify(cart));
+}
+
+function updateCartCount() {
+  cartCountBadge.textContent = getCart().length;
+}
+
+function renderCart() {
+  const cart = getCart();
+  carrinhoGrid.innerHTML = "";
+  let total = 0;
+
+  if (cart.length === 0) {
+    carrinhoGrid.innerHTML = "<p>Seu carrinho está vazio.</p>";
+    totalValue.textContent = "0.00";
+    finalizarCompraBtn.href = "#";
+    return;
+  }
+
+  cart.forEach((produto, index) => {
+    total += produto.preco;
+    const card = document.createElement("div");
+    card.className = "card-produtos";
+    card.innerHTML = `
+      <img src="${produto.img}" alt="${produto.nome}">
+      <h3>${produto.nome}</h3>
+      <p>R$ ${produto.preco.toFixed(2)}</p>
+      <button data-index="${index}" class="remover-btn">Remover</button>
+    `;
+    carrinhoGrid.appendChild(card);
+  });
+
+  totalValue.textContent = total.toFixed(2);
+
+  document.querySelectorAll(".remover-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const index = btn.getAttribute("data-index");
+      let cart = getCart();
+      cart.splice(index, 1);
+      setCart(cart);
+      renderCart();
+      updateCartCount();
+    });
+  });
+
+  // Monta link do WhatsApp com produtos
+  const message = cart.map(p => `${p.nome} - R$ ${p.preco.toFixed(2)}`).join("\n") + `\nTotal: R$ ${total.toFixed(2)}`;
+  const phone = "5511999999999"; // seu número do WhatsApp
+  finalizarCompraBtn.href = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
+}
+
+renderCart();
+updateCartCount();
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 </body>
 </html>

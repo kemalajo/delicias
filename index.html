@@ -12,33 +12,23 @@
   <header class="site-header">
     <div class="container header-inner">
       <div class="brand">
-        <img src="img/delicias da fer.png" alt="Delicia da fer lopes" class="logo">
+        <img src="img/delicias da fer.png" alt="Delicias da Fer Lopes" class="logo">
         <div class="brand-text">
           <h1>Delicias</h1>
           <small>Fer Lopes</small>
         </div>
       </div>
-    <nav class="main-nav">
-  <a class="nav-link active" href="index.html">Início</a>
-  <a class="nav-link" href="produto.html">Produtos</a>
-  <a class="nav-link" href="sobre.html">Sobre</a>
-  <a class="nav-link" href="contato.html">Contato</a>
-</nav>
-
+      <nav class="main-nav">
+        <a class="nav-link" href="index.html">Início</a>
+        <a class="nav-link" href="produtos.html">Produtos</a>
+        <a class="nav-link" href="sobre.html">Sobre</a>
+        <a class="nav-link active" href="contato.html">Contato</a>
+        <a class="nav-link" href="carrinho.html">Carrinho</a>
+        <!-- login removido do cabeçalho -->
       </nav>
       <div class="header-actions">
-        <a class="phone" href="tel:+5511999999999">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-            <path d="M3.654 1.328a.678.678 0 0 1 .737-.061l2.89 1.16a.678.678 0 0 1 .329.392l.547 1.64a.678.678 0 0 1-.179.67L6.684 6.684a11.46 11.46 0 0 0 4.632 4.632l1.205-1.205a.678.678 0 0 1 .671-.179l1.64.547a.678.678 0 0 1 .392.33l1.16 2.89a.678.678 0 0 1-.06.738l-2.28 2.28a1.745 1.745 0 0 1-1.95.393c-2.45-1.05-4.797-3.397-5.847-5.847a1.745 1.745 0 0 1 .393-1.95l2.28-2.28z"/>
-          </svg>
-          (11) 99999-9999
-        </a>
-        <a class="cart-link" href="carrinho.html" title="Ver carrinho">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-            <path d="M0 1a1 1 0 0 1 1-1h1.11l.401 1.607 1.528 6.112a.5.5 0 0 0 .485.381h8.035a.5.5 0 0 0 .491-.408l1.25-6a.5.5 0 0 0-.491-.592H4.12L3.3.607A.5.5 0 0 0 2.801 0H1a1 1 0 0 1-1-1zm5.5 12a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm6 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
-          </svg>
-          <span id="cart-count-badge">0</span>
-        </a>
+        <a class="phone" href="tel:+5511999999999">📞 (15) 997172394</a>
+        <a class="cart-link" href="carrinho.html">🛒 <span id="cart-count-badge">0</span></a>
       </div>
     </div>
   </header>
@@ -54,17 +44,15 @@
         <h2 class="hero-title">Doces que <span class="accent">despertam</span> sorrisos</h2>
         <p class="hero-sub">Criamos doces artesanais únicos com ingredientes selecionados e muito carinho. Cada doce é uma experiência especial.</p>
         <div class="hero-cta">
-          <a href="produto.html" class="btn primary">Ver Produtos →</a>
-          <a href="#contato" class="btn outline">Encomendar</a>
+          <a href="produtos.html" class="btn primary">Ver Produtos →</a>
+          <a href="contato.html" class="btn outline">Encomendar</a>
         </div>
-
         <ul class="stats">
           <li><strong>100+</strong><span>Doces vendidos</span></li>
           <li><strong>50+</strong><span>Receitas únicas</span></li>
           <li><strong>★★★★★</strong><span>Avaliação média</span></li>
         </ul>
       </div>
-
       <div class="hero-right">
         <div class="hero-image-wrap">
           <img src="img/Изящные торты Наполеон_ детализированная фото-сессия в пастельных тонах.jpg" alt="Bolo artesanal" class="hero-image">
@@ -79,11 +67,9 @@
   <section class="section container">
     <h3 class="section-title">Produtos em Destaque</h3>
     <p class="section-desc">Nossos doces mais populares, feitos com ingredientes selecionados e muito carinho</p>
-    <div id="featuredRow" class="cards-row">
-      <!-- Cards em JS -->
-    </div>
+    <div id="featuredRow" class="cards-row"></div>
     <div class="center" style="margin-top:20px;">
-      <a href="produto.html" class="btn primary large">Ver Todos os Produtos →</a>
+      <a href="produtos.html" class="btn primary large">Ver Todos os Produtos →</a>
     </div>
   </section>
 
@@ -92,9 +78,7 @@
     <div class="container">
       <h3 class="section-title">Nosso Catálogo</h3>
       <p class="section-desc">Explore nossas categorias</p>
-      <div id="catalogGrid" class="grid categories">
-        <!-- Categorias em JS -->
-      </div>
+      <div id="catalogGrid" class="grid categories"></div>
     </div>
   </section>
 
@@ -139,64 +123,27 @@
       <h3 class="section-title">O que nossos clientes dizem</h3>
       <p class="section-desc">Veja os depoimentos de quem já provou nossos doces</p>
 
-      <!-- Depoimentos -->
-<div class="testimonials" id="testimonials">
+      <div class="testimonials" id="testimonials">
+        <!-- Depoimentos existentes -->
+      </div>
 
-  <!-- Depoimento 1 -->
-  <div class="testi active">
-    <svg width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
-      <path d="M8 0a5 5 0 0 1 5 5v1a5 5 0 0 1-10 0V5a5 5 0 0 1 5-5zM0 14s1-2 8-2 8 2 8 2v2H0v-2z"/>
-    </svg>
-    <p>"Deliciosos! Vale cada mordida."</p>
-    <strong>- Maria S.</strong>
-    <div class="rating fixed" data-stars="5">
-      ★★★★★
+      <!-- Avalie você também -->
+      <div class="review-form">
+        <h4>Avalie você também</h4>
+        <div class="stars-input">
+          <span data-value="1">☆</span>
+          <span data-value="2">☆</span>
+          <span data-value="3">☆</span>
+          <span data-value="4">☆</span>
+          <span data-value="5">☆</span>
+        </div>
+        <textarea id="review-text" placeholder="Escreva seu comentário..." rows="3"></textarea>
+        <button id="submit-review" class="btn primary">Enviar Avaliação</button>
+        <p id="selected-rating">Você selecionou: 0 estrelas</p>
+        <p id="review-success" style="color:green; display:none; margin-top:5px;">Avaliação enviada com sucesso! ✅</p>
+      </div>
     </div>
-  </div>
-
-  <!-- Depoimento 2 -->
-  <div class="testi">
-    <svg width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
-      <path d="M8 0a5 5 0 0 1 5 5v1a5 5 0 0 1-10 0V5a5 5 0 0 1 5-5zM0 14s1-2 8-2 8 2 8 2v2H0v-2z"/>
-    </svg>
-    <p>"Amei o atendimento e os doces são incríveis!"</p>
-    <strong>- João P.</strong>
-    <div class="rating fixed" data-stars="4">
-      ★★★★☆
-    </div>
-  </div>
-
-  <!-- Depoimento 3 -->
-  <div class="testi">
-    <svg width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
-      <path d="M8 0a5 5 0 0 1 5 5v1a5 5 0 0 1-10 0V5a5 5 0 0 1 5-5zM0 14s1-2 8-2 8 2 8 2v2H0v-2z"/>
-    </svg>
-    <p>"Doces fresquinhos e saborosos. Recomendo muito!"</p>
-    <strong>- Ana L.</strong>
-    <div class="rating fixed" data-stars="5">
-      ★★★★★
-    </div>
-  </div>
-
-</div>
- 
- <!-- avalie vc tbm -->
-
- <!-- Avalie você também -->
-<div class="review-form">
-  <h4>Avalie você também</h4>
-  <div class="stars-input">
-    <span data-value="1">☆</span>
-    <span data-value="2">☆</span>
-    <span data-value="3">☆</span>
-    <span data-value="4">☆</span>
-    <span data-value="5">☆</span>
-  </div>
-  <textarea id="review-text" placeholder="Escreva seu comentário..." rows="3"></textarea>
-  <button id="submit-review" class="btn primary">Enviar Avaliação</button>
-  <p id="selected-rating">Você selecionou: 0 estrelas</p>
-</div>
-
+  </section>
 
   <!-- CTA -->
   <section class="cta">
@@ -204,25 +151,69 @@
       <h2>Pronto para adoçar seu dia?</h2>
       <p>Entre em contato conosco e faça sua encomenda personalizada</p>
       <div class="cta-btns">
-        <a href="produto.html" class="btn white">Ver Catálogo</a>
-        <a href="#contato" class="btn outline">Fazer Encomenda</a>
+        <a href="produtos.html" class="btn white">Ver Catálogo</a>
+        <a href="contato.html" class="btn outline">Fazer Encomenda</a>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer id="contato" class="site-footer">
+  <footer class="site-footer">
     <div class="container footer-inner">
-      <div>© <span id="year"></span> Delicias fer lopes  — Todos os direitos reservados.</div>
-      <div>
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M3.654 1.328a.678.678 0 0 1 .737-.061l2.89 1.16a.678.678 0 0 1 .329.392l.547 1.64a.678.678 0 0 1-.179.67L6.684 6.684a11.46 11.46 0 0 0 4.632 4.632l1.205-1.205a.678.678 0 0 1 .671-.179l1.64.547a.678.678 0 0 1 .392.33l1.16 2.89a.678.678 0 0 1-.06.738l-2.28 2.28a1.745 1.745 0 0 1-1.95.393c-2.45-1.05-4.797-3.397-5.847-5.847a1.745 1.745 0 0 1 .393-1.95l2.28-2.28z"/>
-        </svg>
-        (11) 99999-9999 • Sorocaba
+      <div>© <span id="year"></span> Delicias Fer Lopes — Todos os direitos reservados.</div>
+      <div>📞 (15) 997172394 • Sorocaba</div>
+      <!-- Login discreto da confeiteira -->
+      <div class="confeiteira-login">
+        <a href="login.html" title="Área da Confeiteira">Área Confeiteira</a>
       </div>
     </div>
   </footer>
 
   <script src="js/script.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const stars = document.querySelectorAll('.stars-input span');
+    const reviewText = document.getElementById('review-text');
+    const submitBtn = document.getElementById('submit-review');
+    const selectedRating = document.getElementById('selected-rating');
+    const testimonials = document.getElementById('testimonials');
+    const successMsg = document.getElementById('review-success');
+
+    let rating = 0;
+
+    stars.forEach(star => {
+      star.addEventListener('click', () => {
+        rating = parseInt(star.getAttribute('data-value'));
+        selectedRating.textContent = `Você selecionou: ${rating} estrela${rating > 1 ? 's' : ''}`;
+        stars.forEach(s => s.textContent = parseInt(s.getAttribute('data-value')) <= rating ? '★' : '☆');
+      });
+    });
+
+    submitBtn.addEventListener('click', () => {
+      if (rating === 0) { alert('Selecione uma quantidade de estrelas!'); return; }
+      if (reviewText.value.trim() === '') { alert('Escreva um comentário!'); return; }
+
+      const newTestimonial = document.createElement('div');
+      newTestimonial.classList.add('testi');
+      newTestimonial.innerHTML = `
+        <svg width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M8 0a5 5 0 0 1 5 5v1a5 5 0 0 1-10 0V5a5 5 0 0 1 5-5zM0 14s1-2 8-2 8 2 8 2v2H0v-2z"/>
+        </svg>
+        <p>"${reviewText.value.trim()}"</p>
+        <strong>- Você</strong>
+        <div class="rating fixed" data-stars="${rating}">${'★'.repeat(rating)}${'☆'.repeat(5 - rating)}</div>
+      `;
+      testimonials.appendChild(newTestimonial);
+
+      successMsg.style.display = 'block';
+      setTimeout(() => { successMsg.style.display = 'none'; }, 3000);
+
+      rating = 0;
+      reviewText.value = '';
+      stars.forEach(s => s.textContent = '☆');
+      selectedRating.textContent = 'Você selecionou: 0 estrelas';
+    });
+  });
+  </script>
 </body>
 </html>
