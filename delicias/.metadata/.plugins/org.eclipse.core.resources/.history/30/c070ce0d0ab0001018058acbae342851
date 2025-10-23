@@ -1,0 +1,5 @@
+package com.senai.delicias.services;
+
+public class TipoProdutoService {
+
+}
