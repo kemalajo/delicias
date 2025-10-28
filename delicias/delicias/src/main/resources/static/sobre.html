@@ -36,8 +36,8 @@
   <!-- Hero grande com cor suave -->
   <section class="section hero about-hero">
     <div class="container">
-      <h1 class="hero-big">Nossa História de <span class="accent">Doçura</span></h1>
-      <p class="hero-sub">A Doce Sabor nasceu do sonho de uma família apaixonada por confeitaria. Há mais de 15 anos transformamos ingredientes simples em momentos especiais.</p>
+      <h1 class="hero-big">Minha História de <span class="accent">Doçura</span></h1>
+      <p class="hero-sub">A Doce Sabor nasceu do sonho de uma família apaixonada por confeitaria. Há mais de 7 anos transformamos ingredientes simples em momentos especiais.</p>
     </div>
   </section>
 
@@ -95,9 +95,9 @@
   <!-- Equipe -->
   <section class="section container">
     <h2 class="section-title">Nossa Equipe</h2>
-    <p class="section-desc">Conheça a artistas por trás de cada doce especial,Confeiteira e empreendedora solo, Maria Fernanda transforma doces em experiências únicas, unindo sabor, arte e carinho em cada criação.</p>
+    <p class="section-desc">Conheça os artistas por trás de cada doce especial. Confeiteira e empreendedora solo, Maria Fernanda transforma doces em experiências únicas, unindo sabor, arte e carinho em cada criação.</p>
 
-    <div class="grid three team-grid" style="margin: top 54px;px;">
+    <div class="grid three team-grid" style="margin-top:54px;">
       <div class="cat-card">
         <img src="img/team1.jpg" alt="Maria">
         <div class="cat-body">
@@ -106,8 +106,10 @@
           <p class="muted">Especialista em bolos artesanais com mais de 7 anos de experiência.</p>
         </div>
       </div>
+    </div> <!-- fecha team-grid -->
+  </section> <!-- fecha seção equipe -->
 
-    
+  <!-- Rodapé -->
   <footer class="site-footer">
     <div class="container footer-inner">
       <div>© <span id="year"></span> Delicias Fer Lopes — Todos os direitos reservados.</div>
@@ -115,6 +117,10 @@
     </div>
   </footer>
 
+  <script>
+    // Atualiza automaticamente o ano no rodapé
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
   <script src="js/script.js"></script>
 </body>
 </html>
