@@ -40,7 +40,7 @@ if (document.getElementById("produtosGrid")) {
   grid.innerHTML = "";
 
   produtosData
-    .filter(p => p.nome_produto.toLowerCase().includes(q)) // ajustar conforme os campos da entidade
+    .filter(p => p.nome_produto.toLowerCase().includes(q)) 
     .forEach(p => {
       const card = document.createElement("div");
       card.className = "card-produtos";
@@ -63,6 +63,8 @@ if (document.getElementById("produtosGrid")) {
       alert(`${produto.nome_produto} adicionado ao carrinho!`);
     });
   });
+
+  
 }
 
 // --- Chama fetchProdutos quando a página carregar ---
@@ -70,7 +72,7 @@ if (document.getElementById("produtosGrid")) {
   document.getElementById("searchInput").addEventListener("input", renderProdutos);
   document.getElementById("filterCategory").addEventListener("change", renderProdutos);
 
-  fetchProdutos(); // 🔑 pega os produtos do back-end
+  fetchProdutos(); //  pega  produtos do back-end
 }
 
   searchInput.addEventListener("input", renderProdutos);
