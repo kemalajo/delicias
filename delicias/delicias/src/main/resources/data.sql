@@ -1,88 +1,32 @@
--- Inserts de Produtos Doces
-INSERT INTO produto (nome, preco, categoria, descricao) VALUES
-('Bolo', 80.00, 'Doce', 'Bolo caseiro macio, ideal para festas.'),
-('Cupcake', 10.50, 'Doce', 'Mini bolo decorado, ideal para festas ou sobremesas.'),
-('Brownie', 8.50, 'Doce', 'Quadrado de chocolate úmido e denso.'),
-('Cookie', 12.00, 'Doce', 'Biscoito crocante por fora e macio por dentro.'),
-('Croissant', 13.50, 'Padaria', 'Massa folhada recheada, leve e amanteigada.'),
-('Torta Doce', 70.00, 'Doce', 'Torta caseira com variados recheios.'),
-('Brigadeiro', 4.50, 'Doce', 'Docinho brasileiro feito com leite condensado e chocolate.'),
-('Pudim', 50.00, 'Doce', 'Clássico pudim de leite condensado com calda de caramelo.'),
-('Kit Festa', 180.00, 'Doce', 'Inclui 1 bolo (sabor à escolha), 30 mini salgados (à escolha) e 20 brigadeiros (à escolha).');
 
--- Inserts de Produtos Salgados
-INSERT INTO produto (nome, preco, categoria, descricao) VALUES
-('Torta Salgada', 95.00, 'Salgado', 'Torta recheada com ingredientes variados.'),
-('Coxinha', 10.00, 'Salgado', 'Salgado frito recheado, tradicional brasileiro.'),
-('Kibe', 9.50, 'Salgado', 'Salgado tradicional de carne temperada.'),
-('Empada', 10.50, 'Salgado', 'Massa recheada com frango ou palmito.'),
-('Esfiha', 9.00, 'Salgado', 'Massa aberta recheada com carne, frango ou queijo.'),
-('Bolinho de Queijo', 6.50, 'Salgado', 'Bolinho frito recheado com queijo cremoso.');
 
--- Inserts de Sabores
+-- INSERINDO DADOS EM tb_Endereco
+INSERT INTO tb_endereco (bairro, cep, cidade, complemento, numero, rua, uf) VALUES
+('Centro', '80000-000', 'Curitiba', 'Próximo à praça central', '123', 'Rua das Flores', 'PR'),
+('Jardins', '01000-000', 'São Paulo', 'Bloco B', '45', 'Av. Brasil', 'SP'),
+('Boa Viagem', '50000-000', 'Recife', 'Apto 101', '99', 'Rua Atlântica', 'PE');
 
--- Cupcake
-INSERT INTO sabor (produto_id, nome) VALUES
-(2, 'Chocolate'),
-(2, 'Morango'),
-(2, 'Chocolate Branco'),
-(2, 'Chocolate Meio Amargo');
+-- INSERINDO DADOS EM tb_Produtos
+INSERT INTO tb_tipo_produto (nome_tipo_produto, descricao_tipo_produto)
+VALUES
+('Comum', 'Produtos tradicionais'),
+('Diet', 'Produtos sem açúcar ou com baixo teor calórico');
 
--- Brownie
-INSERT INTO sabor (produto_id, nome) VALUES
-(3, 'Tradicional'),
-(3, 'Chocolate Meio Amargo'),
-(3, 'Ninho com Nutella');
+INSERT INTO tb_categoria_produto (nome_categoria, descricao_categoria)
+VALUES
+('Bolos', 'Bolos de diversos sabores'),
+('Doces', 'Doces variados e sobremesas');
 
--- Cookie
-INSERT INTO sabor (produto_id, nome) VALUES
-(4, 'Tradicional'),
-(4, 'Chocolate Branco'),
-(4, 'Chocolate Meio Amargo'),
-(4, 'Creme de Avelã'),
-(4, 'Pistache');
+INSERT INTO tb_produtos (
+  preco_produto, id_categoria, id_tipo_produto, descricao_produto, img_url, nome_produto
+) VALUES
+  (25.00, 1, 1, 'Bolo com cobertura de chocolate meio amargo', 'https://i.pinimg.com/1200x/3f/b8/3e/3fb83e8b37796cd6bd2d94c85d2fb7e1.jpg', 'Bolo de Chocolate'),
+  (6.00, 2, 1, 'Coxinha de morango', 'https://i.pinimg.com/736x/82/c3/a1/82c3a19907f84d3ae3737756ba22ed88.jpg', 'Coxinha De Morango'),
+  (8.50, 2, 2, 'Doce sem açúcar, com leite desnatado', 'https://i.pinimg.com/1200x/6b/ad/a2/6bada227bcd8ad8650a52d3065739d1d.jpg', 'Doce de Leite Diet'),
+  (5.00, 2, 1, 'Biscoitinho de gengibre personalizado', 'https://i.pinimg.com/736x/28/19/b3/2819b32d629845033d9c351f945a727b.jpg', 'Biscoito de Gengibre'),
+  (7.00, 1, 1, 'Bolo de Cenoura recheado com cobertura de chocolate', 'https://i.pinimg.com/1200x/82/c1/94/82c19485a4c3498fb6d77853b32ab5f7.jpg', 'Bolo de Cenoura');
 
--- Croissant
-INSERT INTO sabor (produto_id, nome) VALUES
-(5, 'Chocolate ao Leite'),
-(5, 'Morango com Creme de Avelã'),
-(5, 'Pistache');
 
--- Torta Doce
-INSERT INTO sabor (produto_id, nome) VALUES
-(6, 'Morango'),
-(6, 'Maçã'),
-(6, 'Banana'),
-(6, 'Chocolate'),
-(6, 'Limão');
+INSERT INTO tb_tipo_produto (nome_tipo_produto, descricao_tipo_produto)
+VALUES ('Doce', 'Produtos doces e sobremesas');
 
--- Brigadeiro
-INSERT INTO sabor (produto_id, nome) VALUES
-(7, 'Tradicional'),
-(7, 'Ninho com Nutella'),
-(7, 'Beijinho');
-
--- Torta Salgada
-INSERT INTO sabor (produto_id, nome) VALUES
-(10, 'Frango'),
-(10, 'Palmito');
-
--- Coxinha
-INSERT INTO sabor (produto_id, nome) VALUES
-(11, 'Frango'),
-(11, 'Costela');
-
--- Kibe
-INSERT INTO sabor (produto_id, nome) VALUES
-(12, 'Tradicional');
-
--- Empada
-INSERT INTO sabor (produto_id, nome) VALUES
-(13, 'Frango'),
-(13, 'Palmito');
-
--- Esfiha
-INSERT INTO sabor (produto_id, nome) VALUES
-(14, 'Carne'),
-(14, 'Frango'),
-(14, 'Queijo');
