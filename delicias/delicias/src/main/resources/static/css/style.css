@@ -111,7 +111,7 @@ body{background:#fff;color:var(--dark);-webkit-font-smoothing:antialiased}
 .review-form {
   margin-top: 40px;
   padding: 20px;
-  background: #fff5f0;
+  background: #f79b99;
   border-radius: 10px;
 }
 
@@ -121,14 +121,14 @@ body{background:#fff;color:var(--dark);-webkit-font-smoothing:antialiased}
 
 .stars-input {
   font-size: 28px;
-  color: #ccc;
+  color: #d3413f;
   cursor: pointer;
 }
 
 .stars-input span:hover,
 .stars-input span.hovered,
 .stars-input span.selected {
-  color: #ffa723;
+  color: #ff860d;
 }
 
 .review-form textarea {
