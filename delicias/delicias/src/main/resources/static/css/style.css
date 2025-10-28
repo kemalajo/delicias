@@ -162,7 +162,7 @@ body{background:#fff;color:var(--dark);-webkit-font-smoothing:antialiased}
 /* produtos page */
 .produtos-page{padding:20px 0}
 
-/* ===== barra de pesquisa e filtro ===== */
+/* == barra de pesquisa e filtro == */
 .filtros {
   display: flex;
   flex-wrap: wrap;
