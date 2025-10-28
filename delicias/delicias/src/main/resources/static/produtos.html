@@ -32,12 +32,28 @@
   </div>
 </header>
 
-<section class="section hero small-hero">
-  <div class="container">
+<section class="section hero small-hero" style="position: relative; background-image: url('img/produtoss.jpg'); background-size: cover; background-position: center; background-attachment: fixed; color: #fff; overflow: hidden;">
+  <!-- Overlay escuro -->
+  <div style="position: absolute; inset: 0; background: rgba(255, 255, 255, 0.563); z-index: 0;"></div>
+
+  <div class="container" style="position: relative; z-index: 1; text-align: center; animation: fadeSlideUp 1s ease-out;">
     <h2 class="section-title">Produtos</h2>
-    <p class="section-desc">Navegue pelo nosso catálogo de doces artesanais — clique em "Selecionar" para adicionar ao carrinho.</p>
   </div>
 </section>
+
+<style>
+  @keyframes fadeSlideUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
 
 <main class="container produtos-page">
   <div class="filtros">
@@ -56,7 +72,7 @@
 <footer class="site-footer">
   <div class="container footer-inner">
     <div>© <span id="year"></span> Delicias Fer Lopes — Todos os direitos reservados.</div>
-    <div>📞 (11) 99999-9999 • Sorocaba</div>
+    <div>📞 (15) 99717-2394 • Sorocaba</div>
   </div>
 </footer>
 
