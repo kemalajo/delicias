@@ -1,116 +1,101 @@
 package com.senai.delicias.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
-@Table(name = "tb_Produtos")
+@Table(name = "tb_produtos") // use sempre minúsculas, por consistência
 public class Produto {
 
-	// Atributos
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idProduto;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idProduto;
 
-	@Column
-	private String nomeProduto;
+    @Column
+    private String nomeProduto;
 
-	@Column
-	private Double precoProduto;
+    @Column
+    private Double precoProduto;
 
-	@Column
-	private String descricaoProduto;
+    @Column
+    private String descricaoProduto;
 
-	@Column
-	private String imgUrl;
+    @Column
+    private String imgUrl;
 
-	@ManyToOne
-	@JoinColumn(name = "idCategoria", nullable = false)
-	private CategoriaProduto categoriaProduto;
+    @ManyToOne
+    @JoinColumn(name = "idCategoria", nullable = false)
+    private CategoriaProduto categoriaProduto;
 
-	@ManyToOne
-	@JoinColumn(name = "idTipoProduto", nullable = false)
-	private TipoProduto tipoProduto;
+    @ManyToOne
+    @JoinColumn(name = "idTipoProduto", nullable = false)
+    private TipoProduto tipoProduto;
 
-	public Produto() {
+    public Produto() {}
 
-	}
+    public Produto(Long idProduto, String nomeProduto, Double precoProduto, String descricaoProduto, String imgUrl,
+                   CategoriaProduto categoriaProduto, TipoProduto tipoProduto) {
+        this.idProduto = idProduto;
+        this.nomeProduto = nomeProduto;
+        this.precoProduto = precoProduto;
+        this.descricaoProduto = descricaoProduto;
+        this.imgUrl = imgUrl;
+        this.categoriaProduto = categoriaProduto;
+        this.tipoProduto = tipoProduto;
+    }
 
-	// Construtores
+    public Long getIdProduto() {
+        return idProduto;
+    }
 
-	public Produto(Long idProduto, String nomeProduto, Double precoProduto, String descricaoProduto, String imgUrl,
-			CategoriaProduto categoriaProduto, TipoProduto tipoProduto) {
-		this.idProduto = idProduto;
-		this.nomeProduto = nomeProduto;
-		this.precoProduto = precoProduto;
-		this.descricaoProduto = descricaoProduto;
-		this.imgUrl = imgUrl;
-		this.categoriaProduto = categoriaProduto;
-		this.tipoProduto = tipoProduto;
-	}
+    public void setIdProduto(Long idProduto) {
+        this.idProduto = idProduto;
+    }
 
-	// Getters e Setters
+    public String getNomeProduto() {
+        return nomeProduto;
+    }
 
-	public Long getIdProduto() {
-		return idProduto;
-	}
+    public void setNomeProduto(String nomeProduto) {
+        this.nomeProduto = nomeProduto;
+    }
 
-	public void setIdProduto(Long idProduto) {
-		this.idProduto = idProduto;
-	}
+    public Double getPrecoProduto() {
+        return precoProduto;
+    }
 
-	public String getNomeProduto() {
-		return nomeProduto;
-	}
+    public void setPrecoProduto(Double precoProduto) {
+        this.precoProduto = precoProduto;
+    }
 
-	public void setNomeProduto(String nomeProduto) {
-		this.nomeProduto = nomeProduto;
-	}
+    public String getDescricaoProduto() {
+        return descricaoProduto;
+    }
 
-	public Double getPrecoProduto() {
-		return precoProduto;
-	}
+    public void setDescricaoProduto(String descricaoProduto) {
+        this.descricaoProduto = descricaoProduto;
+    }
 
-	public void setPrecoProduto(Double precoProduto) {
-		this.precoProduto = precoProduto;
-	}
+    public String getImgUrl() {
+        return imgUrl;
+    }
 
-	public String getDescricaoProduto() {
-		return descricaoProduto;
-	}
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
 
-	public void setDescricaoProduto(String descricaoProduto) {
-		this.descricaoProduto = descricaoProduto;
-	}
+    public CategoriaProduto getCategoriaProduto() {
+        return categoriaProduto;
+    }
 
-	public String getImgUrl() {
-		return imgUrl;
-	}
+    public void setCategoriaProduto(CategoriaProduto categoriaProduto) {
+        this.categoriaProduto = categoriaProduto;
+    }
 
-	public void setImgUrl(String imgUrl) {
-		this.imgUrl = imgUrl;
-	}
+    public TipoProduto getTipoProduto() {
+        return tipoProduto;
+    }
 
-	public CategoriaProduto getCategoriaProduto() {
-		return categoriaProduto;
-	}
-
-	public void setCategoriaProduto(CategoriaProduto categoriaProduto) {
-		this.categoriaProduto = categoriaProduto;
-	}
-
-	public TipoProduto getTipoEncomenda() {
-		return tipoProduto;
-	}
-
-	public void setTipoEncomenda(TipoProduto tipoProduto) {
-		this.tipoProduto = tipoProduto;
-	}
-
+    public void setTipoProduto(TipoProduto tipoProduto) {
+        this.tipoProduto = tipoProduto;
+    }
 }

@@ -1,10 +1,15 @@
 // Dados dos produtos
-const produtosData = [
-  { id:1, nome: "Bolo de Chocolate", preco: 45.00, categoria: "bolos", img: "img/bolo-chocolate.jpg" },
-  { id:2, nome: "Brigadeiro Gourmet", preco: 4.00, categoria: "doces", img: "img/brigadeiro.jpg" },
-  { id:3, nome: "Torta de Limão", preco: 32.00, categoria: "tortas", img: "img/torta-limao.jpg" },
-  { id:4, nome: "Cupcake Red Velvet", preco: 7.00, categoria: "doces", img: "img/cupcake.jpg" }
-];
+let produtosData = [];
+
+async function fetchProdutos() {
+  try {
+    const res = await fetch("http://localhost:8080/produtos");
+    produtosData = await res.json();
+    renderProdutos();
+  } catch (err) {
+    console.error("Erro ao carregar produtos:", err);
+  }
+}
 
 // ----- PRODUTOS.HTML -----
 if (document.getElementById("produtosGrid")) {
@@ -28,33 +33,45 @@ if (document.getElementById("produtosGrid")) {
   }
 
   function renderProdutos() {
-    grid.innerHTML = "";
-    const q = searchInput.value.trim().toLowerCase();
-    produtosData
-      .filter(p => (p.nome.toLowerCase().includes(q)) && (filterCategory.value === "" || p.categoria === filterCategory.value))
-      .forEach(p => {
-        const card = document.createElement("div");
-        card.className = "card-produtos";
-        card.innerHTML = `
-          <img src="${p.img}" alt="${p.nome}">
-          <h3>${p.nome}</h3>
-          <p>R$ ${p.preco.toFixed(2)}</p>
-          <button data-id="${p.id}" class="selecionar-btn">Selecionar</button>
-        `;
-        grid.appendChild(card);
-      });
+  const grid = document.getElementById("produtosGrid");
+  const q = document.getElementById("searchInput").value.trim().toLowerCase();
+  const filterCategory = document.getElementById("filterCategory").value;
 
-    document.querySelectorAll(".selecionar-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const produtoId = parseInt(btn.getAttribute("data-id"));
-        const produto = produtosData.find(p => p.id === produtoId);
-        const cart = getCart();
-        cart.push(produto);
-        saveCart(cart);
-        alert(`${produto.nome} adicionado ao carrinho!`);
-      });
+  grid.innerHTML = "";
+
+  produtosData
+    .filter(p => p.nome_produto.toLowerCase().includes(q)) // ajustar conforme os campos da entidade
+    .forEach(p => {
+      const card = document.createElement("div");
+      card.className = "card-produtos";
+      card.innerHTML = `
+        <img src="${p.img_url}" alt="${p.nome_produto}">
+        <h3>${p.nome_produto}</h3>
+        <p>R$ ${p.preco_produto.toFixed(2)}</p>
+        <button data-id="${p.idProduto}" class="selecionar-btn">Selecionar</button>
+      `;
+      grid.appendChild(card);
     });
-  }
+
+  document.querySelectorAll(".selecionar-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const produtoId = parseInt(btn.getAttribute("data-id"));
+      const produto = produtosData.find(p => p.idProduto === produtoId);
+      const cart = JSON.parse(localStorage.getItem("carrinho")) || [];
+      cart.push(produto);
+      localStorage.setItem("carrinho", JSON.stringify(cart));
+      alert(`${produto.nome_produto} adicionado ao carrinho!`);
+    });
+  });
+}
+
+// --- Chama fetchProdutos quando a página carregar ---
+if (document.getElementById("produtosGrid")) {
+  document.getElementById("searchInput").addEventListener("input", renderProdutos);
+  document.getElementById("filterCategory").addEventListener("change", renderProdutos);
+
+  fetchProdutos(); // 🔑 pega os produtos do back-end
+}
 
   searchInput.addEventListener("input", renderProdutos);
   filterCategory.addEventListener("change", renderProdutos);
