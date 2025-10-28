@@ -1,5 +1,7 @@
 package com.senai.delicias.entities;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -8,28 +10,30 @@ public class Produto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idProduto")
     private Long idProduto;
 
-    @Column
+    @Column(name = "nome_produto")
     private String nomeProduto;
 
-    @Column
+    @Column(name = "preco_produto")
     private Double precoProduto;
 
-    @Column
+    @Column(name = "descricao_produto")
     private String descricaoProduto;
 
-    @Column
+    @Column(name = "img_url")
     private String imgUrl;
 
     @ManyToOne
-    @JoinColumn(name = "idCategoria", nullable = false)
+    @JoinColumn(name = "id_categoria", nullable = false)
     private CategoriaProduto categoriaProduto;
 
     @ManyToOne
-    @JoinColumn(name = "idTipoProduto", nullable = false)
+    @JoinColumn(name = "id_tipo_produto", nullable = false)
     private TipoProduto tipoProduto;
-
+    
+    
     public Produto() {}
 
     public Produto(Long idProduto, String nomeProduto, Double precoProduto, String descricaoProduto, String imgUrl,

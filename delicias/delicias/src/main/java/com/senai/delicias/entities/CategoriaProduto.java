@@ -1,10 +1,13 @@
 package com.senai.delicias.entities;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -13,13 +16,17 @@ public class CategoriaProduto {
 	// Atributos
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_categoria")
 	private Long idCategoria;
 
-	@Column
+	@Column(name = "nome_categoria")
 	private String nomeCategoria;
 
-	@Column
+	@Column(name = "descricao_categoria")
 	private String descricaoCategoria;
+	
+	@OneToMany(mappedBy = "categoriaProduto") // relacionamento com Produto
+    private List<Produto> produtos;
 
 	// Construtores
 	public CategoriaProduto() {

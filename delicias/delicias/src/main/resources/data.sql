@@ -1,5 +1,3 @@
-
-
 -- INSERINDO DADOS EM tb_Endereco
 INSERT INTO tb_endereco (bairro, cep, cidade, complemento, numero, rua, uf) VALUES
 ('Centro', '80000-000', 'Curitiba', 'Próximo à praça central', '123', 'Rua das Flores', 'PR'),
@@ -25,8 +23,4 @@ INSERT INTO tb_produtos (
   (8.50, 2, 2, 'Doce sem açúcar, com leite desnatado', 'https://i.pinimg.com/1200x/6b/ad/a2/6bada227bcd8ad8650a52d3065739d1d.jpg', 'Doce de Leite Diet'),
   (5.00, 2, 1, 'Biscoitinho de gengibre personalizado', 'https://i.pinimg.com/736x/28/19/b3/2819b32d629845033d9c351f945a727b.jpg', 'Biscoito de Gengibre'),
   (7.00, 1, 1, 'Bolo de Cenoura recheado com cobertura de chocolate', 'https://i.pinimg.com/1200x/82/c1/94/82c19485a4c3498fb6d77853b32ab5f7.jpg', 'Bolo de Cenoura');
-
-
-INSERT INTO tb_tipo_produto (nome_tipo_produto, descricao_tipo_produto)
-VALUES ('Doce', 'Produtos doces e sobremesas');
 

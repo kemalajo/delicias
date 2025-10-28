@@ -15,13 +15,13 @@ public class TipoProduto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idTipoProduto")
+    @Column(name = "id_tipo_produto")
     private Long idTipoProduto;
 
-    @Column(name = "nomeTipoProduto", nullable = false, length = 100)
+    @Column(name = "nome_tipo_produto")
     private String nomeTipoProduto;
 
-    @Column(name = "descricaoTipoProduto")
+    @Column(name = "descricao_tipo_produto")
     private String descricaoTipoProduto;
 
     @OneToMany(mappedBy = "tipoProduto")

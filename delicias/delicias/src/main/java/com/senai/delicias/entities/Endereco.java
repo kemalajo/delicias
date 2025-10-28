@@ -17,25 +17,25 @@ package com.senai.delicias.entities;
 		@Column(name = "idEndereco")
 		private Long idEndereco;
 
-		@Column
+		@Column(name = "bairro")
 		private String bairro;
 
-		@Column
+		@Column(name = "rua")
 		private String rua;
 
-		@Column
+		@Column(name = "cidade")
 		private String cidade;
 
-		@Column
+		@Column(name = "numero")
 		private String numero;
 
-		@Column
+		@Column(name = "cep")
 		private String cep;
 
-		@Column
+		@Column(name = "complemento")
 		private String complemento;
 
-		@Column
+		@Column(name = "uf")
 		private String uf;
 
 		public Endereco() {
