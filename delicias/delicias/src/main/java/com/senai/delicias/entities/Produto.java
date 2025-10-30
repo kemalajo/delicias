@@ -1,5 +1,7 @@
 package com.senai.delicias.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,10 +33,12 @@ public class Produto {
     private String imgUrl;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "id_categoria", nullable = false)
     private CategoriaProduto categoriaProduto;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "id_tipo_produto", nullable = false)
     private TipoProduto tipoProduto;
     

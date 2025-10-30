@@ -1,79 +1,1021 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Doce Sabor — Produtos</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
-
-<header class="site-header">
-  <div class="container header-inner">
-    <div class="brand">
-      <img src="img/delicias da fer.png" alt="Delicias da Fer Lopes" class="logo">
-      <div class="brand-text">
-        <h1>Delicias</h1>
-        <small>Fer Lopes</small>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Doce Sabor — Produtos</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand">
+          <img
+            src="img/delicias da fer.png"
+            alt="Delicias da Fer Lopes"
+            class="logo"
+          />
+          <div class="brand-text">
+            <h1>Delicias</h1>
+            <small>Fer Lopes</small>
+          </div>
+        </div>
+        <nav class="main-nav">
+          <a class="nav-link" href="index.html">Início</a>
+          <a class="nav-link active" href="produtos.html">Produtos</a>
+          <a class="nav-link" href="sobre.html">Sobre</a>
+          <a class="nav-link" href="carrinho.html">Carrinho</a>
+        </nav>
+        <div class="header-actions">
+          <a class="phone" href="tel:+5511999999999">📞 (15) 99717-2394</a>
+          <a class="cart-link" href="carrinho.html"
+            >🛒 <span id="cart-count-badge">0</span></a
+          >
+        </div>
       </div>
-    </div>
-    <nav class="main-nav">
-      <a class="nav-link" href="index.html">Início</a>
-      <a class="nav-link active" href="produtos.html">Produtos</a>
-      <a class="nav-link" href="sobre.html">Sobre</a>
-      <a class="nav-link" href="carrinho.html">Carrinho</a>
-    </nav>
-    <div class="header-actions">
-      <a class="phone" href="tel:+5511999999999">📞 (15) 99717-2394</a>
-      <a class="cart-link" href="carrinho.html">🛒 <span id="cart-count-badge">0</span></a>
-    </div>
-  </div>
-</header>
+    </header>
 
-<section class="section hero small-hero" style="position: relative; background-image: url('img/3e30b902036cb2ece2dedcb1822b0070.jpg'); background-size: cover; background-position: center; background-attachment: fixed; color: #fff; overflow: hidden;">
-  <!-- Overlay escuro -->
-  <div style="position: absolute; inset: 0; background: rgba(255, 255, 255, 0.419); z-index: 0;"></div>
+    <section
+      class="section hero small-hero"
+      style="
+        position: relative;
+        background-image: url('img/3e30b902036cb2ece2dedcb1822b0070.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        color: #fff;
+        overflow: hidden;
+      "
+    >
+      <!-- Overlay escuro -->
+      <div
+        style="
+          position: absolute;
+          inset: 0;
+          background: rgba(255, 255, 255, 0.419);
+          z-index: 0;
+        "
+      ></div>
 
-  <div class="container" style="position: relative; z-index: 1; text-align: center; animation: fadeSlideUp 1s ease-out;">
-    <h2 class="section-title"></h2>
-  </div>
-</section>
+      <div
+        class="container"
+        style="
+          position: relative;
+          z-index: 1;
+          text-align: center;
+          animation: fadeSlideUp 1s ease-out;
+        "
+      >
+        <h2 class="section-title"></h2>
+      </div>
+    </section>
 
-<style>
-  @keyframes fadeSlideUp {
-    0% {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    <style>
+      @keyframes fadeSlideUp {
+        0% {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* body {
+  overflow-x: hidden;
+} */
+
+:root {
+  --primary: #718936;
+  --dark: #0f1720;
+  --muted: #6b6f73;
+  --bg: #fbf6f0;
+  --card: #ffffff;
+  --radius: 12px;
+  --shadow: 0 10px 30px rgba(15, 23, 32, 0.06);
+  font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+}
+body {
+  background: #fff;
+  color: var(--dark);
+  -webkit-font-smoothing: antialiased;
+}
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* Header */
+.site-header {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 60;
+  box-shadow: 0 6px 20px rgba(15, 23, 32, 0.04);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 24px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+.brand-text h1 {
+  font-size: 20px;
+  margin-bottom: 0;
+}
+.brand-text small {
+  display: block;
+  color: var(--primary);
+  font-weight: 600;
+}
+.main-nav {
+  display: flex;
+  gap: 16px;
+}
+.nav-link {
+  color: var(--muted);
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+}
+.nav-link.active {
+  background: rgba(113, 137, 54, 0.08);
+  color: var(--primary);
+  font-weight: 600;
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.phone {
+  color: var(--primary);
+  text-decoration: none;
+}
+.cart-link {
+  font-weight: 700;
+}
+#cart-count-badge,
+#cart-count-badge-2 {
+  background: var(--primary);
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 99px;
+  margin-left: 6px;
+  font-weight: 700;
+}
+
+/* Hero */
+.hero {
+  background: var(--bg);
+  padding: 40px 0;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 540px;
+  gap: 32px;
+  align-items: center;
+}
+.kpis {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 6px;
+  color: var(--muted);
+}
+.hero-title {
+  font-size: 48px;
+  line-height: 1;
+  margin: 10px 0;
+}
+.hero-title .accent {
+  color: var(--primary);
+}
+.hero-sub {
+  color: var(--muted);
+  max-width: 560px;
+  margin-bottom: 18px;
+}
+.hero-cta {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.btn {
+  display: inline-block;
+  padding: 12px 20px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+}
+.btn.primary {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(113, 137, 54, 0.12);
+}
+.btn.outline {
+  border: 2px solid rgba(113, 137, 54, 0.12);
+  color: var(--primary);
+  background: transparent;
+}
+.btn.white {
+  background: #fff;
+  color: var(--primary);
+  padding: 10px 18px;
+}
+.btn.large {
+  padding: 14px 34px;
+}
+.stats {
+  display: flex;
+  gap: 24px;
+  margin-top: 24px;
+}
+.stats li {
+  display: flex;
+  flex-direction: column;
+  color: var(--muted);
+}
+
+/* hero image */
+.hero-image-wrap {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: var(--card);
+}
+.hero-image {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  display: block;
+}
+.badge {
+  position: absolute;
+  left: 20px;
+  background: #fff;
+  padding: 10px 14px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(15, 23, 32, 0.06);
+  font-weight: 700;
+  color: var(--dark);
+}
+.badge.top {
+  top: 20px;
+}
+.badge.bottom {
+  bottom: 20px;
+  right: 20px;
+  left: auto;
+}
+
+/* sections */
+.section {
+  padding: 48px 0;
+}
+.section-title {
+  text-align: center;
+  font-size: 32px;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+.section-desc {
+  text-align: center;
+  color: var(--muted);
+  margin-bottom: 22px;
+}
+.alt-bg {
+  background: linear-gradient(
+    180deg,
+    rgba(113, 137, 54, 0.04),
+    rgba(255, 255, 255, 0)
+  );
+}
+
+/* Cards row */
+.cards-row {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  margin-top: 22px;
+}
+.product-card {
+  background: var(--card);
+  border-radius: 14px;
+  overflow: hidden;
+  flex: 1;
+  box-shadow: var(--shadow);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: 0.3s;
+}
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 25px rgba(113, 137, 54, 0.2);
+}
+.ribbon {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  background: var(--primary);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 14px;
+  font-weight: 700;
+}
+.card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: 0.3s;
+}
+.product-card:hover .card-img {
+  transform: scale(1.05);
+}
+.card-body {
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+.price {
+  color: var(--primary);
+  font-size: 18px;
+}
+.icon-cart {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.icon-cart:hover {
+  background: #5a6f2c;
+}
+
+/* categories grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-top: 22px;
+}
+.cat-card {
+  background: var(--card);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: 0.3s;
+}
+.cat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px rgba(113, 137, 54, 0.15);
+}
+.cat-card img {
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+}
+.cat-body {
+  padding: 14px;
+  text-align: center;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+/* features */
+.grid.three {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 24px;
+}
+.feature {
+  padding: 20px;
+  text-align: center;
+  border-radius: 12px;
+}
+.feature .icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    rgba(113, 137, 54, 0.08),
+    rgba(255, 255, 255, 0)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+  font-size: 22px;
+  color: var(--primary);
+}
+
+/* MUDANÇA DE COR DOS ÍCONES "Por que escolher" */
+.section.bg-fixed .feature .icon svg {
+  color: #fe8c71;
+}
+
+/* testimonials */
+.testimonials {
+  display: flex;
+  gap: 12px;
+  overflow: hidden;
+  margin-top: 18px;
+}
+.testi {
+  background: var(--card);
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  flex: 1;
+  display: none;
+}
+.testi.active {
+  display: block;
+}
+
+/* depoimento */
+.rating.fixed {
+  font-size: 24px;
+  color: #ffa723; /* cor da estrela cheia */
+  margin-top: 8px;
+  pointer-events: none; /* não clicável */
+}
+
+.rating.fixed::after {
+  content: attr(data-stars);
+}
+
+.review-form {
+  margin-top: 40px;
+  padding: 20px;
+  background: #f8abaac0;
+  border-radius: 10px;
+}
+
+.review-form h4 {
+  margin-bottom: 10px;
+}
+
+.stars-input {
+  font-size: 28px;
+  color: #d3413f;
+  cursor: pointer;
+}
+
+.stars-input span:hover,
+.stars-input span.hovered,
+.stars-input span.selected {
+  color: #ff860d;
+}
+
+.review-form textarea {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  resize: none;
+}
+
+#submit-review {
+  display: block;
+  margin-top: 10px;
+}
+
+#selected-rating {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* CTA */
+.cta {
+  background: linear-gradient(135deg, var(--primary), #96a85a);
+  color: #fff;
+  padding: 44px 0;
+}
+.cta .cta-inner {
+  text-align: center;
+}
+
+/* footer */
+.site-footer {
+  background: #fff;
+  padding: 20px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.04);
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  align-items: center;
+}
+
+/* produtos page */
+.produtos-page {
+  padding: 20px 0;
+}
+
+/* == barra de pesquisa e filtro == */
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 20px 0;
+  padding: 12px;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filtros input[type="text"] {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: var(--radius);
+  font-size: 16px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.filtros input[type="text"]:focus {
+  border-color: var(--primary);
+  box-shadow: 0 4px 12px rgba(113, 137, 54, 0.2);
+}
+
+.filtros select {
+  padding: 10px 14px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: var(--radius);
+  font-size: 16px;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.filtros select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 4px 12px rgba(113, 137, 54, 0.2);
+}
+
+.grid-cardapio {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 22px;
+}
+
+.card-produto {
+  background: var(--card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  transition: 0.3s;
+}
+
+.card-produto:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 25px rgba(113, 137, 54, 0.2);
+}
+
+.card-produto img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  object-position: center;
+  transition: 0.3s;
+}
+
+.card-produto:hover img {
+  transform: scale(1.05);
+}
+
+.card-produto h3 {
+  margin: 12px 16px 6px;
+  font-size: 18px;
+  color: var(--dark);
+}
+
+.card-produto p {
+  margin: 0 16px 12px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.card-produto button {
+  margin: 0 16px 16px;
+  padding: 10px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.card-produto button:hover {
+  background: #5a6f2c;
+}
+
+/* responsividade */
+@media (max-width: 1000px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
   }
-</style>
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-cardapio {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+  .cart-grid {
+    flex-direction: column;
+  }
+  .cart-summary {
+    width: 100%;
+    position: static;
+  }
+}
+@media (max-width: 600px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .container {
+    padding: 12px;
+  }
+  .hero-title {
+    font-size: 28px;
+  }
+  .filtros {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
 
+/* hero variations */
+.hero.small-hero {
+  padding: 36px 0;
+  background: linear-gradient(
+    180deg,
+    rgba(113, 137, 54, 0.04),
+    rgba(255, 255, 255, 0)
+  );
+  text-align: center;
+}
+.hero.about-hero {
+  padding: 70px 0;
+  background: linear-gradient(
+    180deg,
+    rgba(247, 225, 227, 0.5),
+    rgba(255, 255, 255, 0)
+  );
+  text-align: left;
+}
+.hero.contact-hero {
+  padding: 70px 0;
+  background: linear-gradient(
+    180deg,
+    rgba(247, 225, 227, 0.8),
+    rgba(255, 255, 255, 0)
+  );
+  text-align: center;
+}
+.hero-big {
+  font-size: 48px;
+  margin: 0 0 8px;
+  font-weight: 700;
+  color: var(--dark);
+}
+.hero-sub {
+  color: var(--muted);
+  max-width: 900px;
+  margin: 0 auto 12px;
+  font-size: 18px;
+}
 
-<main class="container produtos-page">
-  <div class="filtros">
-    <input type="text" id="searchInput" placeholder="Buscar produto..." />
-    <select id="filterCategory">
-      <option value="">Todas as categorias</option>
-      <option value="bolos">Bolos</option>
-      <option value="doces">Doces</option>
-      <option value="tortas">Tortas</option>
-    </select>
-  </div>
+/* stats banner */
+.stats-banner {
+  background: linear-gradient(90deg, var(--primary), #96a85a);
+  color: #fff;
+  padding: 34px 0;
+}
+.stats-grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.stat {
+  text-align: center;
+}
+.stat-num {
+  font-size: 40px;
+  font-weight: 800;
+}
+.stat-label {
+  opacity: 0.95;
+}
 
-  <div id="produtosGrid" class="grid-cardapio"></div>
-</main>
+/* four / three helper (make sure grid display) */
+.grid.four.stat-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+.grid.three.team-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
 
-<footer class="site-footer">
-  <div class="container footer-inner">
-    <div>© <span id="year"></span> Delicias Fer Lopes — Todos os direitos reservados.</div>
-    <div>📞 (15) 99717-2394 • Sorocaba</div>
-  </div>
-</footer>
-<script src="js/script.js"></script>
-</body>
+/* contact layout */
+.contact-grid {
+  gap: 36px;
+  align-items: flex-start;
+}
+.info-list {
+  list-style: none;
+  padding: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.map-placeholder .map-box {
+  height: 180px;
+  border-radius: 12px;
+  background: #eceff1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  box-shadow: var(--shadow);
+  margin-top: 18px;
+}
+
+/* contact card */
+.contact-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 22px;
+  box-shadow: var(--shadow);
+}
+
+/* form inputs padrão */
+input[type="text"],
+input[type="email"],
+select,
+textarea {
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 12px 14px;
+  border-radius: 10px;
+  outline: none;
+  font-size: 15px;
+  transition: 0.15s;
+}
+input:focus,
+textarea:focus,
+select:focus {
+  box-shadow: 0 8px 20px rgba(113, 137, 54, 0.06);
+  border-color: var(--primary);
+}
+
+/* cards equipe / categorias */
+.cat-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+}
+.cat-card img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+}
+.cat-body {
+  padding: 18px;
+}
+.cat-body h4 {
+  margin: 0 0 6px;
+}
+.cat-body small.accent {
+  color: var(--primary);
+  font-weight: 700;
+}
+.cat-body p.muted {
+  color: var(--muted);
+  margin-top: 10px;
+}
+
+/* valores e icons */
+.values-grid .value {
+  padding: 18px;
+  text-align: center;
+}
+.value-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+  background: linear-gradient(
+    135deg,
+    rgba(113, 137, 54, 0.08),
+    rgba(255, 255, 255, 0)
+  );
+  font-size: 22px;
+  color: var(--primary);
+}
+
+/* responsividade */
+@media (max-width: 1000px) {
+  .hero-big {
+    font-size: 36px;
+  }
+  .grid.three.team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid.four.stats-grid {
+    flex-direction: column;
+    gap: 18px;
+  }
+}
+
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 40px 20px;
+  background-color: #fdf2f2;
+}
+
+.login-container {
+  background: #fff;
+  padding: 30px 25px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.login-container h2 {
+  margin-bottom: 10px;
+  color: #e76f51;
+  font-size: 1.8rem;
+}
+
+.login-container p {
+  margin-bottom: 20px;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.login-container label {
+  display: block;
+  text-align: left;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+}
+
+.login-container input:focus {
+  outline: none;
+  border-color: #e76f51;
+  box-shadow: 0 0 5px rgba(231, 111, 81, 0.4);
+}
+
+.login-container .btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.login-container .btn.primary {
+  background-color: #e76f51;
+  color: #fff;
+}
+
+.login-container .btn.primary:hover {
+  background-color: #d9583e;
+}
+
+.login-message {
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.login-page {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+/* Fundo fixo apenas na seção "Por que escolher" */
+.section.bg-fixed {
+  position: relative;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.section.bg-fixed::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45); /* filtro escuro pra leitura */
+  z-index: -1;
+}
+
+.section.bg-fixed h3,
+.section.bg-fixed p,
+.section.bg-fixed .feature {
+  color: #fff;
+}
+
+    </style>
+
+    <main class="container produtos-page">
+      <div class="filtros">
+        <input type="text" id="searchInput" placeholder="Buscar produto..." />
+        <select id="filterCategory">
+          <option value="">Todas as categorias</option>
+          <option value="bolos">Bolos</option>
+          <option value="doces">Doces</option>
+          <option value="tortas">Tortas</option>
+        </select>
+      </div>
+
+      <div id="produtosGrid" class="grid-cardapio"></div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          © <span id="year"></span> Delicias Fer Lopes — Todos os direitos
+          reservados.
+        </div>
+        <div>📞 (15) 99717-2394 • Sorocaba</div>
+      </div>
+    </footer>
+    <script src="js/script.js"></script>
+  </body>
 </html>
