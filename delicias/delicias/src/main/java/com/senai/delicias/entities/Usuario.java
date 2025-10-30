@@ -8,18 +8,18 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 	@Entity
-	@Table(name = "tbUsuario")
+	@Table(name = "tb_usuario")
 	public class Usuario {
 		// Atributos
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		@Column(name = "idUsuario", nullable = false)
+		@Column(name = "id_usuario", nullable = false)
 		private Long idUsuario;
 
-		@Column(name = "nomeUsuario", nullable = false, length = 100)
+		@Column(name = "nome_usuario", nullable = false)
 		private String nomeUsuario;
 
-		@Column
+		@Column(name = "senha")
 		private String senha;
 
 
