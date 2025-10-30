@@ -49,7 +49,6 @@
       const loginForm = document.getElementById('login-form');
       const loginMessage = document.getElementById('login-message');
 
-      // Login simples apenas para demonstração (substituir com backend real)
       const correctUser = 'ferlopes';
       const correctPass = 'doces123';
 
@@ -62,7 +61,7 @@
           loginMessage.style.color = 'green';
           loginMessage.textContent = 'Login realizado com sucesso! Redirecionando...';
           setTimeout(() => {
-            window.location.href = 'produtos.html'; // página para adicionar produtos
+            window.location.href = 'produtos.html'; 
           }, 1500);
         } else {
           loginMessage.style.color = 'red';
