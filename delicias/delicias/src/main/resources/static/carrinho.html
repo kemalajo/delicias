@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Doce Sabor — Carrinho</title>
+  <title>Delicias Fer Lopes — Carrinho</title>
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
@@ -43,15 +43,14 @@
 
   <div class="carrinho-footer">
     <h3>Total: R$ <span id="totalValue">0.00</span></h3>
-<a class="btn primary" href="https://wa.me/5511999999999" target="_blank">Finalizar Compra</a>
-    </main>
+    <a class="btn primary" id="finalizarCompraBtn" href="#" target="_blank">Finalizar Compra</a>
   </div>
 </main>
 
 <footer class="site-footer">
   <div class="container footer-inner">
     <div>© <span id="year"></span> Delicias Fer Lopes — Todos os direitos reservados.</div>
-    <div>📞  (15) 99717-2394 • Sorocaba</div>
+    <div>📞 (15) 99717-2394 • Sorocaba</div>
   </div>
 </footer>
 
@@ -61,6 +60,7 @@ const cartCountBadge = document.getElementById("cart-count-badge");
 const totalValue = document.getElementById("totalValue");
 const finalizarCompraBtn = document.getElementById("finalizarCompraBtn");
 
+// Funções utilitárias
 function getCart() {
   return JSON.parse(localStorage.getItem("carrinho")) || [];
 }
@@ -86,13 +86,19 @@ function renderCart() {
   }
 
   cart.forEach((produto, index) => {
-    total += produto.preco;
+    // Converter "R$ 5,00" para número 5.00
+    const precoNumerico = parseFloat(
+      (produto.preco || "0").replace("R$", "").replace(",", ".").trim()
+    ) || 0;
+    total += precoNumerico;
+
     const card = document.createElement("div");
-    card.className = "card-produtos";
+    card.className = "card-produto";
     card.innerHTML = `
-      <img src="${produto.img}" alt="${produto.nome}">
+      <img src="${produto.imagem || 'img/sem-imagem.png'}" alt="${produto.nome}">
       <h3>${produto.nome}</h3>
-      <p>R$ ${produto.preco.toFixed(2)}</p>
+      <p>${produto.descricao || ''}</p>
+      <p>R$ ${precoNumerico.toFixed(2)}</p>
       <button data-index="${index}" class="remover-btn">Remover</button>
     `;
     carrinhoGrid.appendChild(card);
@@ -100,6 +106,7 @@ function renderCart() {
 
   totalValue.textContent = total.toFixed(2);
 
+  // Botão de remover item
   document.querySelectorAll(".remover-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       const index = btn.getAttribute("data-index");
@@ -111,15 +118,20 @@ function renderCart() {
     });
   });
 
-  // Monta link do WhatsApp com produtos
-  const message = cart.map(p => `${p.nome} - R$ ${p.preco.toFixed(2)}`).join("\n") + `\nTotal: R$ ${total.toFixed(2)}`;
-  const phone = "5511999999999"; // seu número do WhatsApp
+  // Montar mensagem do WhatsApp
+  const message = cart
+    .map(p => `${p.nome} - ${p.preco}`)
+    .join("\n") + `\n\nTotal: R$ ${total.toFixed(2)}`;
+
+  const phone = "5511999999999"; // número do WhatsApp
   finalizarCompraBtn.href = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
 }
 
+// Inicialização
 renderCart();
 updateCartCount();
 document.getElementById("year").textContent = new Date().getFullYear();
 </script>
+
 </body>
 </html>
