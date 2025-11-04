@@ -112,100 +112,183 @@
     </footer>
 
     <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const adminArea = document.getElementById('adminArea');
-    const addProdutoForm = document.getElementById('addProdutoForm');
-    const btnAddProduto = document.getElementById('btnAddProduto');
-    const produtosGrid = document.getElementById('produtosGrid');
-    const salvarProduto = document.getElementById('salvarProduto');
+document.addEventListener('DOMContentLoaded', () => {
+  const adminArea = document.getElementById('adminArea');
+  const addProdutoForm = document.getElementById('addProdutoForm');
+  const produtosGrid = document.getElementById('produtosGrid');
+  const salvarProduto = document.getElementById('salvarProduto');
+  const searchInput = document.getElementById('searchInput');
+  const filterCategory = document.getElementById('filterCategory');
 
-    // 🔐 Verifica login da confeiteira
-    const isLogada = localStorage.getItem('isConfeiteiraLogada') === 'true';
-    if (isLogada) {
-      adminArea.innerHTML = `
-        <button id="btnAddProduto" class="btn primary">➕ Adicionar Novo Produto</button>
-        <button id="btnRemoverProduto" class="btn danger" style="margin-left:10px;">🗑️ Remover Produto</button>
-      `;
-      adminArea.style.display = 'block';
-    }
+  const API_URL = 'http://localhost:8080/produtos';
+  const IMG_FALLBACK = 'img/placeholder.jpg'; // crie um placeholder simples no seu /img
 
-    // Função para ativar o modo de remoção
-    function ativarRemocao() {
-      const cards = document.querySelectorAll('.card-produto');
-      cards.forEach((card) => {
-        if (!card.querySelector('.delete-btn')) {
-          const btnDel = document.createElement('button');
-          btnDel.textContent = '❌';
-          btnDel.className = 'delete-btn';
-          btnDel.style.position = 'absolute';
-          btnDel.style.top = '5px';
-          btnDel.style.right = '5px';
-          btnDel.style.background = '#ff4d4d';
-          btnDel.style.color = '#fff';
-          btnDel.style.border = 'none';
-          btnDel.style.borderRadius = '50%';
-          btnDel.style.width = '25px';
-          btnDel.style.height = '25px';
-          btnDel.style.cursor = 'pointer';
-          btnDel.style.fontSize = '14px';
-          btnDel.style.display = 'flex';
-          btnDel.style.alignItems = 'center';
-          btnDel.style.justifyContent = 'center';
-          btnDel.title = 'Remover produto';
+  let produtos = [];       // vindo do back
+  let filtrados = [];      // após busca/filtro
 
-          btnDel.addEventListener('click', () => {
-            if (confirm('Tem certeza que deseja remover este produto?')) {
-              card.remove();
-            }
-          });
-          card.style.position = 'relative';
-          card.appendChild(btnDel);
-        }
-      });
-      alert('Modo de remoção ativado! Clique no ❌ para excluir um produto.');
-    }
+  // ------ ADMIN (login da confeiteira) ------
+  const isLogada = localStorage.getItem('isConfeiteiraLogada') === 'true';
+  if (isLogada) {
+    adminArea.innerHTML = `
+      <button id="btnAddProduto" class="btn primary">➕ Adicionar Novo Produto</button>
+      <button id="btnRemoverProduto" class="btn danger" style="margin-left:10px;">🗑️ Remover Produto</button>
+    `;
+    adminArea.style.display = 'block';
 
-    // Delegar eventos após login
-    if (isLogada) {
-      const btnAdd = document.getElementById('btnAddProduto');
-      const btnRemover = document.getElementById('btnRemoverProduto');
-
-      btnAdd.addEventListener('click', () => {
-        addProdutoForm.style.display =
-          addProdutoForm.style.display === 'none' ? 'block' : 'none';
-      });
-
-      btnRemover.addEventListener('click', ativarRemocao);
-    }
-
-    // Função de salvar novo produto
-    salvarProduto.addEventListener('click', () => {
-      const nome = document.getElementById('nomeProduto').value.trim();
-      const preco = document.getElementById('precoProduto').value.trim();
-      const categoria = document.getElementById('categoriaProduto').value.trim();
-      const imagem = document.getElementById('imagemProduto').value.trim();
-
-      if (!nome || !preco || !imagem) {
-        alert('Preencha todos os campos!');
-        return;
-      }
-
-      const produtoCard = `
-        <div class="card-produto" style="position:relative;">
-          <img src="${imagem}" alt="${nome}">
-          <h3>${nome}</h3>
-          <p>${preco}</p>
-          <button>Adicionar ao Carrinho</button>
-        </div>
-      `;
-      produtosGrid.insertAdjacentHTML('beforeend', produtoCard);
-
-      // Limpa o formulário
-      document.getElementById('nomeProduto').value = '';
-      document.getElementById('precoProduto').value = '';
-      document.getElementById('categoriaProduto').value = '';
-      document.getElementById('imagemProduto').value = '';
-      addProdutoForm.style.display = 'none';
+    document.getElementById('btnAddProduto').addEventListener('click', () => {
+      addProdutoForm.style.display = addProdutoForm.style.display === 'none' ? 'block' : 'none';
     });
+    document.getElementById('btnRemoverProduto').addEventListener('click', ativarRemocao);
+  }
+
+  function ativarRemocao() {
+    const cards = document.querySelectorAll('.card-produto');
+    cards.forEach((card) => {
+      if (!card.querySelector('.delete-btn')) {
+        const btnDel = document.createElement('button');
+        btnDel.textContent = '❌';
+        btnDel.className = 'delete-btn';
+        Object.assign(btnDel.style, {
+          position: 'absolute', top: '5px', right: '5px',
+          background: '#ff4d4d', color: '#fff', border: 'none',
+          borderRadius: '50%', width: '25px', height: '25px',
+          cursor: 'pointer', fontSize: '14px', display: 'flex',
+          alignItems: 'center', justifyContent: 'center'
+        });
+        btnDel.title = 'Remover produto';
+        btnDel.addEventListener('click', () => {
+          if (confirm('Tem certeza que deseja remover este produto?')) {
+            card.remove();
+          }
+        });
+        card.style.position = 'relative';
+        card.appendChild(btnDel);
+      }
+    });
+    alert('Modo de remoção ativado! Clique no ❌ para excluir um produto.');
+  }
+
+  // ------ FETCH + RENDER ------
+  async function carregarProdutos() {
+    try {
+      const res = await fetch(API_URL);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+
+      // Normaliza o array
+      produtos = Array.isArray(data) ? data : [];
+      filtrados = [...produtos];
+      renderGrid(filtrados);
+      // console.log('✅ Produtos do back:', produtos);
+    } catch (err) {
+      console.error('❌ Erro ao buscar produtos:', err);
+      produtosGrid.innerHTML = `<p style="text-align:center;">Não foi possível carregar os produtos agora.</p>`;
+    }
+  }
+
+  function criarCard(p) {
+    // Campos do back-end:
+    // idProduto, nomeProduto, precoProduto, descricaoProduto, imgUrl
+    const precoBRL = typeof p.precoProduto === 'number'
+      ? p.precoProduto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+      : p.precoProduto;
+
+    const card = document.createElement('div');
+    card.className = 'card-produto';
+    card.innerHTML = `
+      <div class="thumb">
+        <img alt="${p.nomeProduto}">
+      </div>
+      <div class="info">
+        <h3>${p.nomeProduto}</h3>
+        ${p.descricaoProduto ? `<p class="desc">${p.descricaoProduto}</p>` : ''}
+        ${precoBRL ? `<p class="preco">${precoBRL}</p>` : ''}
+        <button class="btn">Adicionar ao Carrinho</button>
+      </div>
+    `;
+
+    const img = card.querySelector('img');
+    // Usa o campo CORRETO vindo do back: imgUrl
+    img.src = p.imgUrl || IMG_FALLBACK;
+    img.referrerPolicy = 'no-referrer'; // ajuda quando o host bloqueia hotlink por referer
+    img.loading = 'lazy';
+    img.onerror = () => { img.src = IMG_FALLBACK; };
+
+    return card;
+  }
+
+  function renderGrid(lista) {
+    produtosGrid.innerHTML = '';
+    if (!lista.length) {
+      produtosGrid.innerHTML = `<p style="text-align:center;">Nenhum produto encontrado.</p>`;
+      return;
+    }
+    const frag = document.createDocumentFragment();
+    lista.forEach(p => frag.appendChild(criarCard(p)));
+    produtosGrid.appendChild(frag);
+  }
+
+  // ------ BUSCA + FILTRO ------
+  function aplicarFiltros() {
+    const termo = (searchInput?.value || '').toLowerCase().trim();
+    const categoria = (filterCategory?.value || '').toLowerCase().trim();
+
+    filtrados = produtos.filter(p => {
+      const nomeOk = p.nomeProduto?.toLowerCase().includes(termo);
+      const descOk = p.descricaoProduto?.toLowerCase().includes(termo);
+      const passaTexto = termo ? (nomeOk || descOk) : true;
+
+      // se você quiser categorizar, adicione um campo "categoria" no back e use p.categoria
+      const passaCategoria = categoria ? (p.categoria?.toLowerCase() === categoria) : true;
+
+      return passaTexto && passaCategoria;
+    });
+
+    renderGrid(filtrados);
+  }
+
+  searchInput?.addEventListener('input', aplicarFiltros);
+  filterCategory?.addEventListener('change', aplicarFiltros);
+
+  // ------ ADIÇÃO LOCAL (admin) ------
+  salvarProduto.addEventListener('click', () => {
+    const nome = document.getElementById('nomeProduto').value.trim();
+    const preco = document.getElementById('precoProduto').value.trim();
+    const categoria = document.getElementById('categoriaProduto').value.trim();
+    const imagem = document.getElementById('imagemProduto').value.trim();
+
+    if (!nome || !preco || !imagem) {
+      alert('Preencha todos os campos!');
+      return;
+    }
+
+    // Monta um objeto NO MESMO FORMATO do back
+    const novo = {
+      idProduto: Date.now(),
+      nomeProduto: nome,
+      precoProduto: Number(
+        preco.replace('R$', '').replace('.', '').replace(',', '.').trim()
+      ) || preco,
+      descricaoProduto: '',
+      imgUrl: imagem,     // ⚠️ usa a mesma key do back
+      categoria: categoria || ''
+    };
+
+    produtos.push(novo);
+    aplicarFiltros(); // re-render
+    // limpa form
+    document.getElementById('nomeProduto').value = '';
+    document.getElementById('precoProduto').value = '';
+    document.getElementById('categoriaProduto').value = '';
+    document.getElementById('imagemProduto').value = '';
+    addProdutoForm.style.display = 'none';
   });
+
+  // ------ RODA ------
+  carregarProdutos();
+
+  // rodapé
+  const yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+});
 </script>

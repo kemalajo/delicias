@@ -34,8 +34,10 @@ async function fetchProdutos() {
     if (!res.ok) throw new Error("Erro HTTP: " + res.status);
 
     const raw = await res.json();
+
     const lista = Array.isArray(raw) ? raw : [raw];
     produtosData = lista.map(normalizeProduto);
+    alert(produtosData);
 
     console.log("✅ Produtos normalizados:", produtosData);
     renderProdutos();
@@ -122,6 +124,8 @@ if (document.getElementById("produtosGrid")) {
   fetchProdutos();
   updateCartBadge();
 }
+
+
 
 /** -------------------- CARRINHO.HTML -------------------- */
 if (document.getElementById("cart-items")) {

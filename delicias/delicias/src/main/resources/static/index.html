@@ -177,51 +177,6 @@
     </div>
   </footer>
 
-  <script src="js/script.js"></script>
-  <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const stars = document.querySelectorAll('.stars-input span');
-    const reviewText = document.getElementById('review-text');
-    const submitBtn = document.getElementById('submit-review');
-    const selectedRating = document.getElementById('selected-rating');
-    const testimonials = document.getElementById('testimonials');
-    const successMsg = document.getElementById('review-success');
-
-    let rating = 0;
-
-    stars.forEach(star => {
-      star.addEventListener('click', () => {
-        rating = parseInt(star.getAttribute('data-value'));
-        selectedRating.textContent = `Você selecionou: ${rating} estrela${rating > 1 ? 's' : ''}`;
-        stars.forEach(s => s.textContent = parseInt(s.getAttribute('data-value')) <= rating ? '★' : '☆');
-      });
-    });
-
-    submitBtn.addEventListener('click', () => {
-      if (rating === 0) { alert('Selecione uma quantidade de estrelas!'); return; }
-      if (reviewText.value.trim() === '') { alert('Escreva um comentário!'); return; }
-
-      const newTestimonial = document.createElement('div');
-      newTestimonial.classList.add('testi');
-      newTestimonial.innerHTML = `
-        <svg width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M8 0a5 5 0 0 1 5 5v1a5 5 0 0 1-10 0V5a5 5 0 0 1 5-5zM0 14s1-2 8-2 8 2 8 2v2H0v-2z"/>
-        </svg>
-        <p>"${reviewText.value.trim()}"</p>
-        <strong>- Você</strong>
-        <div class="rating fixed" data-stars="${rating}">${'★'.repeat(rating)}${'☆'.repeat(5 - rating)}</div>
-      `;
-      testimonials.appendChild(newTestimonial);
-
-      successMsg.style.display = 'block';
-      setTimeout(() => { successMsg.style.display = 'none'; }, 3000);
-
-      rating = 0;
-      reviewText.value = '';
-      stars.forEach(s => s.textContent = '☆');
-      selectedRating.textContent = 'Você selecionou: 0 estrelas';
-    });
-  });
-  </script>
+  <script src="js/script.js"></script>  
 </body>
 </html>
