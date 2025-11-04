@@ -13,7 +13,7 @@
       <div class="brand">
         <img src="img/delicias da fer.png" alt="Delicia da fer lopes" class="logo">
         <div class="brand-text">
-          <h1>Delicias</h1>                                       
+          <h1>Delicias</h1>
           <small>Fer Lopes</small>
         </div>
       </div>
@@ -58,6 +58,8 @@
         const password = document.getElementById('password').value.trim();
 
         if(username === correctUser && password === correctPass) {
+          // salva no localStorage que ela está logada
+          localStorage.setItem('isConfeiteiraLogada', 'true');
           loginMessage.style.color = 'green';
           loginMessage.textContent = 'Login realizado com sucesso! Redirecionando...';
           setTimeout(() => {
