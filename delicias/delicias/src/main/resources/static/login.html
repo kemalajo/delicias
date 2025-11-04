@@ -58,7 +58,7 @@
         const password = document.getElementById('password').value.trim();
 
         if(username === correctUser && password === correctPass) {
-          // salva no localStorage que ela está logada
+          
           localStorage.setItem('isConfeiteiraLogada', 'true');
           loginMessage.style.color = 'green';
           loginMessage.textContent = 'Login realizado com sucesso! Redirecionando...';
