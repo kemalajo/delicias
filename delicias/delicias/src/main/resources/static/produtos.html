@@ -112,54 +112,100 @@
     </footer>
 
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const adminArea = document.getElementById('adminArea');
-        const addProdutoForm = document.getElementById('addProdutoForm');
-        const btnAddProduto = document.getElementById('btnAddProduto');
-        const salvarProduto = document.getElementById('salvarProduto');
-        const produtosGrid = document.getElementById('produtosGrid');
+  document.addEventListener('DOMContentLoaded', () => {
+    const adminArea = document.getElementById('adminArea');
+    const addProdutoForm = document.getElementById('addProdutoForm');
+    const btnAddProduto = document.getElementById('btnAddProduto');
+    const produtosGrid = document.getElementById('produtosGrid');
+    const salvarProduto = document.getElementById('salvarProduto');
 
-        // Verifica login
-        const isLogada = localStorage.getItem('isConfeiteiraLogada') === 'true';
-        if (isLogada) {
-          adminArea.style.display = 'block';
+    // 🔐 Verifica login da confeiteira
+    const isLogada = localStorage.getItem('isConfeiteiraLogada') === 'true';
+    if (isLogada) {
+      adminArea.innerHTML = `
+        <button id="btnAddProduto" class="btn primary">➕ Adicionar Novo Produto</button>
+        <button id="btnRemoverProduto" class="btn danger" style="margin-left:10px;">🗑️ Remover Produto</button>
+      `;
+      adminArea.style.display = 'block';
+    }
+
+    // Função para ativar o modo de remoção
+    function ativarRemocao() {
+      const cards = document.querySelectorAll('.card-produto');
+      cards.forEach((card) => {
+        if (!card.querySelector('.delete-btn')) {
+          const btnDel = document.createElement('button');
+          btnDel.textContent = '❌';
+          btnDel.className = 'delete-btn';
+          btnDel.style.position = 'absolute';
+          btnDel.style.top = '5px';
+          btnDel.style.right = '5px';
+          btnDel.style.background = '#ff4d4d';
+          btnDel.style.color = '#fff';
+          btnDel.style.border = 'none';
+          btnDel.style.borderRadius = '50%';
+          btnDel.style.width = '25px';
+          btnDel.style.height = '25px';
+          btnDel.style.cursor = 'pointer';
+          btnDel.style.fontSize = '14px';
+          btnDel.style.display = 'flex';
+          btnDel.style.alignItems = 'center';
+          btnDel.style.justifyContent = 'center';
+          btnDel.title = 'Remover produto';
+
+          btnDel.addEventListener('click', () => {
+            if (confirm('Tem certeza que deseja remover este produto?')) {
+              card.remove();
+            }
+          });
+          card.style.position = 'relative';
+          card.appendChild(btnDel);
         }
-
-        btnAddProduto.addEventListener('click', () => {
-          addProdutoForm.style.display =
-            addProdutoForm.style.display === 'none' ? 'block' : 'none';
-        });
-
-        salvarProduto.addEventListener('click', () => {
-          const nome = document.getElementById('nomeProduto').value.trim();
-          const preco = document.getElementById('precoProduto').value.trim();
-          const categoria = document.getElementById('categoriaProduto').value.trim();
-          const imagem = document.getElementById('imagemProduto').value.trim();
-
-          if (!nome || !preco || !imagem) {
-            alert('Preencha todos os campos!');
-            return;
-          }
-
-          const produtoCard = `
-            <div class="card-produto">
-              <img src="${imagem}" alt="${nome}">
-              <h3>${nome}</h3>
-              <p>${preco}</p>
-              <button>Adicionar ao Carrinho</button>
-            </div>
-          `;
-          produtosGrid.insertAdjacentHTML('beforeend', produtoCard);
-
-          document.getElementById('nomeProduto').value = '';
-          document.getElementById('precoProduto').value = '';
-          document.getElementById('categoriaProduto').value = '';
-          document.getElementById('imagemProduto').value = '';
-          addProdutoForm.style.display = 'none';
-        });
       });
-    </script>
+      alert('Modo de remoção ativado! Clique no ❌ para excluir um produto.');
+    }
 
-    <script src="js/script.js"></script>
-  </body>
-</html>
+    // Delegar eventos após login
+    if (isLogada) {
+      const btnAdd = document.getElementById('btnAddProduto');
+      const btnRemover = document.getElementById('btnRemoverProduto');
+
+      btnAdd.addEventListener('click', () => {
+        addProdutoForm.style.display =
+          addProdutoForm.style.display === 'none' ? 'block' : 'none';
+      });
+
+      btnRemover.addEventListener('click', ativarRemocao);
+    }
+
+    // Função de salvar novo produto
+    salvarProduto.addEventListener('click', () => {
+      const nome = document.getElementById('nomeProduto').value.trim();
+      const preco = document.getElementById('precoProduto').value.trim();
+      const categoria = document.getElementById('categoriaProduto').value.trim();
+      const imagem = document.getElementById('imagemProduto').value.trim();
+
+      if (!nome || !preco || !imagem) {
+        alert('Preencha todos os campos!');
+        return;
+      }
+
+      const produtoCard = `
+        <div class="card-produto" style="position:relative;">
+          <img src="${imagem}" alt="${nome}">
+          <h3>${nome}</h3>
+          <p>${preco}</p>
+          <button>Adicionar ao Carrinho</button>
+        </div>
+      `;
+      produtosGrid.insertAdjacentHTML('beforeend', produtoCard);
+
+      // Limpa o formulário
+      document.getElementById('nomeProduto').value = '';
+      document.getElementById('precoProduto').value = '';
+      document.getElementById('categoriaProduto').value = '';
+      document.getElementById('imagemProduto').value = '';
+      addProdutoForm.style.display = 'none';
+    });
+  });
+</script>
