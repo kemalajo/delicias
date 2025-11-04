@@ -903,3 +903,64 @@ select:focus {
 .section.bg-fixed .feature {
   color: #fff;
 }
+.carousel-container {
+  position: relative;
+  width: 100%; /* ocupa a largura do site */
+  aspect-ratio: 6 / 1; /* mantém a proporção da arte 6000x1000 */
+  overflow: hidden;
+  margin: 30px auto;
+  border-radius: 15px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.carousel {
+  display: flex;
+  height: 100%;
+  transition: transform 0.6s ease-in-out;
+}
+
+.slide {
+  flex: 0 0 100%;
+  height: 100%;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255,255,255,0.6);
+  border: none;
+  cursor: pointer;
+  font-size: 1.8rem;
+  padding: 6px 10px;
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}
+
+.carousel-btn:hover {
+  background-color: rgba(255,255,255,0.9);
+}
+
+.carousel-btn.prev { left: 20px; }
+.carousel-btn.next { right: 20px; }
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .carousel-container {
+    aspect-ratio: 6 / 1;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+
+  .carousel-btn {
+    font-size: 1.4rem;
+    padding: 4px 8px;
+  }
+}

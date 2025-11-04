@@ -1,9 +1,6 @@
 let produtosData = [];
 
-/** -------------------- Normalizador --------------------
- * Converte o payload do back (camelCase) para um formato único usado no front
- * Formato interno: { id, nome, preco, descricao, img, categoria, tipo }
- */
+/** -------------------- Normalizador -------------------- */
 function normalizeProduto(p) {
   return {
     id: p.idProduto,
@@ -37,16 +34,35 @@ async function fetchProdutos() {
     if (!res.ok) throw new Error("Erro HTTP: " + res.status);
 
     const raw = await res.json();
-    // Se o back um dia enviar objeto único, garantimos array:
     const lista = Array.isArray(raw) ? raw : [raw];
-
     produtosData = lista.map(normalizeProduto);
+
     console.log("✅ Produtos normalizados:", produtosData);
     renderProdutos();
   } catch (err) {
     console.error("❌ Erro ao carregar produtos:", err);
     alert("Não foi possível carregar os produtos do servidor.");
   }
+}
+
+/** -------------------- INDEX.HTML (Carrossel) -------------------- */
+if (document.querySelector(".carousel")) {
+  const carousel = document.querySelector(".carousel");
+  const slides = document.querySelectorAll(".slide");
+  const nextBtn = document.querySelector(".next");
+  const prevBtn = document.querySelector(".prev");
+  let index = 0;
+
+  function showSlide(i) {
+    index = (i + slides.length) % slides.length;
+    carousel.style.transform = `translateX(-${index * 100}%)`;
+  }
+
+  nextBtn?.addEventListener("click", () => showSlide(index + 1));
+  prevBtn?.addEventListener("click", () => showSlide(index - 1));
+
+  // Troca automática a cada 5 segundos
+  setInterval(() => showSlide(index + 1), 5000);
 }
 
 /** -------------------- PRODUTOS.HTML -------------------- */
@@ -80,16 +96,14 @@ if (document.getElementById("produtosGrid")) {
           <p>R$ ${p.preco.toFixed(2)}</p>
           <button data-id="${p.id}" class="selecionar-btn">Selecionar</button>
         `;
-        // fallback de imagem
+
         const img = card.querySelector("img");
         img.onerror = () => {
-          img.src =
-            "https://via.placeholder.com/400x300?text=Sem+imagem";
+          img.src = "https://via.placeholder.com/400x300?text=Sem+imagem";
         };
         grid.appendChild(card);
       });
 
-    // Bind de seleção
     grid.querySelectorAll(".selecionar-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
         const produtoId = Number(btn.getAttribute("data-id"));
@@ -134,7 +148,6 @@ if (document.getElementById("cart-items")) {
     }
 
     cart.forEach((item, index) => {
-      // compat: se houver itens antigos no storage com snake_case, normaliza on-the-fly
       const p = item.nome
         ? item
         : normalizeProduto({
@@ -160,8 +173,7 @@ if (document.getElementById("cart-items")) {
       `;
       const img = itemDiv.querySelector("img");
       img.onerror = () => {
-        img.src =
-          "https://via.placeholder.com/120x90?text=Sem+imagem";
+        img.src = "https://via.placeholder.com/120x90?text=Sem+imagem";
       };
       cartItemsDiv.appendChild(itemDiv);
     });
@@ -175,10 +187,7 @@ if (document.getElementById("cart-items")) {
 
     const total = getCart().reduce((acc, i) => {
       const preco =
-        i.preco ??
-        i.preco_produto ??
-        i.precoProduto ??
-        0;
+        i.preco ?? i.preco_produto ?? i.precoProduto ?? 0;
       return acc + Number(preco || 0);
     }, 0);
     cartTotalSpan.textContent = total.toFixed(2);
@@ -196,7 +205,6 @@ if (document.getElementById("cart-items")) {
       const res = await fetch("http://localhost:8080/pedidos", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        // Envie no formato do back: camelCase
         body: JSON.stringify(
           cart.map((p) => ({
             idProduto: p.id,

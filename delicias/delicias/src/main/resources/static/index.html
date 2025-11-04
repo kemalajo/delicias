@@ -63,15 +63,28 @@
     </div>
   </section>
 
-  <!-- Produtos em destaque -->
-  <section class="section container">
-    <h3 class="section-title">Produtos em Destaque</h3>
-    <p class="section-desc">Nossos doces mais populares, feitos com ingredientes selecionados e muito carinho</p>
-    <div id="featuredRow" class="cards-row"></div>
-    <div class="center" style="margin-top:20px;">
-      <a href="produtos.html" class="btn primary large">Ver Todos os Produtos →</a>
+<!-- Produtos em destaque -->
+<section class="section container">
+  <h3 class="section-title">Produtos em Destaque</h3>
+  <p class="section-desc">Nossos doces mais populares, feitos com ingredientes selecionados e muito carinho</p>
+
+  <!-- Carrossel -->
+  <div class="carousel-container">
+    <div class="carousel">
+      <div class="slide"><img src="imagens/doce1.jpg" alt="Doce 1"></div>
+      <div class="slide"><img src="imagens/doce2.jpg" alt="Doce 2"></div>
+      <div class="slide"><img src="imagens/doce3.jpg" alt="Doce 3"></div>
     </div>
-  </section>
+    <button class="carousel-btn prev">&#10094;</button>
+    <button class="carousel-btn next">&#10095;</button>
+  </div>
+
+  <div id="featuredRow" class="cards-row"></div>
+
+  <div class="center" style="margin-top:20px;">
+    <a href="produtos.html" class="btn primary large">Ver Todos os Produtos →</a>
+  </div>
+</section>
 
   <!-- Por que escolher -->
 <section class="section bg-fixed" style="background-image: url('img/porquenos.jpg');">
