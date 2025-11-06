@@ -47,7 +47,7 @@ async function fetchProdutos() {
   }
 }
 
-/** -------------------- INDEX.HTML (Carrossel) -------------------- */
+/** -------------------- INDEX.HTML (Carrossel e avaliar ) -------------------- */
 if (document.querySelector(".carousel")) {
   const carousel = document.querySelector(".carousel");
   const slides = document.querySelectorAll(".slide");
@@ -66,6 +66,56 @@ if (document.querySelector(".carousel")) {
   // Troca automática a cada 5 segundos
   setInterval(() => showSlide(index + 1), 5000);
 }
+
+// rating
+let selectedStars = 0;
+
+// clique nas estrelas
+document.querySelectorAll('.stars-input span').forEach(star => {
+  star.addEventListener('click', function () {
+    selectedStars = this.getAttribute('data-value');
+
+    // muda texto
+    document.getElementById('selected-rating').innerText =
+      "Você selecionou: " + selectedStars + " estrelas";
+
+    // pinta estrelas
+    document.querySelectorAll('.stars-input span').forEach(s => {
+      s.style.color = s.getAttribute('data-value') <= selectedStars ? '#f5b50a' : '#000';
+    });
+  });
+});
+
+// clique no botão enviar
+document.getElementById('submit-review').addEventListener('click', function () {
+  const comment = document.getElementById('review-text').value.trim();
+
+  if (selectedStars == 0) {
+    alert("Selecione uma quantidade de estrelas!");
+    return;
+  }
+
+  if (comment.length < 3) {
+    alert("Digite um comentário maior.");
+    return;
+  }
+
+  // sucesso
+  const msg = document.getElementById('review-success');
+  msg.style.display = 'block';
+
+  // esconder depois de 4s
+  setTimeout(() => {
+    msg.style.display = 'none';
+  }, 4000);
+
+  // limpar
+  selectedStars = 0;
+  document.getElementById('selected-rating').innerText = "Você selecionou: 0 estrelas";
+  document.getElementById('review-text').value = '';
+  document.querySelectorAll('.stars-input span').forEach(s => s.style.color = '#000');
+});
+
 
 /** -------------------- PRODUTOS.HTML -------------------- */
 if (document.getElementById("produtosGrid")) {

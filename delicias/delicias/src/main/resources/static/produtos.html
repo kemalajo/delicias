@@ -121,10 +121,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const filterCategory = document.getElementById('filterCategory');
 
   const API_URL = 'http://localhost:8080/produtos';
-  const IMG_FALLBACK = 'img/placeholder.jpg'; // crie um placeholder simples no seu /img
+  const IMG_FALLBACK = 'img/placeholder.jpg'; 
 
-  let produtos = [];       // vindo do back
-  let filtrados = [];      // após busca/filtro
+  let produtos = [];      
+  let filtrados = [];      
 
   // ------ ADMIN (login da confeiteira) ------
   const isLogada = localStorage.getItem('isConfeiteiraLogada') === 'true';
@@ -175,11 +175,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!res.ok) throw new Error('HTTP ' + res.status);
       const data = await res.json();
 
-      // Normaliza o array
       produtos = Array.isArray(data) ? data : [];
       filtrados = [...produtos];
       renderGrid(filtrados);
-      // console.log('✅ Produtos do back:', produtos);
+     
     } catch (err) {
       console.error('❌ Erro ao buscar produtos:', err);
       produtosGrid.innerHTML = `<p style="text-align:center;">Não foi possível carregar os produtos agora.</p>`;
@@ -187,8 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function criarCard(p) {
-    // Campos do back-end:
-    // idProduto, nomeProduto, precoProduto, descricaoProduto, imgUrl
+    
     const precoBRL = typeof p.precoProduto === 'number'
       ? p.precoProduto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
       : p.precoProduto;
