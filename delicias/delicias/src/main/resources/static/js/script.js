@@ -217,18 +217,14 @@ if (document.getElementById("cart-items")) {
       const itemDiv = document.createElement("div");
       itemDiv.className = "cart-item";
       itemDiv.innerHTML = `
-        <img src="${p.img}" alt="${p.nome}">
         <div class="cart-item-info">
           <h4>${p.nome}</h4>
           <small>${p.categoria || ""}${p.tipo ? " • " + p.tipo : ""}</small>
+          <p class="cart-item-descricao">${p.descricao || ""}</p>
           <p>R$ ${Number(p.preco || 0).toFixed(2)}</p>
         </div>
         <button class="remove-btn" data-index="${index}">❌</button>
       `;
-      const img = itemDiv.querySelector("img");
-      img.onerror = () => {
-        img.src = "https://via.placeholder.com/120x90?text=Sem+imagem";
-      };
       cartItemsDiv.appendChild(itemDiv);
     });
 
