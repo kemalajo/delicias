@@ -75,6 +75,7 @@ function updateCartCount() {
 
 function renderCart() {
   const cart = getCart();
+  console.log(cart);
   carrinhoGrid.innerHTML = "";
   let total = 0;
 
@@ -95,7 +96,7 @@ function renderCart() {
     const card = document.createElement("div");
     card.className = "card-produto";
     card.innerHTML = `
-      <img src="${produto.imagem || 'img/sem-imagem.png'}" alt="${produto.nome}">
+      <img src="${produto.imgUrl}" alt="${produto.nome}">
       <h3>${produto.nome}</h3>
       <p>${produto.descricao || ''}</p>
       <p>R$ ${precoNumerico.toFixed(2)}</p>
