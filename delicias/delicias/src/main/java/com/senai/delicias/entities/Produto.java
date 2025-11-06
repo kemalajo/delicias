@@ -12,7 +12,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tb_produtos") // use sempre minúsculas, por consistência
+@Table(name = "tb_produtos") // usar sempre minúsculas, por consistência
 public class Produto {
 
     @Id
