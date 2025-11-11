@@ -1,63 +1,72 @@
-<!doctype html>
-<html lang="pt-BR">
+<!doctype html> <!-- Define o tipo do documento como HTML5 -->
+<html lang="pt-BR"> <!-- Informa que o idioma principal da página é português do Brasil -->
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Doce Sabor — Home</title>
+  <meta charset="utf-8" /> <!-- Define o padrão de caracteres para acentuação correta -->
+  <meta name="viewport" content="width=device-width,initial-scale=1" /> <!-- Faz o site se ajustar bem em celulares -->
+  <title>Doce Sabor — Home</title> <!-- Título que aparece na aba do navegador -->
+
+  <!-- Importa o arquivo de estilos CSS e a fonte usada no site -->
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-  <!-- Header -->
+  <!-- Header (cabeçalho do site) -->
   <header class="site-header">
-    <div class="container header-inner">
-      <div class="brand">
-        <img src="img/delicias da fer.png" alt="Delicias da Fer Lopes" class="logo">
-        <div class="brand-text">
+    <div class="container header-inner"> <!-- Container centraliza o conteúdo -->
+      <div class="brand"> <!-- Área da marca (logo e nome da doceria) -->
+        <img src="img/delicias da fer.png" alt="Delicias da Fer Lopes" class="logo"> <!-- Logo da empresa -->
+        <div class="brand-text"> <!-- Nome ao lado da logo -->
           <h1>Delicias</h1>
           <small>Fer Lopes</small>
         </div>
       </div>
+
+      <!-- Menu de navegação -->
       <nav class="main-nav">
-        <a class="nav-link" href="index.html">Início</a>
-        <a class="nav-link" href="produtos.html">Produtos</a>
-        <a class="nav-link" href="sobre.html">Sobre</a>
-       
-        <a class="nav-link" href="carrinho.html">Carrinho</a>
+        <a class="nav-link" href="index.html">Início</a> <!-- Link para a página inicial -->
+        <a class="nav-link" href="produtos.html">Produtos</a> <!-- Link para os produtos -->
+        <a class="nav-link" href="sobre.html">Sobre</a> <!-- Link para a página “Sobre” -->
+        <a class="nav-link" href="carrinho.html">Carrinho</a> <!-- Link do carrinho -->
         <!-- login removido do cabeçalho -->
       </nav>
+
+      <!-- Telefone e carrinho de compras -->
       <div class="header-actions">
-        <a class="phone" href="tel:+5511999999999">📞 (15) 99717-2394</a>
-        <a class="cart-link" href="carrinho.html">🛒 <span id="cart-count-badge">0</span></a>
+        <a class="phone" href="tel:+5511999999999">📞 (15) 99717-2394</a> <!-- Telefone clicável -->
+        <a class="cart-link" href="carrinho.html">🛒 <span id="cart-count-badge">0</span></a> <!-- Ícone do carrinho e contador -->
       </div>
     </div>
   </header>
 
-  <!-- Hero -->
+  <!-- Hero (parte principal/banner do site) -->
   <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-left">
-        <div class="kpis">
-          <span class="stars">★★★★★</span>
+    <div class="container hero-grid"> <!-- Grade para dividir texto e imagem -->
+      <div class="hero-left"> <!-- Lado esquerdo: textos e botões -->
+        <div class="kpis"> <!-- Indicadores de confiança -->
+          <span class="stars">★★★★★</span> <!-- Avaliação -->
           <span class="small">Mais de 1000 clientes satisfeitos</span>
         </div>
-        <h2 class="hero-title">Doces que <span class="accent">despertam</span> sorrisos</h2>
-        <p class="hero-sub">Criamos doces artesanais únicos com ingredientes selecionados e muito carinho. Cada doce é uma experiência especial.</p>
-        <div class="hero-cta">
+        <h2 class="hero-title">Doces que <span class="accent">despertam</span> sorrisos</h2> <!-- Título principal -->
+        <p class="hero-sub">Criamos doces artesanais únicos com ingredientes selecionados e muito carinho. Cada doce é uma experiência especial.</p> <!-- Subtítulo -->
+        <div class="hero-cta"> <!-- Botão de chamada para ação -->
           <a href="produtos.html" class="btn primary">Ver Produtos →</a>
-         
         </div>
+
+        <!-- Estatísticas -->
         <ul class="stats">
-          <li><strong>100+</strong><span>Doces vendidos</span></li>
+          <li><strong>1000+</strong><span>Doces vendidos</span></li>
           <li><strong>50+</strong><span>Receitas únicas</span></li>
           <li><strong>★★★★★</strong><span>Avaliação média</span></li>
         </ul>
       </div>
+
+      <!-- Lado direito: imagem do banner -->
       <div class="hero-right">
         <div class="hero-image-wrap">
-          <img src="img/Изящные торты Наполеон_ детализированная фото-сессия в пастельных тонах.jpg" alt="Bolo artesanal" class="hero-image">
-          <div class="badge top">Ingredientes frescos <small>100% natural</small></div>
-          <div class="badge bottom">Feito com amor <small>Receitas familiares</small></div>
+          <img src="img/Изящные торты Наполеон_ детализированная фото-сессия в пастельных тонах.jpg" alt="Bolo artesanal" class="hero-image"> <!-- Imagem principal -->
+          <div class="badge top">Ingredientes frescos <small>100% natural</small></div> <!-- Selo superior -->
+          <div class="badge bottom">Feito com amor <small>Receitas familiares</small></div> <!-- Selo inferior -->
         </div>
       </div>
     </div>
@@ -65,33 +74,36 @@
 
 <!-- Produtos em destaque -->
 <section class="section container">
-  <h3 class="section-title">Produtos em Destaque</h3>
+  <h3 class="section-title">Produtos em Destaque</h3> <!-- Título da seção -->
   <p class="section-desc">Nossos doces mais populares, feitos com ingredientes selecionados e muito carinho</p>
 
-  <!-- Carrossel -->
+  <!-- Carrossel (imagens que passam para o lado) -->
   <div class="carousel-container">
     <div class="carousel">
       <div class="slide"><img src="img/1.jpg" alt="Doce 1"></div>
       <div class="slide"><img src="img/2.jpg" alt="Doce 2"></div>
       <div class="slide"><img src="img/3.jpg" alt="Doce 3"></div>
     </div>
+    <!-- Botões de navegação do carrossel -->
     <button class="carousel-btn prev">&#10094;</button>
     <button class="carousel-btn next">&#10095;</button>
   </div>
 
+  <!-- Espaço para exibir produtos via JavaScript -->
   <div id="featuredRow" class="cards-row"></div>
 
+  <!-- Botão para ver todos os produtos -->
   <div class="center" style="margin-top:20px;">
     <a href="produtos.html" class="btn primary large">Ver Todos os Produtos →</a>
   </div>
 </section>
 
-  <!-- Por que escolher -->
+  <!-- Por que escolher (motivos para comprar na doceria) -->
 <section class="section bg-fixed" style="background-image: url('img/d2.jpg');">
   <h3 class="section-title">Por que escolher a Doce Sabor?</h3>
-  <div class="grid three">
-    <div class="feature">
-      <div class="icon">
+  <div class="grid three"> <!-- Três colunas com ícones e textos -->
+    <div class="feature"> <!-- 1º motivo -->
+      <div class="icon"> <!-- Ícone em SVG -->
         <svg width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
           <path d="M8 15s-1-.63-1.72-1.33C4.37 12.07 0 8.77 0 4.5 0 2.42 1.42 1 3.5 1 4.74 1 5.91 1.81 6.38 3.09h.24C6.91 1.81 8.08 1 9.32 1 11.4 1 12.82 2.42 12.82 4.5c0 4.27-4.37 7.57-6.28 9.17C9 14.37 8 15 8 15z"/>
         </svg>
@@ -99,7 +111,8 @@
       <h4>Feito com Amor</h4>
       <p class="muted">Cada doce é preparado com carinho usando receitas familiares tradicionais.</p>
     </div>
-    <div class="feature">
+
+    <div class="feature"> <!-- 2º motivo -->
       <div class="icon">
         <svg width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
           <path d="M8 3.5a.5.5 0 0 1 .5.5v4l3 1.5a.5.5 0 0 1-.5.866l-3.5-1.75A.5.5 0 0 1 7.5 8V4a.5.5 0 0 1 .5-.5z"/>
@@ -109,7 +122,8 @@
       <h4>Sempre Frescos</h4>
       <p class="muted">Produzimos nossos doces diariamente para garantir qualidade e sabor.</p>
     </div>
-    <div class="feature">
+
+    <div class="feature"> <!-- 3º motivo -->
       <div class="icon">
         <svg width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
           <path d="M5.5 0L0 2.5v6c0 5 4.5 7 8 7s8-2 8-7v-6L10.5 0H5.5z"/>
@@ -121,55 +135,67 @@
   </div>
 </section>
 
-  <!-- Depoimentos -->
+  <!-- Depoimentos (avaliações de clientes) -->
   <section class="section alt-bg">
     <div class="container">
       <h3 class="section-title">O que nossos clientes dizem</h3>
       <p class="section-desc">Veja os depoimentos de quem já provou nossos doces</p>
 
       <div class="testimonials" id="testimonials">
-        <!-- Depoimentos existentes -->
-         <!-- Depoimentos --> <div class="testimonials" id="testimonials"> 
-          <!-- Depoimento 1 --> <div class="testi active"> <svg width="32" height="32" fill="currentColor" viewBox="0 0 16 16"> <path d="M8 0a5 5 0 0 1 5 5v1a5 5 0 0 1-10 0V5a5 5 0 0 1 5-5zM0 14s1-2 8-2 8 2 8 2v2H0v-2z"/> </svg> <p>"Deliciosos! Vale cada mordida."</p> <strong>- Maria S.</strong> <div class="rating fixed" data-stars="5"> ★★★★★ </div> </div>
-            <!-- Depoimento 2 --> <div class="testi active"> <svg width="32" height="32" fill="currentColor" viewBox="0 0 16 16"> <path d="M8 0a5 5 0 0 1 5 5v1a5 5 0 0 1-10 0V5a5 5 0 0 1 5-5zM0 14s1-2 8-2 8 2 8 2v2H0v-2z"/> </svg> <p>"Amei o atendimento e os doces são incríveis!"</p> <strong>- João P.</strong> <div class="rating fixed" data-stars="4"> ★★★★☆ </div> </div>
-              <!-- Depoimento 3 --> <div class="testi active"> <svg width="32" height="32" fill="currentColor" viewBox="0 0 16 16"> <path d="M8 0a5 5 0 0 1 5 5v1a5 5 0 0 1-10 0V5a5 5 0 0 1 5-5zM0 14s1-2 8-2 8 2 8 2v2H0v-2z"/> </svg> <p>"Doces fresquinhos e saborosos. Recomendo muito!"</p> <strong>- Ana L.</strong> <div class="rating fixed" data-stars="5"> ★★★★★ </div> </div> </div>
+        <!-- Bloco com 3 depoimentos -->
+        <div class="testi active">
+          <p>"Deliciosos! Vale cada mordida."</p>
+          <strong>- Maria S.</strong>
+          <div class="rating fixed" data-stars="5"> ★★★★★ </div>
+        </div>
+
+        <div class="testi active">
+          <p>"Amei o atendimento e os doces são incríveis!"</p>
+          <strong>- João P.</strong>
+          <div class="rating fixed" data-stars="4"> ★★★★☆ </div>
+        </div>
+
+        <div class="testi active">
+          <p>"Doces fresquinhos e saborosos. Recomendo muito!"</p>
+          <strong>- Ana L.</strong>
+          <div class="rating fixed" data-stars="5"> ★★★★★ </div>
+        </div>
       </div>
 
-      <!-- Avalie você também -->
+      <!-- Formulário de avaliação -->
       <div class="review-form">
         <h4>Avalie você também</h4>
-        <div class="stars-input">
+        <div class="stars-input"> <!-- Estrelas clicáveis -->
           <span data-value="1">☆</span>
           <span data-value="2">☆</span>
           <span data-value="3">☆</span>
           <span data-value="4">☆</span>
           <span data-value="5">☆</span>
         </div>
-        <textarea id="review-text" placeholder="Escreva seu comentário..." rows="3"></textarea>
-        <button id="submit-review" class="btn primary">Enviar Avaliação</button>
+        <textarea id="review-text" placeholder="Escreva seu comentário..." rows="3"></textarea> <!-- Campo de texto -->
+        <button id="submit-review" class="btn primary">Enviar Avaliação</button> <!-- Botão de envio -->
         <p id="selected-rating">Você selecionou: 0 estrelas</p>
         <p id="review-success" style="color:green; display:none; margin-top:5px;">Avaliação enviada com sucesso! ✅</p>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- CTA (chamada final para ação) -->
   <section class="cta">
     <div class="container cta-inner">
-      <h2>Pronto para adoçar seu dia?</h2>
+      <h2>Pronto para adoçar seu dia?</h2> <!-- Frase motivacional -->
       <p>Entre em contato conosco e faça sua encomenda personalizada</p>
       <div class="cta-btns">
-        <a href="produtos.html" class="btn white">Ver Catálogo</a>
-      
+        <a href="produtos.html" class="btn white">Ver Catálogo</a> <!-- Botão para ir aos produtos -->
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- Footer (rodapé do site) -->
   <footer class="site-footer">
     <div class="container footer-inner">
-      <div>© <span id="year"></span> Delicias Fer Lopes — Todos os direitos reservados.</div>
-      <div>📞 (15) 997172394 • Sorocaba</div>
+      <div>© <span id="year"></span> Delicias Fer Lopes — Todos os direitos reservados.</div> <!-- Direitos autorais -->
+      <div>📞 (15) 997172394 • Sorocaba</div> <!-- Telefone e cidade -->
       <!-- Login discreto da confeiteira -->
       <div class="confeiteira-login">
         <a href="login.html" title="Área da Confeiteira">Área Confeiteira</a>
@@ -177,6 +203,7 @@
     </div>
   </footer>
 
+  <!-- Script JavaScript (faz o carrossel e avaliações funcionarem) -->
   <script src="js/script.js"></script>  
 </body>
 </html>
