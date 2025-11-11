@@ -971,3 +971,197 @@ select:focus {
     padding: 4px 8px;
   }
 }
+/* ===========================
+    RESPONSIVIDADE 
+   =========================== */
+
+/* Garantias físicas básicas para imagens e containers */
+.container {
+  width: 90%;
+  max-width: 1180px; /* mantém sua largura máxima existente */
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* Evita overflow horizontal em telas pequenas */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Tornar imagens e elementos multimídia sempre escaláveis */
+img, .hero-image, .card-img, .cat-card img, .card-produto img, .slide img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Helper grid responsivo genérico para casos que usam .grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+/* Cards row: permitir quebra e empilhamento */
+.cards-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+/* Testimonials: melhorar leitura e empilhamento */
+.testimonials {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+/* Hero: garantir boa apresentação em várias larguras */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 540px;
+  gap: 32px;
+  align-items: center;
+}
+
+/* CTA e centro */
+.center { text-align: center; }
+
+/* Ajustes finos para textos grandes */
+.hero-title { font-size: 48px; line-height: 1.02; }
+.hero-sub { font-size: 18px; }
+
+/* ===========================
+   📱 TELAS PEQUENAS (até 1024px) — ajustes primários
+   =========================== */
+@media (max-width: 1024px) {
+
+  /* Hero: empilha conteúdo */
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* Diminuir tamanho do hero-image, deixando proporcional */
+  .hero-image-wrap { width: 100%; }
+  .hero-image { height: auto; max-height: 520px; }
+
+  /* Menu: torna links empilhados e centralizados */
+  .header-inner { padding: 12px 18px; gap: 10px; }
+  .main-nav { flex-wrap: wrap; justify-content: center; gap: 10px; }
+
+  /* Grid principal: reduzir colunas */
+  .grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+
+  /* Cards row -> grid de duas colunas quando couber */
+  .cards-row { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+
+  /* Testimonials e review: empilhar mais claramente */
+  .testimonials { grid-template-columns: 1fr; }
+  .testi { padding: 16px; }
+
+  /* Carousel: mantém proporção e diminui alturas excessivas */
+  .carousel-container { aspect-ratio: 4 / 1; }
+
+  /* CTA e footer */
+  .cta .cta-inner { padding: 28px 12px; }
+  .footer-inner { flex-direction: column; gap: 8px; text-align: center; }
+}
+
+/* ===========================
+   📱 TELAS MÓVEIS (até 768px) — empilhamento completo
+   =========================== */
+@media (max-width: 768px) {
+
+  /* Header empilhado */
+  .header-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+  }
+
+  .brand-text h1 { font-size: 18px; }
+  .brand-text small { font-size: 13px; }
+
+  /* Navegação: central e com espaçamento maior */
+  .main-nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+  .nav-link { padding: 8px 10px; font-size: 14px; }
+
+  /* Hero */
+  .hero { padding: 22px 0; }
+  .hero-title { font-size: 28px; }
+  .hero-sub { font-size: 15px; max-width: 100%; }
+
+  /* Badges dentro da imagem: reduzir */
+  .badge { padding: 8px 10px; font-size: 13px; left: 12px; }
+  .badge.bottom { right: 12px; left: auto; bottom: 12px; }
+
+  /* Cards e grids */
+  .cards-row { grid-template-columns: 1fr; }
+  .grid { grid-template-columns: 1fr; }
+
+  /* Filtros: empilhados */
+  .filtros { flex-direction: column; gap: 10px; padding: 10px; }
+
+  /* Formulários e inputs */
+  input[type="text"], select, textarea { font-size: 15px; padding: 10px; }
+
+  /* Botões maiores e ocupando largura */
+  .btn { padding: 12px 16px; font-size: 15px; }
+  .btn.large { padding: 12px 22px; }
+
+  /* Carousel */
+  .carousel-container { aspect-ratio: 3 / 1; border-radius: 10px; }
+
+  /* Rodapé empilhado e central */
+  .footer-inner { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+}
+
+/* ===========================
+   📲 TELAS MUITO PEQUENAS (até 420px)
+   =========================== */
+@media (max-width: 420px) {
+  .hero-title { font-size: 24px; }
+  .hero-sub { font-size: 14px; }
+  .brand .logo { width: 48px; height: 48px; }
+  .brand-text h1 { font-size: 16px; }
+  .kpis { font-size: 13px; gap: 6px; }
+  #cart-count-badge, #cart-count-badge-2 { padding: 2px 6px; font-size: 12px; }
+  .badge { font-size: 12px; padding: 6px 8px; }
+  .carousel-btn { top: 50%; transform: translateY(-50%); font-size: 1.1rem; padding: 4px 7px; }
+}
+
+/* ===========================
+   💻 TELAS LARGAS (acima de 1200px) — refinamentos
+   =========================== */
+@media (min-width: 1200px) {
+  .container { max-width: 1180px; }
+  .hero-title { font-size: 52px; }
+  .hero-image { height: 420px; }
+  .cards-row { gap: 24px; }
+}
+
+/* ===========================
+   Acessibilidade (foco e tamanho)
+   =========================== */
+a:focus, button:focus, input:focus, textarea:focus {
+  outline: 3px solid rgba(113,137,54,0.15);
+  outline-offset: 2px;
+  transition: outline 0.12s;
+}
+
+/* Pequeno ajuste para evitar duplicidade visual em .testimonials (caso tenha markup repetido) */
+.testimonials + .testimonials { margin-top: 0; }
+
+/* Fim dos ajustes de responsividade adicionados */
