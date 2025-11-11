@@ -21,31 +21,37 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioService usuarioService;
 
+	//Vai cadastrar um novo usuário (POST)
 	@PostMapping
 	public Usuario createUsuario(@RequestBody Usuario usuario) {
 		return usuarioService.saveUsuario(usuario);
 	}
-
+	
+	//Vai retornar um usuário específico peloID (GET)
 	@GetMapping
 	public List<Usuario> getAllUsuario() {
 		return usuarioService.getAllUsuario();
 	}
 
+	//Atualiza os dados de um usuário (PUT)
 	@GetMapping("/{id}")
 	public Usuario getUsuario(@PathVariable Long id) {
 		return usuarioService.getUsuarioById(id);
 	}
-
+	
+	//Atualiza os dados de um usuário (PUT)
 	@PutMapping
 	public Usuario editUsuario(@RequestBody Usuario usuario) {
 		return usuarioService.saveUsuario(usuario);
 	}
 
+	//Vai excluir um usuário pelo ID (DELETE)
 	@DeleteMapping("/{id}")
 	public void deleteUsuario(@PathVariable Long id) {
 		usuarioService.deleteUsuario(id);
 	}
 
+	//Realiza o login de usuário (POST
 	@PostMapping("/login")
 	public Usuario login(@RequestBody Usuario loginRequest) {
 		Usuario usuario = usuarioService.autenticarPessoa(loginRequest.getNomeUsuario(), loginRequest.getSenha());

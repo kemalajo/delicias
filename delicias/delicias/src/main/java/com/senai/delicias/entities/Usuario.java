@@ -16,6 +16,7 @@ import jakarta.persistence.Table;
 		@Column(name = "id_usuario", nullable = false)
 		private Long idUsuario;
 
+		//Nome de usuário (é um campo obrigatório)
 		@Column(name = "nome_usuario", nullable = false)
 		private String nomeUsuario;
 
@@ -27,13 +28,15 @@ import jakarta.persistence.Table;
 		public Usuario() {
 
 		}
-
+		
+		//Construtor com parâmetros
 		public Usuario(Long idUsuario, String nomeUsuario, String senha) {
 			this.idUsuario = idUsuario;
 			this.nomeUsuario = nomeUsuario;
 			this.senha = senha;
 		}
-
+		
+		//Métodos getters e setters
 		public Long getIdUsuario() {
 			return idUsuario;
 		}
