@@ -1091,8 +1091,22 @@ img, .hero-image, .card-img, .cat-card img, .card-produto img, .slide img {
   /* Navegação: central e com espaçamento maior */
   .main-nav {
     display: flex;
-    flex-direction: row;
+    flex-direction: row;+
+
+
+
+
+
+
+
+
+
+
+
+
+
     flex-wrap: wrap;
+
     justify-content: center;
     gap: 8px;
   }

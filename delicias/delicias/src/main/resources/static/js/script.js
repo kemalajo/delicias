@@ -34,10 +34,8 @@ async function fetchProdutos() {
     if (!res.ok) throw new Error("Erro HTTP: " + res.status);
 
     const raw = await res.json();
-
     const lista = Array.isArray(raw) ? raw : [raw];
     produtosData = lista.map(normalizeProduto);
-    alert(produtosData);
 
     console.log("✅ Produtos normalizados:", produtosData);
     renderProdutos();
@@ -47,7 +45,7 @@ async function fetchProdutos() {
   }
 }
 
-/** -------------------- INDEX.HTML (Carrossel e avaliar ) -------------------- */
+/** -------------------- INDEX.HTML (Carrossel) -------------------- */
 if (document.querySelector(".carousel")) {
   const carousel = document.querySelector(".carousel");
   const slides = document.querySelectorAll(".slide");
@@ -62,60 +60,8 @@ if (document.querySelector(".carousel")) {
 
   nextBtn?.addEventListener("click", () => showSlide(index + 1));
   prevBtn?.addEventListener("click", () => showSlide(index - 1));
-
-  // Troca automática a cada 5 segundos
   setInterval(() => showSlide(index + 1), 5000);
 }
-
-// rating
-let selectedStars = 0;
-
-// clique nas estrelas
-document.querySelectorAll('.stars-input span').forEach(star => {
-  star.addEventListener('click', function () {
-    selectedStars = this.getAttribute('data-value');
-
-    // muda texto
-    document.getElementById('selected-rating').innerText =
-      "Você selecionou: " + selectedStars + " estrelas";
-
-    // pinta estrelas
-    document.querySelectorAll('.stars-input span').forEach(s => {
-      s.style.color = s.getAttribute('data-value') <= selectedStars ? '#f5b50a' : '#000';
-    });
-  });
-});
-
-// clique no botão enviar
-document.getElementById('submit-review').addEventListener('click', function () {
-  const comment = document.getElementById('review-text').value.trim();
-
-  if (selectedStars == 0) {
-    alert("Selecione uma quantidade de estrelas!");
-    return;
-  }
-
-  if (comment.length < 3) {
-    alert("Digite um comentário maior.");
-    return;
-  }
-
-  // sucesso
-  const msg = document.getElementById('review-success');
-  msg.style.display = 'block';
-
-  // esconder depois de 4s
-  setTimeout(() => {
-    msg.style.display = 'none';
-  }, 4000);
-
-  // limpar
-  selectedStars = 0;
-  document.getElementById('selected-rating').innerText = "Você selecionou: 0 estrelas";
-  document.getElementById('review-text').value = '';
-  document.querySelectorAll('.stars-input span').forEach(s => s.style.color = '#000');
-});
-
 
 /** -------------------- PRODUTOS.HTML -------------------- */
 if (document.getElementById("produtosGrid")) {
@@ -175,8 +121,6 @@ if (document.getElementById("produtosGrid")) {
   updateCartBadge();
 }
 
-
-
 /** -------------------- CARRINHO.HTML -------------------- */
 if (document.getElementById("cart-items")) {
   const cartItemsDiv = document.getElementById("cart-items");
@@ -217,14 +161,18 @@ if (document.getElementById("cart-items")) {
       const itemDiv = document.createElement("div");
       itemDiv.className = "cart-item";
       itemDiv.innerHTML = `
+        <img src="${p.img}" alt="${p.nome}">
         <div class="cart-item-info">
           <h4>${p.nome}</h4>
           <small>${p.categoria || ""}${p.tipo ? " • " + p.tipo : ""}</small>
-          <p class="cart-item-descricao">${p.descricao || ""}</p>
           <p>R$ ${Number(p.preco || 0).toFixed(2)}</p>
         </div>
         <button class="remove-btn" data-index="${index}">❌</button>
       `;
+      const img = itemDiv.querySelector("img");
+      img.onerror = () => {
+        img.src = "https://via.placeholder.com/120x90?text=Sem+imagem";
+      };
       cartItemsDiv.appendChild(itemDiv);
     });
 
@@ -281,6 +229,34 @@ if (document.getElementById("cart-items")) {
   });
 
   renderCart();
+}
+
+/** -------------------- LOGIN.HTML -------------------- */
+if (document.getElementById("login-form")) {
+  const loginForm = document.getElementById("login-form");
+  const loginMessage = document.getElementById("login-message");
+
+  const correctUser = "ferlopes";
+  const correctPass = "doces123";
+
+  loginForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    if (username === correctUser && password === correctPass) {
+      loginMessage.style.color = "green";
+      loginMessage.textContent =
+        "Login realizado com sucesso! Redirecionando...";
+      localStorage.setItem("isConfeiteiraLogada", "true");
+      setTimeout(() => {
+        window.location.href = "produtos.html";
+      }, 1500);
+    } else {
+      loginMessage.style.color = "red";
+      loginMessage.textContent = "Usuário ou senha incorretos!";
+    }
+  });
 }
 
 /** -------------------- Footer: ano -------------------- */
