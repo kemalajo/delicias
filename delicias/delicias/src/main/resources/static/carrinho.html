@@ -4,26 +4,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Delicias Fer Lopes — Carrinho</title>
+
+  <!-- Importa o arquivo CSS principal -->
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- Fonte Poppins do Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
+<!-- ======= CABEÇALHO ======= -->
 <header class="site-header">
   <div class="container header-inner">
     <div class="brand">
+      <!-- Logo da doceria -->
       <img src="img/delicias da fer.png" alt="Delicias da Fer Lopes" class="logo">
       <div class="brand-text">
         <h1>Delicias</h1>
         <small>Fer Lopes</small>
       </div>
     </div>
+
+    <!-- Menu de navegação -->
     <nav class="main-nav">
       <a class="nav-link" href="index.html">Início</a>
       <a class="nav-link" href="produtos.html">Produtos</a>
       <a class="nav-link" href="sobre.html">Sobre</a>
       <a class="nav-link active" href="carrinho.html">Carrinho</a>
     </nav>
+
+    <!-- Ações do cabeçalho (telefone e ícone do carrinho) -->
     <div class="header-actions">
       <a class="phone" href="tel:+5511999999999">📞 (15) 99717-2394</a>
       <a class="cart-link" href="carrinho.html">🛒 <span id="cart-count-badge">0</span></a>
@@ -31,6 +42,7 @@
   </div>
 </header>
 
+<!-- ======= SEÇÃO DE TÍTULO ======= -->
 <section class="section hero small-hero">
   <div class="container">
     <h2 class="section-title">Carrinho</h2>
@@ -38,15 +50,19 @@
   </div>
 </section>
 
+<!-- ======= CONTEÚDO PRINCIPAL ======= -->
 <main class="container produtos-page">
+  <!-- Onde os produtos do carrinho serão listados -->
   <div id="carrinhoGrid" class="grid-cardapio"></div>
 
+  <!-- Rodapé do carrinho com o total e o botão de compra -->
   <div class="carrinho-footer">
     <h3>Total: R$ <span id="totalValue">0.00</span></h3>
     <a class="btn primary" id="finalizarCompraBtn" href="#" target="_blank">Finalizar Compra</a>
   </div>
 </main>
 
+<!-- ======= RODAPÉ ======= -->
 <footer class="site-footer">
   <div class="container footer-inner">
     <div>© <span id="year"></span> Delicias Fer Lopes — Todos os direitos reservados.</div>
@@ -54,31 +70,38 @@
   </div>
 </footer>
 
+<!-- ======= SCRIPT DO CARRINHO ======= -->
 <script>
+// Seleciona os elementos do HTML que serão manipulados
 const carrinhoGrid = document.getElementById("carrinhoGrid");
 const cartCountBadge = document.getElementById("cart-count-badge");
 const totalValue = document.getElementById("totalValue");
 const finalizarCompraBtn = document.getElementById("finalizarCompraBtn");
 
-// Funções utilitárias
+// ---------- Funções utilitárias ----------
+
+// Pega o carrinho salvo no localStorage (ou retorna vazio)
 function getCart() {
   return JSON.parse(localStorage.getItem("carrinho")) || [];
 }
 
+// Atualiza o carrinho no localStorage
 function setCart(cart) {
   localStorage.setItem("carrinho", JSON.stringify(cart));
 }
 
+// Atualiza o número de itens mostrado no ícone do carrinho
 function updateCartCount() {
   cartCountBadge.textContent = getCart().length;
 }
 
+// ---------- Renderiza os produtos na tela ----------
 function renderCart() {
-  const cart = getCart();
-  console.log(cart);
-  carrinhoGrid.innerHTML = "";
-  let total = 0;
+  const cart = getCart(); // busca os produtos salvos
+  carrinhoGrid.innerHTML = ""; // limpa a área de produtos
+  let total = 0; // variável para somar o total
 
+  // Se o carrinho estiver vazio
   if (cart.length === 0) {
     carrinhoGrid.innerHTML = "<p>Seu carrinho está vazio.</p>";
     totalValue.textContent = "0.00";
@@ -86,13 +109,15 @@ function renderCart() {
     return;
   }
 
+  // Percorre cada produto e cria o card na tela
   cart.forEach((produto, index) => {
-    // Converter "R$ 5,00" para número 5.00
+    // Converte o preço "R$ 5,00" para número 5.00
     const precoNumerico = parseFloat(
       (produto.preco || "0").replace("R$", "").replace(",", ".").trim()
     ) || 0;
     total += precoNumerico;
 
+    // Cria o HTML do card do produto
     const card = document.createElement("div");
     card.className = "card-produto";
     card.innerHTML = `
@@ -105,33 +130,34 @@ function renderCart() {
     carrinhoGrid.appendChild(card);
   });
 
+  // Atualiza o valor total exibido
   totalValue.textContent = total.toFixed(2);
 
-  // Botão de remover item
+  // ---------- Botões de remover ----------
   document.querySelectorAll(".remover-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       const index = btn.getAttribute("data-index");
       let cart = getCart();
-      cart.splice(index, 1);
-      setCart(cart);
-      renderCart();
-      updateCartCount();
+      cart.splice(index, 1); // remove o item pelo índice
+      setCart(cart);         // atualiza o localStorage
+      renderCart();          // re-renderiza os produtos
+      updateCartCount();     // atualiza o contador
     });
   });
 
-  // Montar mensagem do WhatsApp
+  // ---------- Monta a mensagem do WhatsApp ----------
   const message = cart
     .map(p => `${p.nome} - ${p.preco}`)
     .join("\n") + `\n\nTotal: R$ ${total.toFixed(2)}`;
 
-  const phone = "5511999999999"; // número do WhatsApp
+  const phone = "5511999999999"; // número do WhatsApp (com DDI 55)
   finalizarCompraBtn.href = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
 }
 
-// Inicialização
-renderCart();
-updateCartCount();
-document.getElementById("year").textContent = new Date().getFullYear();
+// ---------- Inicialização ----------
+renderCart();               // mostra os produtos na tela
+updateCartCount();          // mostra o número de itens no carrinho
+document.getElementById("year").textContent = new Date().getFullYear(); // atualiza o ano no rodapé
 </script>
 
 </body>
