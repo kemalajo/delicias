@@ -1,17 +1,27 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <!-- Define a codificação de caracteres e responsividade -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Título da aba -->
   <title>Login — Delicias Fer Lopes</title>
+
+  <!-- Importa o CSS principal -->
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- Importa a fonte Poppins do Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- Cabeçalho com logotipo -->
   <header class="site-header">
     <div class="container header-inner">
       <div class="brand">
+        <!-- Logotipo da confeitaria -->
         <img src="img/delicias da fer.png" alt="Delicia da fer lopes" class="logo">
+        <!-- Nome e subtítulo da marca -->
         <div class="brand-text">
           <h1>Delicias</h1>                                       
           <small>Fer Lopes</small>
@@ -20,30 +30,81 @@
     </div>
   </header>
 
+  <!-- Conteúdo principal (área de login) -->
   <main class="login-page">
     <div class="login-container">
       <h2>Login da Confeiteira</h2>
       <p>Acesse para adicionar produtos ao site</p>
 
+      <!-- Formulário de login -->
       <form id="login-form">
+        <!-- Campo de usuário -->
         <label for="username">Usuário</label>
         <input type="text" id="username" placeholder="Digite seu usuário" required>
 
+        <!-- Campo de senha -->
         <label for="password">Senha</label>
         <input type="password" id="password" placeholder="Digite sua senha" required>
 
+        <!-- Botão para enviar o formulário -->
         <button type="submit" class="btn primary">Entrar</button>
+
+        <!-- Mensagem de feedback (sucesso/erro) -->
         <p id="login-message" class="login-message"></p>
       </form>
     </div>
   </main>
 
+  <!-- Rodapé com direitos autorais -->
   <footer class="site-footer">
     <div class="container footer-inner">
       <div>© <span id="year"></span> Delicias Fer Lopes — Todos os direitos reservados.</div>
     </div>
   </footer>
 
+<<<<<<< HEAD
   <script src="js/script.js"></script>
+=======
+  <!-- Script de autenticação -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Pega o formulário e o campo de mensagem
+      const loginForm = document.getElementById('login-form');
+      const loginMessage = document.getElementById('login-message');
+
+      // Define usuário e senha corretos (dados fixos)
+      const correctUser = 'ferlopes';
+      const correctPass = 'doces123';
+
+      // Evento disparado ao enviar o formulário
+      loginForm.addEventListener('submit', (e) => {
+        e.preventDefault(); // impede o recarregamento da página
+
+        // Obtém os valores digitados
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value.trim();
+
+        // Verifica se os dados estão corretos
+        if(username === correctUser && password === correctPass) {
+          // Salva no localStorage que a confeiteira está logada
+          localStorage.setItem('isConfeiteiraLogada', 'true');
+
+          // Mostra mensagem de sucesso
+          loginMessage.style.color = 'green';
+          loginMessage.textContent = 'Login realizado com sucesso! Redirecionando...';
+
+          // Redireciona para a página de produtos após 1,5s
+          setTimeout(() => {
+            window.location.href = 'produtos.html'; 
+          }, 1500);
+        } else {
+          // Exibe mensagem de erro
+          loginMessage.style.color = 'red';
+          loginMessage.textContent = 'Usuário ou senha incorretos!';
+        }
+      });
+    });
+  </script>
+>>>>>>> 1d091605bb1ed50c9679c4c712495b61392ca4f1
 </body>
 </html>
