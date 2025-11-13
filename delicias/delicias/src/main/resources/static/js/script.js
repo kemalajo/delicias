@@ -1,4 +1,5 @@
 let produtosData = [];
+let notaSelecionada = 0; // Variável global para armazenar a nota selecionada
 
 /** -------------------- Normalizador -------------------- */
 function normalizeProduto(p) {
@@ -43,24 +44,6 @@ async function fetchProdutos() {
     console.error("❌ Erro ao carregar produtos:", err);
     alert("Não foi possível carregar os produtos do servidor.");
   }
-}
-
-/** -------------------- INDEX.HTML (Carrossel) -------------------- */
-if (document.querySelector(".carousel")) {
-  const carousel = document.querySelector(".carousel");
-  const slides = document.querySelectorAll(".slide");
-  const nextBtn = document.querySelector(".next");
-  const prevBtn = document.querySelector(".prev");
-  let index = 0;
-
-  function showSlide(i) {
-    index = (i + slides.length) % slides.length;
-    carousel.style.transform = `translateX(-${index * 100}%)`;
-  }
-
-  nextBtn?.addEventListener("click", () => showSlide(index + 1));
-  prevBtn?.addEventListener("click", () => showSlide(index - 1));
-  setInterval(() => showSlide(index + 1), 5000);
 }
 
 /** -------------------- PRODUTOS.HTML -------------------- */
@@ -239,7 +222,7 @@ if (document.getElementById("login-form")) {
   const correctUser = "ferlopes";
   const correctPass = "doces123";
 
-  loginForm.addEventListener("submit", (e) => {
+   loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const username = document.getElementById("username").value.trim();
     const password = document.getElementById("password").value.trim();
@@ -262,3 +245,82 @@ if (document.getElementById("login-form")) {
 /** -------------------- Footer: ano -------------------- */
 const yearSpan = document.getElementById("year");
 if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+
+/** -------------------- Avaliações e Estrelas -------------------- */
+
+document.querySelectorAll('.stars-input span').forEach(star => {
+  star.addEventListener('click', (e) => {
+    notaSelecionada = e.target.dataset.value;
+    document.getElementById('selected-rating').innerText = `Você selecionou: ${notaSelecionada} estrelas`;
+    
+    // Marca as estrelas clicadas
+    document.querySelectorAll('.stars-input span').forEach(star => {
+      star.style.color = (star.dataset.value <= notaSelecionada) ? 'gold' : 'gray';
+    });
+  });
+});
+
+// Função para enviar a avaliação para o backend
+const enviarAvaliacao = () => {
+  const nomeUsuario = "Maria Silva"; // Pode pegar de um input se quiser
+  const comentario = document.getElementById('review-text').value;
+
+  if (notaSelecionada === 0 || comentario === "") {
+    alert("Por favor, preencha todos os campos.");
+    return;
+  }
+
+  const dados = { nomeUsuario, nota: notaSelecionada, comentario };
+
+  fetch('http://localhost:8080/avaliacoes', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(dados)
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Avaliação enviada:', data);
+
+    // Limpa o input e reseta estrelas
+    document.getElementById('review-text').value = '';
+    notaSelecionada = 0;
+    document.querySelectorAll('.stars-input span').forEach(star => star.style.color = 'gray');
+    document.getElementById('selected-rating').innerText = `Você selecionou: 0 estrelas`;
+
+    // Atualiza a lista de avaliações puxando do backend
+    carregarAvaliacoes();
+  })
+  .catch(error => console.error('Erro ao enviar avaliação:', error));
+};
+
+
+const carregarAvaliacoes = () => {
+  fetch('http://localhost:8080/avaliacoes')
+    .then(response => response.json())
+    .then(avaliacoes => {
+      const container = document.getElementById('testimonials');
+      
+      // Limpa as avaliações atuais, mas mantém o título e a descrição
+      container.innerHTML = '';
+
+      // Ordena para mostrar o mais recente no topo
+      avaliacoes.sort((a, b) => new Date(b.data) - new Date(a.data));
+
+      avaliacoes.forEach(avaliacao => {
+        const div = document.createElement('div');
+        div.classList.add('testi', 'active');
+        div.innerHTML = `
+          <p>"${avaliacao.comentario}"</p>
+          <strong>- ${avaliacao.nomeUsuario}</strong>
+          <div class="rating fixed">${'★'.repeat(avaliacao.nota)}${'☆'.repeat(5 - avaliacoes.nota)}</div>
+        `;
+        container.appendChild(div);
+      });
+    })
+    .catch(error => console.error('Erro ao carregar avaliações:', error));
+};
+
+
+window.onload = carregarAvaliacoes;
+document.getElementById('submit-review').addEventListener('click', enviarAvaliacao);
+
