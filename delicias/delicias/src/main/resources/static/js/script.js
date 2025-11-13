@@ -262,3 +262,83 @@ if (document.getElementById("login-form")) {
 /** -------------------- Footer: ano -------------------- */
 const yearSpan = document.getElementById("year");
 if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+
+// Variáveis globais
+let notaSelecionada = 0;
+
+// Atualiza a nota quando o usuário clica nas estrelas
+document.querySelectorAll('.stars-input span').forEach(star => {
+  star.addEventListener('click', (e) => {
+    notaSelecionada = e.target.dataset.value;
+    document.getElementById('selected-rating').innerText = `Você selecionou: ${notaSelecionada} estrelas`;
+    
+    // Marca as estrelas clicadas
+    document.querySelectorAll('.stars-input span').forEach(star => {
+      star.style.color = (star.dataset.value <= notaSelecionada) ? 'gold' : 'gray';
+    });
+  });
+});
+
+// Função para enviar a avaliação para o backend
+const enviarAvaliacao = () => {
+  const nomeUsuario = "Maria Silva"; // Pode ser capturado via input, por exemplo
+  const comentario = document.getElementById('review-text').value;
+  
+  // Verifica se todos os campos foram preenchidos
+  if (notaSelecionada === 0 || comentario === "") {
+    alert("Por favor, preencha todos os campos.");
+    return;
+  }
+
+  const dados = {
+    nomeUsuario,
+    nota: notaSelecionada,
+    comentario
+  };
+
+  // Envia a requisição POST para o backend
+  fetch('http://localhost:8080/avaliacoes', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(dados)
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Avaliação enviada:', data);
+    document.getElementById('review-success').style.display = 'block'; // Exibe a mensagem de sucesso
+    carregarAvaliacoes(); // Carrega as avaliações atualizadas
+  })
+  .catch(error => {
+    console.error('Erro ao enviar avaliação:', error);
+  });
+};
+
+// Função para carregar as avaliações
+const carregarAvaliacoes = () => {
+  fetch('http://localhost:8080/avaliacoes')
+    .then(response => response.json())
+    .then(avaliacoes => {
+      const container = document.getElementById('testimonials');
+      container.innerHTML = '<h3>O que nossos clientes dizem:</h3>'; // Limpa as avaliações atuais
+      
+      avaliacoes.forEach(avaliacao => {
+        const div = document.createElement('div');
+        div.classList.add('testi');
+        div.innerHTML = `
+          <p>"${avaliacao.comentario}"</p>
+          <strong>- ${avaliacao.nomeUsuario}</strong>
+          <div class="rating fixed">${'★'.repeat(Number(avaliacao.nota))}</div>
+        `;
+        container.appendChild(div);
+      });
+    })
+    .catch(error => console.error('Erro ao carregar avaliações:', error));
+};
+
+// Chama a função para carregar as avaliações assim que a página carregar
+window.onload = carregarAvaliacoes;
+
+// Adiciona o evento de envio de avaliação
+document.getElementById('submit-review').addEventListener('click', enviarAvaliacao);
