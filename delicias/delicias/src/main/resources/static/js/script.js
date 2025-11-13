@@ -1,6 +1,3 @@
-let produtosData = [];
-let notaSelecionada = 0;
-
 /** -------------------- Normalizador -------------------- */
 function normalizeProduto(p) {
   return {
@@ -60,6 +57,48 @@ async function fetchProdutos() {
   }
 }
 
+// ===== CARROSSEL DE DOCES =====
+
+// Seleciona os elementos principais
+const carousel = document.querySelector('.carousel');
+const slides = document.querySelectorAll('.slide');
+const prevBtn = document.querySelector('.carousel-btn.prev');
+const nextBtn = document.querySelector('.carousel-btn.next');
+
+let currentIndex = 0;
+
+// Função que mostra o slide atual
+function showSlide(index) {
+  // Se passar do último, volta ao primeiro
+  if (index >= slides.length) {
+    currentIndex = 0;
+  } 
+  // Se voltar antes do primeiro, vai pro último
+  else if (index < 0) {
+    currentIndex = slides.length - 1;
+  } 
+  else {
+    currentIndex = index;
+  }
+
+  // Move o carrossel
+  const offset = -currentIndex * 100;
+  carousel.style.transform = `translateX(${offset}%)`;
+}
+
+// Botões de navegação
+nextBtn.addEventListener('click', () => {
+  showSlide(currentIndex + 1);
+});
+
+prevBtn.addEventListener('click', () => {
+  showSlide(currentIndex - 1);
+});
+
+// Troca automática a cada 5 segundos (opcional)
+setInterval(() => {
+  showSlide(currentIndex + 1);
+}, 5000);
 
 
 /** -------------------- Login HTML -------------------- */
