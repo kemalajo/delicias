@@ -24,7 +24,8 @@ public class Avaliacao {
     // Construtores
     public Avaliacao() {}
 
-    public Avaliacao(String nomeUsuario, String nota, String comentario) {
+    public Avaliacao(Long idAvaliacao, String nomeUsuario, String nota, String comentario) {
+    	this.idAvaliacao = idAvaliacao;
         this.nomeUsuario = nomeUsuario;
         this.nota = nota;
         this.comentario = comentario;
@@ -61,6 +62,14 @@ public class Avaliacao {
 
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
+	}
+
+	public Long getIdAvaliacao() {
+		return idAvaliacao;
+	}
+
+	public void setIdAvaliacao(Long idAvaliacao) {
+		this.idAvaliacao = idAvaliacao;
 	}
     
 }
