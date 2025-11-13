@@ -1,4 +1,4 @@
-* {
+{
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -931,6 +931,7 @@ select:focus {
     padding: 4px 8px;
   }
 }
+<<<<<<< Updated upstream
 
 /* Garantias físicas básicas para imagens e containers */
 .container {
@@ -1122,3 +1123,5 @@ a:focus, button:focus, input:focus, textarea:focus {
 .testimonials + .testimonials { margin-top: 0; }
 
 /* Fim dos ajustes de responsividade adicionados */
+=======
+>>>>>>> Stashed changes
