@@ -60,30 +60,7 @@ async function fetchProdutos() {
   }
 }
 
-/** -------------------- Render Produtos -------------------- */
-function renderProdutos() {
-  const featuredRow = document.getElementById("featuredRow");
-  if (!featuredRow) return;
 
-  featuredRow.innerHTML = "";
-  produtosData.forEach((p) => {
-    const card = document.createElement("div");
-    card.className = "card-produtos";
-    card.innerHTML = `
-      <img src="${p.img}" alt="${p.nome}">
-      <h3>${p.nome}</h3>
-      <small>${p.categoria || ""}${p.tipo ? " • " + p.tipo : ""}</small>
-      <p>R$ ${p.preco.toFixed(2)}</p>
-      <button class="add-produto-btn">Adicionar Produto</button>
-    `;
-    card.querySelector("img").onerror = () => { card.querySelector("img").src = "https://via.placeholder.com/400x300?text=Sem+imagem"; };
-    featuredRow.appendChild(card);
-  });
-
-  updateConfeiteiraUI();
-}
-
-fetchProdutos();
 
 /** -------------------- Login HTML -------------------- */
 if (document.getElementById("login-form")) {
