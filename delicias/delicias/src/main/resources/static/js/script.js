@@ -40,7 +40,11 @@ if (logoutBtn) {
   });
 }
 
-window.addEventListener("load", updateConfeiteiraUI);
+/** ✅ AQUI ESTÁ A CORREÇÃO PRINCIPAL */
+window.addEventListener("load", () => {
+  updateConfeiteiraUI();
+  fetchProdutos(); // SEMPRE CARREGA OS PRODUTOS, LOGADA OU NÃO
+});
 
 /** -------------------- Buscar Produtos -------------------- */
 async function fetchProdutos() {
