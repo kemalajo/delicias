@@ -132,12 +132,12 @@ const initialReviews = [
   {
     stars: 5,
     text: "Os doces são maravilhosos! Entrega rápida e tudo fresco!",
-    author: "Mariana S."
+    author: "cliente"
   },
   {
     stars: 4,
     text: "Muito saboroso, só achei o brigadeiro um pouco doce demais.",
-    author: "João P."
+    author: "cliente"
   }
 ];
 
