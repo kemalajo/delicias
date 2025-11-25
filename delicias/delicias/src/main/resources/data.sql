@@ -69,6 +69,11 @@ VALUES
 ('Comum', 'Produtos tradicionais'),
 ('Diet', 'Produtos sem açúcar ou com baixo teor calórico');
 
+insert into tb_usuario (
+nome_usuario, senha
+) values
+('ferlopes', 'doces123');
+
 INSERT INTO tb_categoria_produto (nome_categoria, descricao_categoria)
 VALUES
 ('Bolos', 'Bolos de diversos sabores'),
@@ -83,4 +88,3 @@ INSERT INTO tb_produtos (
   (5.00, 2, 1, 'Biscoitinho de gengibre personalizado', 'https://i.pinimg.com/736x/28/19/b3/2819b32d629845033d9c351f945a727b.jpg', 'Biscoito de Gengibre'),
   (7.00, 1, 1, 'Bolo de Cenoura recheado com cobertura de chocolate', 'https://i.pinimg.com/1200x/82/c1/94/82c19485a4c3498fb6d77853b32ab5f7.jpg', 'Bolo de Cenoura');
   
-  select * from tb_avaliacoes;
