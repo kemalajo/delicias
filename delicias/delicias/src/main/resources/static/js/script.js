@@ -125,6 +125,108 @@ if (document.getElementById("login-form")) {
   });
 }
 
+// ------------ AVALIAÇÕES / DEPOIMENTOS ---------------
+
+// Depoimentos iniciais 
+const initialReviews = [
+  {
+    stars: 5,
+    text: "Os doces são maravilhosos! Entrega rápida e tudo fresco!",
+    author: "Mariana S."
+  },
+  {
+    stars: 4,
+    text: "Muito saboroso, só achei o brigadeiro um pouco doce demais.",
+    author: "João P."
+  }
+];
+
+// Carregar avaliações do localStorage (se existirem)
+let savedReviews = JSON.parse(localStorage.getItem("reviews")) || [];
+
+// Elementos
+const testimonialsContainer = document.getElementById("testimonials");
+const stars = document.querySelectorAll(".stars-input span");
+const reviewText = document.getElementById("review-text");
+const selectedRatingText = document.getElementById("selected-rating");
+const submitBtn = document.getElementById("submit-review");
+const successMessage = document.getElementById("review-success");
+
+let selectedRating = 0;
+
+// Função para exibir as avaliações
+function renderReviews() {
+  testimonialsContainer.innerHTML = "";
+
+  const allReviews = [...initialReviews, ...savedReviews];
+
+  allReviews.forEach(review => {
+    const div = document.createElement("div");
+    div.classList.add("testimonial-item");
+    div.style.marginBottom = "20px";
+
+    div.innerHTML = `
+      <div class="stars">${"★".repeat(review.stars)}${"☆".repeat(5 - review.stars)}</div>
+      <p>${review.text}</p>
+      <strong>- ${review.author || "Cliente"}</strong>
+    `;
+
+    testimonialsContainer.appendChild(div);
+  });
+}
+
+renderReviews();
+
+// Lógica de seleção das estrelas
+stars.forEach(star => {
+  star.addEventListener("click", function() {
+    selectedRating = Number(this.dataset.value);
+
+    // atualiza visual das estrelas
+    stars.forEach(s => {
+      s.textContent = Number(s.dataset.value) <= selectedRating ? "★" : "☆";
+    });
+
+    selectedRatingText.textContent = `Você selecionou: ${selectedRating} estrelas`;
+  });
+});
+
+// Enviar avaliação
+submitBtn.addEventListener("click", () => {
+  const text = reviewText.value.trim();
+
+  if (selectedRating === 0) {
+    alert("Escolha uma quantidade de estrelas!");
+    return;
+  }
+
+  if (text.length < 3) {
+    alert("Escreva um comentário válido.");
+    return;
+  }
+
+  const newReview = {
+    stars: selectedRating,
+    text: text,
+    author: "Cliente"
+  };
+
+  savedReviews.push(newReview);
+  localStorage.setItem("reviews", JSON.stringify(savedReviews));
+
+  renderReviews();
+
+  // limpar form
+  reviewText.value = "";
+  selectedRating = 0;
+  stars.forEach(s => s.textContent = "☆");
+  selectedRatingText.textContent = "Você selecionou: 0 estrelas";
+
+  successMessage.style.display = "block";
+  setTimeout(() => successMessage.style.display = "none", 2000);
+});
+
+
 /** -------------------- Footer: ano -------------------- */
 const yearSpan = document.getElementById("year");
 if (yearSpan) yearSpan.textContent = new Date().getFullYear();
